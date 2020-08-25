@@ -1,0 +1,14 @@
+<template>
+  <require from='./alert-modal.scss'></require>
+
+  <mdc-dialog-title if.bind="payload.caption">${payload.caption}</mdc-dialog-title>
+  <mdc-dialog-content class='alert-modal__dialog-content'>
+    <mdc-icon class="${payload.iconColour}">${payload.icon}</mdc-icon>
+    ${payload.message}
+  </mdc-dialog-content>
+  <mdc-dialog-actions>
+    <button mdc-button data-mdc-dialog-action="cancel" if.bind="payload.cancelText">${payload.cancelText}</button>
+    <button mdc-button data-mdc-dialog-action="ok" data-mdc-dialog-button-default data-mdc-dialog-initial-focus
+      if.bind="payload.okText">${payload.okText}</button>
+  </mdc-dialog-actions>
+</template>

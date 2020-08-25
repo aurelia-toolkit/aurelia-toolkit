@@ -1,15 +1,14 @@
 {
-  "name": "@aurelia-toolkit/auth",
+  "name": "@aurelia-toolkit/exception",
   "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
-  "description": "Aurelia Toolkit Auth",
+  "description": "Aurelia Toolkit Exception",
   "keywords": [
     "aurelia",
     "toolkit",
-    "auth",
-    "jwt"
+    "exception"
   ],
   "homepage": "http://aurelia.io",
   "bugs": {
@@ -43,14 +42,11 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "dependencies": {
-    "@aurelia-toolkit/date": "^1.0.0"
   },
   "peerDependencies": {
     "aurelia-fetch-client": "^1.8.2",
     "aurelia-framework": "^1.3.1",
-    "aurelia-logging": "^1.5.2",
-    "jwt-decode": "^2.2.0",
-    "rxjs": "^6.6.2"
+    "tslib": "^2.0.1"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

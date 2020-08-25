@@ -1,0 +1,44 @@
+:root {
+  --aquantify-ui-common--filter-operator-width: 130px;
+}
+
+filter {
+  >.filter__collection {
+    overflow: visible;
+    margin: 0 15px;
+
+    >filter-line-container {
+      display: flex;
+      align-items: baseline;
+      padding-top: 0;
+      padding-bottom: 0;
+
+      >.label {
+        margin-top: 5px;
+      }
+
+      >.operator {
+        width: var(--aquantify-ui-common--filter-operator-width);
+        margin-left: 10px;
+        margin-right: 10px;
+
+        .input-field {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+      }
+
+      >.value {
+        flex: 1;
+
+        .mdc-text-field {
+          width: 100%;
+        }
+      }
+
+      >.remove {
+        margin-left: 10px;
+      }
+    }
+  }
+}
