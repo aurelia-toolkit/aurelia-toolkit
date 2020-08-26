@@ -11,16 +11,16 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
   // i18n might not be initialised yet
   if (i18n.i18nextDeferred) {
     i18n.i18nextDeferred.then(i18next => {
-      const defaultResource: I18NResource = {
-        requiredLength: '${$displayName} must have at least ${$config.length} characters',
-        requireDigit: '${$displayName} must include digits',
-        requireLowercase: '${$displayName} must include lowercase letters',
-        requireUppercase: '${$displayName} must include uppercase letters',
-        requireNonAlphanumeric: '${$displayName} must include special characters',
-        requiredUniqueChars: '${$displayName} must have at least ${$config.length} unique characters',
-        mustMatch: '${$displayName} must match the ${$config.otherPropertyName}'
+      const validation: I18NResource = {
+        requiredLength: 'must have at least ${$config.length} characters',
+        requireDigit: 'must include digits',
+        requireLowercase: 'must include lowercase letters',
+        requireUppercase: 'must include uppercase letters',
+        requireNonAlphanumeric: 'must include special characters',
+        requiredUniqueChars: 'must have at least ${$config.length} unique characters',
+        mustMatch: 'must match the ${$config.otherPropertyName}'
       };
-      i18next.addResourceBundle('en', 'aurelia-toolkit:validation', defaultResource, true, false);
+      i18next.addResourceBundle('en', 'aurelia-toolkit', { validation }, true, false);
       addPasswordValidationRules(i18n);
     });
   } else {
