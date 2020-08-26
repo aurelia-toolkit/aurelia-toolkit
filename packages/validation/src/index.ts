@@ -1,5 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
-export { addPasswordValidationRules } from './validation';
+import { addPasswordValidationRules } from './validation';
 
 import { FrameworkConfiguration } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
@@ -21,6 +21,7 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
         mustMatch: '${$displayName} must match the ${$config.otherPropertyName}'
       };
       i18next.addResourceBundle('en', 'aurelia-toolkit:validation', defaultResource, true, false);
+      addPasswordValidationRules(i18n);
     });
   } else {
     const logger = frameworkConfiguration.container.get(Logger);
