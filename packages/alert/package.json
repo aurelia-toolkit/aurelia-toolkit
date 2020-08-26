@@ -41,8 +41,6 @@
     "prebuild": "rimraf dist",
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
-  "dependencies": {
-  },
   "peerDependencies": {
     "@aurelia-mdc-web/circular-progress": "^1.0.0-alpha.19",
     "@aurelia-mdc-web/dialog": "^1.0.0-alpha.19",

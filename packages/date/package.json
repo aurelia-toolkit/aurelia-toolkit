@@ -41,8 +41,6 @@
     "prebuild": "rimraf dist",
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
-  "dependencies": {
-  },
   "peerDependencies": {
     "tslib": "^2.0.1"
   },

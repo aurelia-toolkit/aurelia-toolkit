@@ -41,8 +41,6 @@
     "prebuild": "rimraf dist",
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
-  "dependencies": {
-  },
   "peerDependencies": {
     "aurelia-i18n": "^3.1.1",
     "aurelia-validation": "^2.0.0-rc2"
