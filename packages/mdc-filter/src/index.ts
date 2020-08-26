@@ -23,7 +23,7 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
   // i18n might not be initialised yet
   if (i18n.i18nextDeferred) {
     i18n.i18nextDeferred.then(i18next => {
-      const defaultResource: I18NResource = {
+      const filter: I18NResource = {
         is: 'is',
         isAfter: 'is after',
         isBefore: 'is before',
@@ -31,7 +31,7 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
         like: 'like',
         notLike: 'not like'
       };
-      i18next.addResourceBundle('en', 'aurelia-toolkit:filter', defaultResource, true, false);
+      i18next.addResourceBundle('en', 'aurelia-toolkit', { filter }, true, false);
     });
   } else {
     const logger = frameworkConfiguration.container.get(Logger);
