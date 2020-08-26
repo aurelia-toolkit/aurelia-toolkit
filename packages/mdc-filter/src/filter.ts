@@ -6,7 +6,7 @@ import { FilterLineElement } from './filter-line-base';
 
 @customElement('filter')
 @useView(PLATFORM.moduleName('./filter.html'))
-export class MdcFilter {
+export class Filter {
   constructor(private element: Element, private templatingEngine: TemplatingEngine) { }
 
   itemsCollection: HTMLDivElement;

@@ -3,6 +3,8 @@ import { I18N } from 'aurelia-i18n';
 import { Logger } from 'aurelia-logging';
 import { I18NResource } from './i-18n-resource';
 
+export { Filter } from './filter';
+
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
     PLATFORM.moduleName('./filter'),
