@@ -4,6 +4,7 @@ import { Logger } from 'aurelia-logging';
 import { I18NResource } from './i-18n-resource';
 
 export { Filter } from './filter';
+export { IFilterLine } from './i-filter-line';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
