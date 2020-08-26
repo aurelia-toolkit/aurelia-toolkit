@@ -10,7 +10,7 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
     PLATFORM.moduleName('./filter'),
     PLATFORM.moduleName('./filter-line-container/filter-line-container'),
-    PLATFORM.moduleName('./filter-operator-converter/filter-operator-converter'),
+    PLATFORM.moduleName('./filter-operator-converter'),
     PLATFORM.moduleName('./date-filter-line/date-filter-line'),
     PLATFORM.moduleName('./bool-filter-line/bool-filter-line'),
     PLATFORM.moduleName('./lookup-filter-line/lookup-filter-line'),
