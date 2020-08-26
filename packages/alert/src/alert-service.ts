@@ -2,7 +2,7 @@ import { Subject, merge, } from 'rxjs';
 import { map, startWith, scan } from 'rxjs/operators';
 import { AlertModal } from './alert-modal/alert-modal';
 import { autoinject } from 'aurelia-framework';
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
+import { ApplicationInsights, SeverityLevel } from '@microsoft/applicationinsights-web';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 
 @autoinject
@@ -42,11 +42,13 @@ export class AlertService {
     }
   }
 
-  private async showModal(message: string, icon: string, iconColour: string, okText: string, cancelText: string): Promise<string> {
-    return this.dialogService.open({
+  private async showModal(message: string, icon: string, iconColour: string, okText: string, cancelText?: string): Promise<string> {
+    const reason = await this.dialogService.open({
       viewModel: AlertModal,
       model: { icon, iconColour, message, okText, cancelText }
     });
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return reason;
   }
 
   async alert(message: string, icon: string = 'info', iconColour: string = 'mdc-theme--primary'): Promise<boolean> {
@@ -61,9 +63,9 @@ export class AlertService {
     return this.alert(message, 'error', 'error');
   }
 
-  async criticalError(message: string, error: unknown): Promise<boolean> {
+  async criticalError(message: string, error: Error): Promise<boolean> {
     if (this.appInsights.config.instrumentationKey) {
-      this.appInsights.trackException(error);
+      this.appInsights.trackException({ error, severityLevel: SeverityLevel.Critical });
     }
     return this.alert(message, 'error', 'error');
   }
