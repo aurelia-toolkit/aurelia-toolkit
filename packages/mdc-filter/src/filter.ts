@@ -1,4 +1,4 @@
-import { customElement, TemplatingEngine, children, DOM, bindingMode, useView, PLATFORM } from 'aurelia-framework';
+import { customElement, TemplatingEngine, children, DOM, useView, PLATFORM } from 'aurelia-framework';
 import { IFilterLine } from './i-filter-line';
 import { FilterLineContainerElement } from './filter-line-container/filter-line-container';
 import { bindable } from 'aurelia-typed-observable-plugin';
@@ -13,12 +13,6 @@ export class MdcFilter {
 
   @children('.filter__line')
   availableFilterLines: IFilterLine[];
-
-  @bindable
-  pageSizes: number[];
-
-  @bindable.number({ defaultBindingMode: bindingMode.twoWay })
-  pageSize: number;
 
   @bindable
   lines: IFilterLine[] = [];
