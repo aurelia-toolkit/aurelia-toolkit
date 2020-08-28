@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/form-field",
-  "version": "1.0.5",
+  "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -41,8 +41,6 @@
     "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/es2015",
     "prebuild": "rimraf dist",
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
-  },
-  "peerDependencies": {
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
