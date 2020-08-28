@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/mdc-filter",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -47,8 +47,8 @@
     "@aurelia-mdc-web/checkbox": "^1.0.0-alpha.18",
     "@aurelia-mdc-web/icon": "^1.0.0-alpha.18",
     "@aurelia-mdc-web/icon-button": "^1.0.0-alpha.18",
-    "@aurelia-mdc-web/lookup": "^1.0.0-alpha.18",
     "@aurelia-mdc-web/list": "^1.0.0-alpha.18",
+    "@aurelia-mdc-web/lookup": "^1.0.0-alpha.18",
     "@aurelia-mdc-web/menu": "^1.0.0-alpha.18",
     "@aurelia-mdc-web/select": "^1.0.0-alpha.18",
     "@aurelia-mdc-web/text-field": "^1.0.0-alpha.18",
