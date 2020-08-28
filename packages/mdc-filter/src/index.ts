@@ -16,7 +16,8 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
     PLATFORM.moduleName('./lookup-filter-line/lookup-filter-line'),
     PLATFORM.moduleName('./number-filter-line/number-filter-line'),
     PLATFORM.moduleName('./select-filter-line/select-filter-line'),
-    PLATFORM.moduleName('./text-filter-line/text-filter-line')
+    PLATFORM.moduleName('./text-filter-line/text-filter-line'),
+    PLATFORM.moduleName('./filter-actions/filter-actions')
   ]);
 
   const i18n = frameworkConfiguration.container.get(I18N);
