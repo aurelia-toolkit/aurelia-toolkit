@@ -1,0 +1,9 @@
+.at-form-field {
+  display: block;
+  min-height: 87px;
+
+  .mdc-text-field,
+  .mdc-select {
+    width: 100%;
+  }
+}
