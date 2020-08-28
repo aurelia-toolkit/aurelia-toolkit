@@ -1,7 +1,7 @@
 <template class="filter-actions">
   <require from="./filter-actions.scss"></require>
   <div mdc-menu-surface-anchor>
-    <mdc-icon-button ref="trigger" click.trigger="menu.toggle()" icon="zoom_in"></mdc-icon-button>
+    <mdc-icon-button mdc-top-app-bar-action-item ref="trigger" click.trigger="menu.toggle()" icon="zoom_in"></mdc-icon-button>
     <mdc-menu view-model.ref="menu" anchor.bind="trigger" mdcmenu:selected.trigger="filter.add($event.detail.data)">
       <mdc-list role="menu">
         <mdc-list-item repeat.for="l of filter.availableFilterLines" role="menuitem" action-data.bind="l">${l.label}
@@ -10,5 +10,5 @@
     </mdc-menu>
   </div>
 
-  <mdc-icon-button click.trigger="search()" icon="search"></mdc-icon-button>
+  <mdc-icon-button mdc-top-app-bar-action-item click.trigger="search()" icon="search"></mdc-icon-button>
 </template>
