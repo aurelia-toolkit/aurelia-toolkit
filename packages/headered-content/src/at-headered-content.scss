@@ -1,0 +1,19 @@
+.at-headered-content {
+  display: flex;
+  flex-direction: column;
+
+  .mdc-top-app-bar {
+    position: relative;
+  }
+
+  .at-headered-content__container {
+    flex: 1;
+    overflow: hidden;
+
+    >div {
+      height: 100%;
+      overflow: auto;
+    }
+  }
+
+}
