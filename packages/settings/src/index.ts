@@ -18,7 +18,7 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
       const defaultResource: I18NResource = {
         'edit-setting-modal': {
           cancel: 'Cancel',
-          ok: 'Ok'
+          save: 'Save'
         }
       };
       i18next.addResourceBundle('en', 'aurelia-toolkit', defaultResource, true, false);
