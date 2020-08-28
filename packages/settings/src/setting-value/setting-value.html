@@ -1,0 +1,18 @@
+<template>
+  <require from="./password-converter"></require>
+
+  ${setting.name}
+  <template if.bind="setting.clientEditor === ClientEditor.Boolean">
+    <mdc-switch checked.bind="setting.value"></mdc-switch>
+  </template>
+  <template if.bind="setting.clientEditor === ClientEditor.Password">
+    <a href="#" click.delegate="edit()">${setting.value | password}</a>
+  </template>
+  <template if.bind="setting.clientEditor !== ClientEditor.Boolean && setting.clientEditor !== ClientEditor.Password">
+    <a href="#" click.delegate="edit()">
+      <span if.bind="setting.value">${setting.value}</span>
+      <span else>(empty)</span>
+    </a>
+  </template>
+
+</template>
