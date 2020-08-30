@@ -4,6 +4,7 @@ import { Logger } from 'aurelia-logging';
 import { I18NResource } from './i-18n-resource';
 
 export { EditSettingModal } from './edit-setting-modal/edit-setting-modal';
+export { I18NResource } from './i-18n-resource';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
@@ -15,13 +16,13 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
   // i18n might not be initialised yet
   if (i18n.i18nextDeferred) {
     i18n.i18nextDeferred.then(i18next => {
-      const defaultResource: I18NResource = {
+      const settings: I18NResource = {
         'edit-setting-modal': {
           cancel: 'Cancel',
           save: 'Save'
         }
       };
-      i18next.addResourceBundle('en', 'aurelia-toolkit', defaultResource, true, false);
+      i18next.addResourceBundle('en', 'aurelia-toolkit', { settings }, true, false);
     });
   } else {
     const logger = frameworkConfiguration.container.get(Logger);
