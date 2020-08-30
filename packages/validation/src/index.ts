@@ -6,6 +6,8 @@ import { I18N } from 'aurelia-i18n';
 import { Logger } from 'aurelia-logging';
 import { I18NResource } from './i-18n-resource';
 
+export { I18NResource } from './i-18n-resource';
+
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   const i18n = frameworkConfiguration.container.get(I18N);
   // i18n might not be initialised yet
