@@ -45,7 +45,9 @@
     "@aurelia-mdc-web/circular-progress": "^1.0.0-alpha.19",
     "@aurelia-mdc-web/dialog": "^1.0.0-alpha.19",
     "@microsoft/applicationinsights-web": "^2.5.7",
+    "aurelia-i18n": "^3.1.1",
     "aurelia-framework": "^1.3.1",
+    "aurelia-logging": "^1.5.2",
     "aurelia-router": "^1.7.1",
     "rxjs": "^6.6.2"
   },
