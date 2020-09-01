@@ -42,7 +42,7 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "tslib": "^2.0.1"
+    "tslib": "^1.13.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

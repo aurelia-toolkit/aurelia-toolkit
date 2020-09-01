@@ -42,8 +42,8 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/circular-progress": "^1.0.0-alpha.19",
-    "@aurelia-mdc-web/dialog": "^1.0.0-alpha.19",
+    "@aurelia-mdc-web/circular-progress": "^1.0.1",
+    "@aurelia-mdc-web/dialog": "^1.0.1",
     "@microsoft/applicationinsights-web": "^2.5.7",
     "aurelia-framework": "^1.3.1",
     "aurelia-i18n": "^3.1.1",
