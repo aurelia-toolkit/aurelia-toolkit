@@ -28,9 +28,13 @@ export class Filter {
       lines.forEach(x => {
         const fl = this.availableFilterLines.find(l => l.name === x.name);
         if (fl) {
-          const newFilter = this.add(fl);
-          newFilter.operator = x.operator;
-          newFilter.value = x.value;
+          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+          const line: IFilterLine = {
+            label: fl.label, maxWidth: fl.maxWidth, name: fl.name,
+            operators: fl.operators, operator: x.operator, value: x.value,
+            element: fl.element
+          } as IFilterLine;
+          this.add(line);
         }
       });
     } else {
@@ -58,7 +62,7 @@ export class Filter {
     const containerVm = container.au.controller.viewModel;
     containerVm.filterLine = filterVm;
 
-    i.hydrate(filterVm);
+    filterVm.hydrate(i);
     view.bind(this);
     view.attached();
     this.itemsCollection.appendChild(container);
