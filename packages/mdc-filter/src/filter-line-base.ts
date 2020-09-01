@@ -36,13 +36,13 @@ export abstract class FilterLineBase<T> implements IFilterLine {
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   hydrateInternal(_fl: IFilterLine) { }
 
-  hydrate(fl: IFilterLine) {
-    fl.label = this.label;
-    fl.name = this.name;
-    fl.operators = this.operators;
-    fl.operator = this.operator;
-    fl.value = this.value;
-    fl.maxWidth = this.maxWidth;
+  hydrate(fl: FilterLineBase<T>) {
+    this.label = fl.label;
+    this.name = fl.name;
+    this.operators = fl.operators;
+    this.operator = fl.operator;
+    this.value = fl.value;
+    this.maxWidth = fl.maxWidth;
     this.hydrateInternal(fl);
   }
 
