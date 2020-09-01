@@ -4,10 +4,11 @@ import { AlertModal } from './alert-modal/alert-modal';
 import { autoinject } from 'aurelia-framework';
 import { ApplicationInsights, SeverityLevel } from '@microsoft/applicationinsights-web';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
+import { I18N } from 'aurelia-i18n';
 
 @autoinject
 export class AlertService {
-  constructor(private dialogService: MdcDialogService, private appInsights: ApplicationInsights) { }
+  constructor(private dialogService: MdcDialogService, private appInsights: ApplicationInsights, private i18n: I18N) { }
 
   increment$ = new Subject();
   decrement$ = new Subject();
@@ -43,20 +44,18 @@ export class AlertService {
   }
 
   private async showModal(message: string, icon: string, iconColour: string, okText: string, cancelText?: string): Promise<string> {
-    const reason = await this.dialogService.open({
+    return this.dialogService.open({
       viewModel: AlertModal,
       model: { icon, iconColour, message, okText, cancelText }
     });
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return reason;
   }
 
   async alert(message: string, icon: string = 'info', iconColour: string = 'mdc-theme--primary'): Promise<boolean> {
-    return await this.showModal(message, icon, iconColour, 'OK', undefined) === 'ok';
+    return await this.showModal(message, icon, iconColour, this.i18n.tr('aurelia-toolkit:alert.ok'), undefined) === 'ok';
   }
 
   async confirm(message: string, icon: string = 'help', iconColour: string = 'mdc-theme--primary'): Promise<boolean> {
-    return await this.showModal(message, icon, iconColour, 'YES', 'NO') === 'ok';
+    return await this.showModal(message, icon, iconColour, this.i18n.tr('aurelia-toolkit:alert.yes'), this.i18n.tr('aurelia-toolkit:alert.no')) === 'ok';
   }
 
   async error(message: string): Promise<boolean> {
