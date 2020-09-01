@@ -1,5 +1,6 @@
 import { customElement, useView, bindable, bindingMode, PLATFORM } from 'aurelia-framework';
 import parse from 'date-fns/parse';
+import format from 'date-fns/format';
 import { FilterLineBase } from '../filter-line-base';
 import { FilterOperator } from '../filter-operator';
 
@@ -14,6 +15,10 @@ export class DateFilterLine extends FilterLineBase<Date> {
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   valueDate: string;
+
+  hydrateInternal(fl: DateFilterLine) {
+    this.valueDate = fl.value !== undefined ? format(fl.value, 'yyyy-MM-dd') : '';
+  }
 
   updateDateValue() {
     this.value = this.valueDate !== undefined ? parse(this.valueDate, 'yyyy-MM-dd', new Date()) : undefined;
