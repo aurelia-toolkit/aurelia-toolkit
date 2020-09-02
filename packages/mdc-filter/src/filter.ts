@@ -28,13 +28,9 @@ export class Filter {
       lines.forEach(x => {
         const fl = this.availableFilterLines.find(l => l.name === x.name);
         if (fl) {
-          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
-          const line: IFilterLine = {
-            label: fl.label, maxWidth: fl.maxWidth, name: fl.name,
-            operators: fl.operators, operator: x.operator, value: x.value,
-            element: fl.element
-          } as IFilterLine;
-          this.add(line);
+          const newFilter = this.add(fl);
+          newFilter.operator = x.operator;
+          newFilter.value = x.value;
         }
       });
     } else {

@@ -20,6 +20,8 @@ export abstract class FilterLineBase<T> implements IFilterLine {
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   value?: T;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  valueChanged() { }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   operator?: FilterOperator;

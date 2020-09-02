@@ -1,7 +1,3 @@
-:root {
-  --aquantify-ui-common--filter-operator-width: 130px;
-}
-
 filter {
   >.filter__collection {
     overflow: visible;
@@ -18,7 +14,7 @@ filter {
       }
 
       >.operator {
-        width: var(--aquantify-ui-common--filter-operator-width);
+        width: var(--aurelia-toolkit--filter-operator-width, 130px);
         margin-left: 10px;
         margin-right: 10px;
 
