@@ -5,4 +5,6 @@ export interface I18NResource {
   isNot: string;
   isBefore: string;
   isAfter: string;
+  addFilter: string;
+  search: string;
 }

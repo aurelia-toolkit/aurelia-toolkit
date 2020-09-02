@@ -31,7 +31,9 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
         isBefore: 'is before',
         isNot: 'is not',
         like: 'like',
-        notLike: 'not like'
+        notLike: 'not like',
+        addFilter: 'Add filter',
+        search: 'Search'
       };
       i18next.addResourceBundle('en', 'aurelia-toolkit', { filter }, true, false);
     });
