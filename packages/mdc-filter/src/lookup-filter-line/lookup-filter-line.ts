@@ -62,9 +62,9 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
   twoLine: boolean;
 
   hydrateInternal(fl: LookupFilterLine) {
-    fl.options = this.options;
-    fl.displayField = this.displayField;
-    fl.valueField = this.valueField;
-    fl.twoLine = this.twoLine;
+    this.options = fl.options;
+    this.displayField = fl.displayField;
+    this.valueField = fl.valueField;
+    this.twoLine = fl.twoLine;
   }
 }

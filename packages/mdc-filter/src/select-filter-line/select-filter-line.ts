@@ -20,9 +20,9 @@ export class SelectFilterLine extends FilterLineBase<unknown> {
   valueField: ((option: unknown) => unknown) | string | undefined;
 
   hydrateInternal(fl: SelectFilterLine) {
-    fl.options = this.options;
-    fl.displayField = this.displayField;
-    fl.valueField = this.valueField;
+    this.options = fl.options;
+    this.displayField = fl.displayField;
+    this.valueField = fl.valueField;
   }
 
   getDisplay(option: Record<string, unknown>): unknown {
