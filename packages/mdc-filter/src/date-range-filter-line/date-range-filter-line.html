@@ -1,0 +1,7 @@
+<template class="filter__line">
+  <require from="../date-filter-line/date-input"></require>
+  <mdc-text-field type="date" label="'aurelia-toolkit:filter.from' | t" value.bind="value.from | dateInput"
+    class="mdc-text-field--dense" css="max-width: ${maxWidth}px"></mdc-text-field>
+  <mdc-text-field type="date" label="'aurelia-toolkit:filter.to' | t" value.bind="value.to | dateInput"
+    class="mdc-text-field--dense" css="max-width: ${maxWidth}px"></mdc-text-field>
+</template>

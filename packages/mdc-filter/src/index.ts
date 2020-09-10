@@ -13,6 +13,7 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
     PLATFORM.moduleName('./filter-line-container/filter-line-container'),
     PLATFORM.moduleName('./filter-operator-converter'),
     PLATFORM.moduleName('./date-filter-line/date-filter-line'),
+    PLATFORM.moduleName('./date-range-filter-line/date-range-filter-line'),
     PLATFORM.moduleName('./bool-filter-line/bool-filter-line'),
     PLATFORM.moduleName('./lookup-filter-line/lookup-filter-line'),
     PLATFORM.moduleName('./number-filter-line/number-filter-line'),
@@ -33,7 +34,10 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
         like: 'like',
         notLike: 'not like',
         addFilter: 'Add filter',
-        search: 'Search'
+        search: 'Search',
+        between: 'between',
+        from: 'From',
+        to: 'To'
       };
       i18next.addResourceBundle('en', 'aurelia-toolkit', { filter }, true, false);
     });

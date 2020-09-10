@@ -21,6 +21,7 @@ export class FilterOperatorValueConverter {
       case FilterOperator.GreaterThan: return '≥';
       case FilterOperator.IsBefore: return this.i18nResource.isBefore;
       case FilterOperator.IsAfter: return this.i18nResource.isAfter;
+      case FilterOperator.Between: return this.i18nResource.between;
     }
   }
 

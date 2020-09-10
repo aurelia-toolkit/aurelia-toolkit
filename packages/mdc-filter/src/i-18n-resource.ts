@@ -7,4 +7,7 @@ export interface I18NResource {
   isAfter: string;
   addFilter: string;
   search: string;
+  between: string;
+  from: string;
+  to: string;
 }

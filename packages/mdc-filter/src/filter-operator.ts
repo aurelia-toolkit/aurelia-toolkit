@@ -7,4 +7,5 @@ export enum FilterOperator {
   GreaterThan = 5,
   IsBefore = 6,
   IsAfter = 7,
+  Between = 8
 }
