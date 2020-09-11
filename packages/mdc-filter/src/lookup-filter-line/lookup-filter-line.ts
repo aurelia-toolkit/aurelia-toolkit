@@ -29,7 +29,7 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
         <div css="max-width: \${maxWidth}px" mdc-menu-surface-anchor>
           <mdc-text-field ref="input" class="mdc-text-field--dense"></mdc-text-field>
           <mdc-lookup options.bind="options" display-field.bind="displayField" value-field.bind="valueField" value.bind="value"
-            input.bind="input" ${element.hasAttribute('two-line') ? 'two-line' : ''} hoist-to-body>
+            input.bind="input" ${element.hasAttribute('two-line') ? 'two-line' : ''} hoist-to-body preload-options.bind="preloadOptions">
             <template replace-part="option">
               ${element.innerHTML}
             </template>
@@ -61,10 +61,14 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
   @bindable.booleanAttr
   twoLine: boolean;
 
+  @bindable.booleanAttr
+  preloadOptions: boolean;
+
   hydrateInternal(fl: LookupFilterLine) {
     this.options = fl.options;
     this.displayField = fl.displayField;
     this.valueField = fl.valueField;
     this.twoLine = fl.twoLine;
+    this.preloadOptions = fl.preloadOptions;
   }
 }
