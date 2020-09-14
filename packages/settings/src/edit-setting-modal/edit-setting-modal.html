@@ -17,9 +17,15 @@
     <template if.bind="setting.clientEditor === ClientEditor.Colour">
       <mdc-text-field type="color" value.bind="setting.value" label.bind="setting.name"></mdc-text-field>
     </template>
+    <template if.bind="setting.clientEditor === ClientEditor.Select">
+      <mdc-select label.bind="setting.name" value.bind="setting.value" hoist-to-body>
+        <mdc-list-item  repeat.for="o of setting.options" value.bind="o.key">${o.value}</mdc-list-item>
+      </mdc-select>
+    </template>
   </mdc-dialog-content>
   <mdc-dialog-actions>
-    <button mdc-button data-mdc-dialog-action="cancel">${'aurelia-toolkit:settings:edit-setting-modal.cancel' | t}</button>
+    <button mdc-button data-mdc-dialog-action="cancel">
+      ${'aurelia-toolkit:settings:edit-setting-modal.cancel' | t}</button>
     <button mdc-button data-mdc-dialog-action="save" data-mdc-dialog-button-default
       data-mdc-dialog-initial-focus>${'aurelia-toolkit:settings:edit-setting-modal.save' | t}</button>
   </mdc-dialog-actions>
