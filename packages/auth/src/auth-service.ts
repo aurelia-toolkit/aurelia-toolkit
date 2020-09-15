@@ -12,10 +12,12 @@ import { IUsersClient } from './i-users-client';
 import { ITokens } from './i-tokens';
 import { IJwtToken } from './i-jwt-token';
 import { DateService } from '@aurelia-toolkit/date';
+import { AuthConfiguration } from './auth-configuration';
 
 @autoinject
 export class AuthService {
-  constructor(private dateService: DateService, private usersClient: IUsersClient, private httpClient: HttpClient) {
+  constructor(private dateService: DateService, private usersClient: IUsersClient, private httpClient: HttpClient,
+    private authConfiguration: AuthConfiguration) {
     this.logger = getLogger('AuthService');
   }
 
@@ -29,7 +31,7 @@ export class AuthService {
   tokensForRefresh$ = new BehaviorSubject<ITokens | undefined>(undefined);
   isAuthenticated$ = this.tokens$.pipe(map(x => !!x));
 
-  storageKey = `${location.origin}${location.origin.endsWith('/') ? '' : '/'}_tokenResponse_v1`;
+  storageKey = this.authConfiguration.storageKey ?? `${location.origin}${location.origin.endsWith('/') ? '' : '/'}_tokenResponse_v1`;
   tokenSaver$: Subscription;
   tokenRefresher$: Subscription;
 
