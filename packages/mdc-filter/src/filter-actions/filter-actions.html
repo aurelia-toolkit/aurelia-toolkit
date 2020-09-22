@@ -6,7 +6,7 @@
     </mdc-icon-button>
     <mdc-menu view-model.ref="menu" anchor.bind="trigger" mdcmenu:selected.trigger="filter.add($event.detail.data)" hoist-to-body>
       <mdc-list role="menu">
-        <mdc-list-item repeat.for="l of filter.availableFilterLines" role="menuitem" action-data.bind="l">${l.label}
+        <mdc-list-item repeat.for="l of filter.availableFilterLines" role="menuitem" value.bind="l">${l.label}
         </mdc-list-item>
       </mdc-list>
     </mdc-menu>
