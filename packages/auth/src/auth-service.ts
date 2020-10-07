@@ -35,8 +35,8 @@ export class AuthService {
   tokenSaver$: Subscription;
   tokenRefresher$: Subscription;
 
-  async login(email: string, password: string, rememberMe: boolean) {
-    const p = this.usersClient.login({ email, password, rememberMe });
+  async login(request: unknown) {
+    const p = this.usersClient.login(request);
     this.logins$.next(from(p));
     await p;
   }
