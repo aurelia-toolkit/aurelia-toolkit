@@ -31,7 +31,7 @@ for (const key in validationMessages) {
   const message = validationMessages[key];
   if (message.endsWith('.')) {
     // eslint-disable-next-line no-template-curly-in-string
-    validationMessages[key] = message.replace('${$displayName}','').substring(0, message.length - 1).trim();
+    validationMessages[key] = message.substring(0, message.length - 1).replace('${$displayName}','').trim();
   }
 }
 
