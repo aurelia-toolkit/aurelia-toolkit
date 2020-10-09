@@ -7,6 +7,7 @@ export class DateService {
     this.initialised = true;
   }
 
+  /** Returns calculated current server date */
   now(): Date {
     if (this.differenceWithServer === undefined) {
       throw Error('Date service is not initialised');

@@ -1,11 +1,11 @@
 import { getLogger, Logger } from 'aurelia-logging';
 import { autoinject } from 'aurelia-framework';
 import decode from 'jwt-decode';
-import { from, Observable, of, BehaviorSubject, Subscription, timer, empty, fromEvent } from 'rxjs';
+import { from, Observable, of, BehaviorSubject, timer, empty, fromEvent, Subject } from 'rxjs';
 import { switchMap, map, take, debounce, filter, catchError } from 'rxjs/operators';
 import fromUnixTime from 'date-fns/fromUnixTime';
 import isAfter from 'date-fns/isAfter';
-import subSeconds from 'date-fns/subSeconds';
+import subMilliseconds from 'date-fns/subMilliseconds';
 import { HttpClient } from 'aurelia-fetch-client';
 import { ILoginResponse } from './i-login-response';
 import { IUsersClient } from './i-users-client';
@@ -26,14 +26,18 @@ export class AuthService {
   logins$ = new BehaviorSubject<Observable<ILoginResponse | undefined>>(of(undefined));
   tokens$: Observable<ITokens | undefined> = this.logins$.pipe(
     switchMap(x => x.pipe(catchError(() => of(undefined)))),
-    map(x => x ? { token: x.token, refreshToken: x.refreshToken, decodedToken: decode<IJwtToken>(x.token) } : undefined)
-  );
+    map(x => {
+      if (!x) {
+        return undefined;
+      }
+      const decodedToken = decode<IJwtToken>(x.token);
+      return { token: x.token, refreshToken: x.refreshToken, decodedToken, expiryDate: fromUnixTime(decodedToken.exp) };
+    }));
   tokensForRefresh$ = new BehaviorSubject<ITokens | undefined>(undefined);
   isAuthenticated$ = this.tokens$.pipe(map(x => !!x));
+  expired$ = new Subject();
 
   storageKey = this.authConfiguration.storageKey ?? `${location.origin}${location.origin.endsWith('/') ? '' : '/'}_tokenResponse_v1`;
-  tokenSaver$: Subscription;
-  tokenRefresher$: Subscription;
 
   async login(request: unknown) {
     const p = this.usersClient.login(request);
@@ -67,7 +71,8 @@ export class AuthService {
     // wait till refresh token arrives
     await this.getTokens();
 
-    this.tokenSaver$ = this.logins$.pipe(switchMap(x => x.pipe(catchError(() => of(undefined)))))
+    // token saver
+    this.logins$.pipe(switchMap(x => x.pipe(catchError(() => of(undefined)))))
       .subscribe(x => {
         if (x) {
           localStorage.setItem(this.storageKey, JSON.stringify(x));
@@ -76,15 +81,32 @@ export class AuthService {
         }
       });
 
-    this.tokenRefresher$ = this.tokens$.pipe(
+    // expiry checker
+    this.tokens$.pipe(
+      debounce(x => {
+        const expiryDate = x?.expiryDate;
+        return expiryDate && isAfter(expiryDate, this.dateService.now())
+          ? timer(this.dateService.serverToLocal(expiryDate))
+          : empty();
+      }),
+      filter(x => !!x)
+    ).subscribe(() => {
+      this.logins$.next(of(undefined));
+      this.expired$.next();
+    });
+
+    // token refresher
+    this.tokens$.pipe(
       // delay refresh until a token is expired discarding a previous value
       debounce(x => {
-        const expiryDate = x ? fromUnixTime(x.decodedToken.exp) : undefined;
-        return expiryDate && isAfter(expiryDate, this.dateService.now()) ? timer(subSeconds(this.dateService.serverToLocal(expiryDate), 10)) : empty();
+        const expiryDate = x?.expiryDate;
+        return expiryDate && isAfter(expiryDate, this.dateService.now())
+          ? timer(subMilliseconds(this.dateService.serverToLocal(expiryDate), this.authConfiguration.tokenRefreshThreshold))
+          : empty();
       }),
       // no need to refresh an empty token. Has to come after debounce so that a previous refresh is still cancelled
-      filter(x => !!x),
-    ).subscribe(x => { this.refreshToken(x!.refreshToken); });
+      filter(x => !!x?.refreshToken),
+    ).subscribe(x => { this.refreshToken(x!.refreshToken!); });
 
     // subscribe to storage change events and update
     fromEvent<StorageEvent>(window, 'storage').pipe(
@@ -96,14 +118,10 @@ export class AuthService {
     });
   }
 
-  async refreshToken(refreshToken?: string | null): Promise<void> {
-    if (refreshToken) {
-      this.tokensForRefresh$.next(await this.getTokens());
-      const p = this.usersClient.refreshToken({ refreshToken });
-      this.logins$.next(from(p));
-    } else {
-      this.logins$.next(of(undefined));
-    }
+  async refreshToken(refreshToken: string): Promise<void> {
+    this.tokensForRefresh$.next(await this.getTokens());
+    const p = this.usersClient.refreshToken({ refreshToken });
+    this.logins$.next(from(p));
   }
 
   async isAuthenticated(): Promise<boolean> {
