@@ -43,29 +43,29 @@ export class AlertService {
     }
   }
 
-  private async showModal(message: string | undefined, allowHtml: boolean, icon: string, iconColour: string, okText: string, cancelText?: string): Promise<string> {
+  async showModal(message: string | undefined, allowHtml: boolean, icon: string, iconColour: string, okText: string, cancelText?: string): Promise<string> {
     return this.dialogService.open({
       viewModel: AlertModal,
       model: { icon, iconColour, message: allowHtml ? undefined : message, html: allowHtml ? message : undefined, okText, cancelText }
     });
   }
 
-  async alert(message: string, allowHtml: boolean = false, icon: string = 'info', iconColour: string = 'mdc-theme--primary'): Promise<boolean> {
+  async alert(message: string, icon: string = 'info', iconColour: string = 'mdc-theme--primary', allowHtml: boolean = false): Promise<boolean> {
     return await this.showModal(message, allowHtml, icon, iconColour, this.i18n.tr('aurelia-toolkit:alert.ok'), undefined) === 'ok';
   }
 
-  async confirm(message: string, allowHtml: boolean = false, icon: string = 'help', iconColour: string = 'mdc-theme--primary'): Promise<boolean> {
+  async confirm(message: string, icon: string = 'help', iconColour: string = 'mdc-theme--primary', allowHtml: boolean = false): Promise<boolean> {
     return await this.showModal(message, allowHtml, icon, iconColour, this.i18n.tr('aurelia-toolkit:alert.yes'), this.i18n.tr('aurelia-toolkit:alert.no')) === 'ok';
   }
 
   async error(message: string, allowHtml: boolean = false): Promise<boolean> {
-    return this.alert(message, allowHtml, 'error', 'error');
+    return this.alert(message, 'error', 'error', allowHtml);
   }
 
   async criticalError(message: string, error: Error, allowHtml: boolean = false): Promise<boolean> {
     if (this.appInsights.config.instrumentationKey) {
       this.appInsights.trackException({ error, severityLevel: SeverityLevel.Critical });
     }
-    return this.alert(message, allowHtml, 'error', 'error');
+    return this.alert(message, 'error', 'error', allowHtml);
   }
 }
