@@ -59,13 +59,13 @@ export class AlertService {
   }
 
   async error(message: string, allowHtml: boolean = false): Promise<boolean> {
-    return this.alert(message, 'error', 'error', allowHtml);
+    return this.alert(message, 'error', 'mdc-theme--error', allowHtml);
   }
 
   async criticalError(message: string, error: Error, allowHtml: boolean = false): Promise<boolean> {
     if (this.appInsights.config.instrumentationKey) {
       this.appInsights.trackException({ error, severityLevel: SeverityLevel.Critical });
     }
-    return this.alert(message, 'error', 'error', allowHtml);
+    return this.alert(message, 'error', 'mdc-theme--error', allowHtml);
   }
 }
