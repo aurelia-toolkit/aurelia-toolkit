@@ -11,12 +11,14 @@
   <template if.bind="setting.clientEditor === ClientEditor.Select">
     <a href="#" click.delegate="edit()">${selectValue}</a>
   </template>
+  <template if.bind="setting.clientEditor === ClientEditor.Date">
+    <a href="#" click.delegate="edit()">${setting.value | date}</a>
+  </template>
   <template
-    if.bind="setting.clientEditor !== ClientEditor.Boolean && setting.clientEditor !== ClientEditor.Password && setting.clientEditor !== ClientEditor.Select">
+    if.bind="setting.clientEditor !== ClientEditor.Boolean && setting.clientEditor !== ClientEditor.Password && setting.clientEditor !== ClientEditor.Select && setting.clientEditor !== ClientEditor.Date">
     <a href="#" click.delegate="edit()">
       <span if.bind="setting.value">${setting.value}</span>
       <span else>(empty)</span>
     </a>
   </template>
-
 </template>

@@ -22,6 +22,9 @@
         <mdc-list-item  repeat.for="o of setting.options" value.bind="o.key">${o.value}</mdc-list-item>
       </mdc-select>
     </template>
+    <template if.bind="setting.clientEditor === ClientEditor.Date">
+      <mdc-text-field type="date" value.bind="setting.value | dateInput" label.bind="setting.name"></mdc-text-field>
+    </template>
   </mdc-dialog-content>
   <mdc-dialog-actions>
     <button mdc-button data-mdc-dialog-action="cancel">
