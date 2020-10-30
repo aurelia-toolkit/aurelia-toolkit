@@ -1,7 +1,8 @@
-<template>
+<template class="setting-value">
   <require from="./password-converter"></require>
+  <require from="./setting-value.scss"></require>
 
-  ${setting.name}
+  <span>${setting.name}</span>
   <template if.bind="setting.clientEditor === ClientEditor.Boolean">
     <mdc-switch checked.bind="setting.value"></mdc-switch>
   </template>
