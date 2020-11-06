@@ -7,7 +7,7 @@
     <mdc-switch checked.bind="setting.value"></mdc-switch>
   </template>
   <template if.bind="setting.clientEditor === ClientEditor.Password">
-    <a href="#" click.delegate="edit()">${setting.value | password}</a>
+    <a href="#" click.delegate="edit()">${setting.value ? setting.value : '(empty)' | password}</a>
   </template>
   <template if.bind="setting.clientEditor === ClientEditor.Select">
     <a href="#" click.delegate="edit()">${selectValue}</a>
