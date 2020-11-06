@@ -1,6 +1,6 @@
 import { getLogger, Logger } from 'aurelia-logging';
 import { autoinject } from 'aurelia-framework';
-import decode from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 import { from, Observable, of, BehaviorSubject, timer, empty, fromEvent, Subject } from 'rxjs';
 import { switchMap, map, take, debounce, filter, catchError } from 'rxjs/operators';
 import fromUnixTime from 'date-fns/fromUnixTime';
@@ -30,7 +30,7 @@ export class AuthService {
       if (!x) {
         return undefined;
       }
-      const decodedToken = decode<IJwtToken>(x.token);
+      const decodedToken = jwtDecode(x.token) as IJwtToken;
       return { token: x.token, refreshToken: x.refreshToken, decodedToken, expiryDate: fromUnixTime(decodedToken.exp) };
     }));
   tokensForRefresh$ = new BehaviorSubject<ITokens | undefined>(undefined);
