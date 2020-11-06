@@ -42,14 +42,14 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "aurelia-i18n": "^3.1.1",
+    "aurelia-i18n": "^3.1.4",
     "aurelia-logging": "^1.5.2",
     "aurelia-validation": "^2.0.0-rc2"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "copyfiles": "^1.2.0",
+    "copyfiles": "^2.4.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.5"
   }
 }
