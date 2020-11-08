@@ -26,7 +26,7 @@ export function isRouteAllowed(config: RouteConfig, token?: IJwtToken): boolean 
         if (config.permission !== undefined) {
           return token.permission instanceof String ? token.permission === config.permission : token.permission.includes(config.permission);
         } else if (config.role !== undefined) {
-          return token.role instanceof String ? token.role === config.role : token.role.includes(config.role);
+          return token.role instanceof String ? token.role === config.role : token.role?.includes(config.role);
         } else {
           return true;
         }
