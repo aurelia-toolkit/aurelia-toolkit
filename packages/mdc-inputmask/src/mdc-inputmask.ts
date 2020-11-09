@@ -35,6 +35,7 @@ export class MdcInputmaskCustomAttribute {
     const input = this.element.au['mdc-text-field']?.viewModel;
     if (inputmask && input) {
       input.value = inputmask.input.value;
+      input.foundation?.setValue(inputmask.input.value);
     }
   }
 }
