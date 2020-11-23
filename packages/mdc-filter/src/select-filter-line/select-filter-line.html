@@ -1,7 +1,9 @@
 ﻿<template class="filter__line">
   <div css="max-width: ${maxWidth}px">
     <mdc-select value.bind="value" class="mdc-select--dense">
-      <mdc-list-item repeat.for="o of options" value.bind="getValue(o)">${getDisplay(o)}</mdc-list-item>
+      <mdc-list>
+        <mdc-list-item repeat.for="o of options" value.bind="getValue(o)">${getDisplay(o)}</mdc-list-item>
+      </mdc-list>
     </mdc-select>
   </div>
 </template>
