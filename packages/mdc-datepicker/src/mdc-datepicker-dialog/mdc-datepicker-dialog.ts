@@ -30,7 +30,7 @@ export class MdcDatepickerDialog {
     this.originalData = data ?? {};
     this.options = { ...this.configuration.defaultOptions, ...data?.options };
     this.options.i18n = { ...this.configuration.defaultOptions.i18n, ...data?.options?.i18n };
-    this.months = Array.from({ length: 12 }, (_, i) => format(new Date(2020, i + 1, 1), 'LLLL', { locale: this.options?.i18n?.dateFnsLocale }));
+    this.months = Array.from({ length: 12 }, (_, i) => format(new Date(2020, i, 1), 'LLLL', { locale: this.options?.i18n?.dateFnsLocale }));
     this.weekDays = Array.from({ length: 7 }, (_, i) => format(new Date(2020, 10, 16 + i - 1 + this.options.firstDay!), 'EEE', { locale: this.options?.i18n?.dateFnsLocale }));
     this.date = startOfDay(data.date ?? new Date());
     this.month = this.date.getMonth();
@@ -54,8 +54,8 @@ export class MdcDatepickerDialog {
       };
     });
     const currentDate = this.days.find(x => x?.date?.getTime() === this.date!.getTime());
-    if (!currentDate?.disabled) {
-      this.date = currentDate!.date;
+    if (currentDate?.disabled) {
+      this.date = currentDate.date;
     }
   }
 
@@ -81,5 +81,15 @@ export class MdcDatepickerDialog {
   ok() {
     this.originalData.date = this.date;
     this.dialog.close('ok');
+  }
+
+  next() {
+    this.year = this.month === 11 ? this.year + 1 : this.year;
+    this.month = this.month === 11 ? 0 : this.month + 1;
+  }
+
+  prev() {
+    this.year = this.month === 0 ? this.year - 1 : this.year;
+    this.month = this.month === 0 ? 11 : this.month - 1;
   }
 }

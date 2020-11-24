@@ -2,6 +2,7 @@
 @use "@material/select";
 @use "@material/line-ripple";
 @use "@material/ripple";
+@use "@material/icon-button";
 
 .mdc-datepicker-dialog {
   display: flex;
@@ -54,13 +55,14 @@
 
   .mdc-datepicker-dialog__nav {
     display: flex;
+    align-items: center;
 
     @media (orientation: portrait) {
-      margin: 8px 24px;
+      margin: 8px 8px;
     }
 
     @media (orientation: landscape) {
-      margin: 0px 24px;
+      margin: 0px 20px;
     }
 
     .mdc-datepicker-dialog__month,
@@ -81,6 +83,14 @@
       .mdc-select__ripple {
         @include ripple.states-base-color(transparent);
       }
+    }
+
+    .mdc-datepicker-dialog__nav__spacer {
+      flex: 1;
+    }
+
+    .mdc-icon-button {
+      @include icon-button.density(-4);
     }
 
   }
