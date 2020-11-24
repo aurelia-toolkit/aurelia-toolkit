@@ -35,7 +35,7 @@ export function configure(aurelia: Aurelia) {
 <!-- inputmask-format attribute accepts inputmask format tokens  -->
 ```
 
-`mdc-datepicker` custom element uses (inputmask)[https://github.com/RobinHerbots/Inputmask] to limit user's input.
+`mdc-datepicker` custom element uses [inputmask](https://github.com/RobinHerbots/Inputmask) to limit user's input.
 You can use the datepicker dialog separately via the MDC dialog service
 ```ts
 const dialogService: MdcDialogService;
