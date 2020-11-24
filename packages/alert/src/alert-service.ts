@@ -5,6 +5,7 @@ import { autoinject } from 'aurelia-framework';
 import { ApplicationInsights, SeverityLevel } from '@microsoft/applicationinsights-web';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { I18N } from 'aurelia-i18n';
+import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
 
 @autoinject
 export class AlertService {
@@ -56,6 +57,10 @@ export class AlertService {
 
   async confirm(message: string, icon: string = 'help', iconColour: string = 'mdc-theme--primary', allowHtml: boolean = false): Promise<boolean> {
     return await this.showModal(message, allowHtml, icon, iconColour, this.i18n.tr('aurelia-toolkit:alert.yes'), this.i18n.tr('aurelia-toolkit:alert.no')) === 'ok';
+  }
+
+  async prompt(data: Partial<IPromptDialogData>): Promise<boolean> {
+    return await this.dialogService.open({ viewModel: PromptDialog, model: data }) === 'ok';
   }
 
   async error(message: string, allowHtml: boolean = false): Promise<boolean> {

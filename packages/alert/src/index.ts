@@ -5,11 +5,13 @@ import { Logger } from 'aurelia-logging';
 
 export { AlertService } from './alert-service';
 export { I18NResource } from './i-18n-resource';
+export { IPromptDialogData } from './prompt-dialog/prompt-dialog';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
     PLATFORM.moduleName('./global-progress/global-progress'),
-    PLATFORM.moduleName('./alert-modal/alert-modal')
+    PLATFORM.moduleName('./alert-modal/alert-modal'),
+    PLATFORM.moduleName('./prompt-dialog/prompt-dialog')
   ]);
 
   const i18n = frameworkConfiguration.container.get(I18N);
