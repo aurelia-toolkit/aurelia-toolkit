@@ -1,0 +1,158 @@
+@use "@material/theme";
+@use "@material/select";
+@use "@material/line-ripple";
+@use "@material/ripple";
+
+.mdc-datepicker-dialog {
+  display: flex;
+
+  @media (orientation: portrait) {
+    width: 328px;
+    height: 512px;
+    flex-direction: column;
+  }
+
+  @media (orientation: landscape) {
+    width: 512px;
+    height: 328px;
+    flex-direction: row;
+  }
+
+  .mdc-datepicker-dialog__header {
+    display: grid;
+    grid-template-areas: ". label ."
+      ". date ."
+      ". . .";
+
+    @media (orientation: portrait) {
+      grid-template-rows: 32px 72px 16px;
+      grid-template-columns: 24px 280px 24px;
+    }
+
+    @media (orientation: landscape) {
+      width: 168px;
+      grid-template-rows: 32px 144px 16px;
+      grid-template-columns: 24px 120px 24px;
+    }
+
+    @include theme.property(background-color, primary);
+    @include theme.property(color, on-primary);
+
+    .mdc-datepicker-dialog__label {
+      grid-area: label;
+      align-self: end;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .mdc-datepicker-dialog__date {
+      grid-area: date;
+      align-self: end;
+      line-height: 1;
+    }
+  }
+
+  .mdc-datepicker-dialog__nav {
+    display: flex;
+
+    @media (orientation: portrait) {
+      margin: 8px 24px;
+    }
+
+    @media (orientation: landscape) {
+      margin: 0px 24px;
+    }
+
+    .mdc-datepicker-dialog__month,
+    .mdc-datepicker-dialog__year {
+      @include select.filled-density(-4);
+      @include select.bottom-line-color(transparent);
+      @include select.container-fill-color(transparent);
+
+      .mdc-select__anchor {
+        width: auto;
+      }
+
+      .mdc-line-ripple {
+        @include line-ripple.active-color(transparent);
+        @include line-ripple.inactive-color(transparent);
+      }
+
+      .mdc-select__ripple {
+        @include ripple.states-base-color(transparent);
+      }
+    }
+
+  }
+
+  .mdc-datepicker-dialog__view {
+    display: grid;
+
+    @media (orientation: portrait) {
+      margin: 0 12px;
+      grid-template-rows: repeat(7, 40px);
+      grid-template-columns: repeat(7, 40px);
+      column-gap: 4px;
+    }
+
+    @media (orientation: landscape) {
+      margin: 0 22px 0 22px;
+      grid-template-rows: repeat(7, 36px);
+      grid-template-columns: repeat(7, 36px);
+      column-gap: 8px;
+      font-size: small;
+
+    }
+
+    align-items: center;
+    justify-items: center;
+
+    .mdc-datepicker-dialog__week-day {
+      @include theme.property(color, text-hint-on-background);
+    }
+
+    .mdc-datepicker-dialog__day {
+      width: 100%;
+      height: 100%;
+
+      a {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        @include theme.property(color, on-surface);
+
+        &.mdc-ripple-surface {
+          @include ripple.states-base-color(primary);
+        }
+      }
+
+      &--selected {
+        a {
+          @include theme.property(background-color, primary, $important: true);
+          @include theme.property(color, on-primary, $important: true);
+        }
+      }
+
+      &--disabled {
+        a {
+          @include theme.property(color, text-hint-on-background);
+        }
+      }
+
+      span {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  @media (orientation: landscape) {
+    .mdc-dialog__actions {
+      margin-top: -17px;
+    }
+  }
+}

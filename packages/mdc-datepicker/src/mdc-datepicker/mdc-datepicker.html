@@ -1,0 +1,10 @@
+<template class="mdc-datepicker" style="display: block;">
+  <mdc-text-field label.bind="label" ref="input" blur.trigger="handleBlur()" change.trigger="handleChange($event)"
+    input.trigger="handleInput($event)"
+    inputmask="mask:datetime; options.bind: { inputFormat: inputmaskFormat }; is-value-masked: true; value.bind: inputmaskValue"
+    inputmask.ref="inputmask" readonly.bind="readonly">
+    <button mdc-icon-button mdc-text-field-icon trailing icon="event" tabindex="0" click.trigger="open()"
+      disabled.bind="readonly"></button>
+  </mdc-text-field>
+  <mdc-text-field-helper-line></mdc-text-field-helper-line>
+</template>

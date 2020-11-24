@@ -1,0 +1,65 @@
+{
+  "name": "@aurelia-toolkit/mdc-datepicker",
+  "version": "1.0.18",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Aurelia Toolkit MDC Datepicker",
+  "keywords": [
+    "aurelia",
+    "toolkit",
+    "material",
+    "components",
+    "datepicker"
+  ],
+  "homepage": "http://aurelia.io",
+  "bugs": {
+    "url": "https://github.com/aurelia-toolkit/aurelia-toolkit/issues"
+  },
+  "license": "MIT",
+  "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
+  "contributors": [],
+  "main": "dist/commonjs/index.js",
+  "module": "dist/native-modules/index.js",
+  "typings": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aurelia-toolkit/aurelia-toolkit"
+  },
+  "files": [
+    "dist",
+    "*.scss"
+  ],
+  "scripts": {
+    "build-ts:amd": "tsc -p tsconfig.build.json -t es5 -m amd      --outDir dist/amd",
+    "build-ts:cjs": "tsc -p tsconfig.build.json -t es5 -m commonjs --outDir dist/commonjs",
+    "build-ts:ntv": "tsc -p tsconfig.build.json -t es5 -m es6      --outDir dist/native-modules",
+    "build-ts:es6": "tsc -p tsconfig.build.json -t es6 -m es6      --outDir dist/es2015",
+    "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
+    "build-assets:amd": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/amd",
+    "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/commonjs",
+    "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/native-modules",
+    "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/es2015",
+    "prebuild": "rimraf dist",
+    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
+  },
+  "peerDependencies": {
+    "@aurelia-mdc-web/dialog": "^2.0.0",
+    "@aurelia-mdc-web/icon-button": "^2.0.0",
+    "@aurelia-mdc-web/list": "^2.0.0",
+    "@aurelia-mdc-web/select": "^2.0.0",
+    "@aurelia-mdc-web/text-field": "^2.0.0",
+    "@aurelia-toolkit/mdc-inputmask": "^1.0.4",
+    "aurelia-i18n": "^3.1.4",
+    "aurelia-logging": "^1.5.2",
+    "date-fns": "^2.16.1",
+    "inputmask": "^5.0.5",
+    "tslib": "^1.13.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "copyfiles": "^2.4.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.0.5"
+  }
+}
