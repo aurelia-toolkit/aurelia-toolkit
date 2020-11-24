@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/mdc-datepicker",
-  "version": "1.0.18",
+  "version": "1.0.0",
   "publishConfig": {
     "access": "public"
   },
