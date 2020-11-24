@@ -8,6 +8,8 @@
 npm @aurelia-toolkit/mdc-datepicker date-fns inputmask @aurelia-toolkit/mdc-inputmask --save
 ```
 
+If only the dialog is used `inputmask` and  `@aurelia-toolkit/mdc-inputmask` may be ommited. You will get peer dependency warnings which can be ignored.
+
 ## Configuration
 
 ```typescript
