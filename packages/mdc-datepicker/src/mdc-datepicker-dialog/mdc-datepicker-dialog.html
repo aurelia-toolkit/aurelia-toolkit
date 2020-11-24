@@ -1,9 +1,11 @@
 <template>
+  <require from="../converters/date"></require>
   <div class="mdc-datepicker-dialog">
     <div class="mdc-datepicker-dialog__header">
       <span mdc-caption class="mdc-datepicker-dialog__label">${options.label}</span>
-      <span mdc-headline4 class="mdc-datepicker-dialog__date">${date |
-        date:options.format:options.i18n.dateFnsLocale}</span>
+      <span mdc-headline4 class="mdc-datepicker-dialog__date">
+        ${date | date:options.format:options.i18n.dateFnsLocale}
+      </span>
     </div>
     <div>
       <div class="mdc-datepicker-dialog__nav">
