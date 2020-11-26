@@ -3,7 +3,7 @@ export interface IMdcDatepickerDialogOptions extends Record<string, unknown> {
   yearRange: {
     min: number;
     max: number;
-  } | number;
+  };
   format: string;
   min: Date;
   max: Date;

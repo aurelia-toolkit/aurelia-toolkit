@@ -12,7 +12,7 @@
         <mdc-select value.bind="month" fixed class="mdc-datepicker-dialog__month"
           mdcselect:change.trigger="buildDates()">
           <mdc-list>
-            <mdc-list-item repeat.for="m of months" value.bind="$index">${m}</mdc-list-item>
+            <mdc-list-item repeat.for="m of months" value.bind="$index" disabled.bind="m.disabled">${m.name}</mdc-list-item>
           </mdc-list>
         </mdc-select>
         <span class="mdc-datepicker-dialog__nav__spacer"></span>
@@ -21,8 +21,8 @@
             <mdc-list-item repeat.for="y of years" value.bind="y">${y}</mdc-list-item>
           </mdc-list>
         </mdc-select>
-        <button mdc-icon-button icon="keyboard_arrow_left" click.trigger="prev()"></button>
-        <button mdc-icon-button icon="keyboard_arrow_right" click.trigger="next()"></button>
+        <button mdc-icon-button icon="keyboard_arrow_left" click.trigger="prev()" disabled.bind="canGoPrev"></button>
+        <button mdc-icon-button icon="keyboard_arrow_right" click.trigger="next()" disabled.bind="canGoNext"></button>
       </div>
       <div class="mdc-datepicker-dialog__view">
         <span repeat.for="wd of weekDays" class="mdc-datepicker-dialog__week-day">${wd[0]}</span>
