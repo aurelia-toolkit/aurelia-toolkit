@@ -109,7 +109,7 @@ export class MdcDatepickerDialog {
   @computedFrom('year', 'month')
   get canGoNext() {
     const nextMonth = addMonths(new Date(this.year, this.month), 1);
-    return this.isMonthDisabled(nextMonth.getUTCFullYear(), nextMonth.getMonth());
+    return this.isMonthDisabled(nextMonth.getFullYear(), nextMonth.getMonth());
   }
 
   next() {
@@ -120,7 +120,7 @@ export class MdcDatepickerDialog {
   @computedFrom('year', 'month')
   get canGoPrev() {
     const prevMonth = addMonths(new Date(this.year, this.month), -1);
-    return this.isMonthDisabled(prevMonth.getUTCFullYear(), prevMonth.getMonth());
+    return this.isMonthDisabled(prevMonth.getFullYear(), prevMonth.getMonth());
   }
 
   prev() {
