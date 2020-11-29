@@ -1,5 +1,8 @@
-import { Subject, merge, } from 'rxjs';
-import { map, startWith, scan } from 'rxjs/operators';
+import { Subject } from 'rxjs/internal/Subject';
+import { merge } from 'rxjs/internal/observable/merge';
+import { map } from 'rxjs/internal/operators/map';
+import { startWith } from 'rxjs/internal/operators/startWith';
+import { scan } from 'rxjs/internal/operators/scan';
 import { AlertModal } from './alert-modal/alert-modal';
 import { autoinject } from 'aurelia-framework';
 import { ApplicationInsights, SeverityLevel } from '@microsoft/applicationinsights-web';
