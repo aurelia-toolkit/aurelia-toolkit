@@ -19,7 +19,9 @@
     </template>
     <template if.bind="setting.clientEditor === ClientEditor.Select">
       <mdc-select label.bind="setting.name" value.bind="setting.value" hoist-to-body>
-        <mdc-list-item  repeat.for="o of setting.options" value.bind="o.key">${o.value}</mdc-list-item>
+        <mdc-list>
+          <mdc-list-item repeat.for="o of setting.options" value.bind="o.key">${o.value}</mdc-list-item>
+        </mdc-list>
       </mdc-select>
     </template>
     <template if.bind="setting.clientEditor === ClientEditor.Date">
