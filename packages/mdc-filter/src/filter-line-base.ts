@@ -35,6 +35,9 @@ export abstract class FilterLineBase<T> implements IFilterLine {
   @bindable.number({ defaultBindingMode: bindingMode.twoWay })
   maxWidth: number;
 
+  @bindable.booleanAttr
+  lock: boolean;
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   hydrateInternal(_fl: IFilterLine) { }
 
@@ -45,10 +48,16 @@ export abstract class FilterLineBase<T> implements IFilterLine {
     this.operator = fl.operator;
     this.value = fl.value;
     this.maxWidth = fl.maxWidth;
+    this.lock = fl.lock;
     this.hydrateInternal(fl);
   }
 
   toJson(): Partial<IFilterLine> {
     return { name: this.name, operator: this.operator, value: this.value };
   }
+
+  remove() {
+    this.element.dispatchEvent(new CustomEvent('remove', { detail: { filterLine: this } }));
+  }
+
 }

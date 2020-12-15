@@ -1,5 +1,15 @@
-<template class="filter__line">
+<template class="filter-line">
   <require from="./date-input"></require>
-  <mdc-text-field type="date" value.bind="value | dateInput" ref="input" class="mdc-text-field--dense"
-    css="max-width: ${maxWidth}px"></mdc-text-field>
+
+  <div class="filter-line__label">${label}</div>
+  <mdc-select value.bind="operator" class="filter-line__operator mdc-select--dense" hoist-to-body>
+    <mdc-list>
+      <mdc-list-item repeat.for="o of operators" value.bind="o">${o | filterOperator}</mdc-list-item>
+    </mdc-list>
+  </mdc-select>
+  <div class="filter-line__value">
+    <mdc-text-field type="date" value.bind="value | dateInput" ref="input" class="mdc-text-field--dense"
+      css="max-width: ${maxWidth}px"></mdc-text-field>
+  </div>
+  <mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></mdc-icon-button>
 </template>

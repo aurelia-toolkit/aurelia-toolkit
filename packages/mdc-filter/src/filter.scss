@@ -3,37 +3,28 @@ filter {
     overflow: visible;
     margin: 0 15px;
 
-    >filter-line-container {
+    >.filter-line {
       display: flex;
       align-items: center;
       padding-top: 0;
       padding-bottom: 0;
 
-      >.label {
+      >.filter-line__label {
         margin-top: 5px;
       }
 
-      >.operator {
+      >.filter-line__operator {
         width: var(--aurelia-toolkit--filter-operator-width, 130px);
         margin-left: 10px;
         margin-right: 10px;
-
-        .input-field {
-          margin-top: 0;
-          margin-bottom: 0;
-        }
       }
 
-      >.value {
+      >.filter-line__value {
         flex: 1;
 
         .mdc-text-field {
           width: 100%;
         }
-      }
-
-      >.remove {
-        margin-left: 10px;
       }
     }
   }

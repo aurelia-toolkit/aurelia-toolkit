@@ -1,6 +1,5 @@
-import { customElement, TemplatingEngine, children, DOM, useView, PLATFORM } from 'aurelia-framework';
+import { customElement, TemplatingEngine, children, DOM, useView, PLATFORM, Controller } from 'aurelia-framework';
 import { IFilterLine } from './i-filter-line';
-import { FilterLineContainerElement } from './filter-line-container/filter-line-container';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { FilterLineElement } from './filter-line-base';
 
@@ -11,7 +10,7 @@ export class Filter {
 
   itemsCollection: HTMLDivElement;
 
-  @children('.filter__line')
+  @children('.filter-line')
   availableFilterLines: IFilterLine[];
 
   @bindable
@@ -39,12 +38,11 @@ export class Filter {
   }
 
   add(i: IFilterLine): IFilterLine {
-    const container = DOM.createElement('filter-line-container') as FilterLineContainerElement;
-    container.setAttribute('remove.trigger', 'remove($event.detail.filterLine)');
-    if (this.lock) {
-      container.setAttribute('lock', '');
-    }
     const line = DOM.createElement(i.element.tagName.toLowerCase()) as FilterLineElement;
+    line.setAttribute('remove.trigger', 'remove($event.detail.filterLine)');
+    if (this.lock) {
+      line.setAttribute('lock', '');
+    }
     const content = i.element.getAttribute('content');
     if (content) {
       line.innerHTML = content;
@@ -52,16 +50,13 @@ export class Filter {
     if (i.element.hasAttribute('two-line')) {
       line.setAttribute('two-line', 'two-line');
     }
-    container.appendChild(line);
-    const view = this.templatingEngine.enhance(container);
+    const view = this.templatingEngine.enhance(line);
     const filterVm = line.au.controller.viewModel;
-    const containerVm = container.au.controller.viewModel;
-    containerVm.filterLine = filterVm;
 
     filterVm.hydrate(i);
     view.bind(this);
     view.attached();
-    this.itemsCollection.appendChild(container);
+    this.itemsCollection.appendChild(line);
     this.lines.push(filterVm);
     this.element.dispatchEvent(new CustomEvent('added'));
     return filterVm;
@@ -69,9 +64,9 @@ export class Filter {
 
   remove(i: IFilterLine) {
     this.lines.splice(this.lines.indexOf(i), 1);
-    const container = i.element.parentElement!.parentElement as FilterLineContainerElement;
-    this.itemsCollection.removeChild(container);
-    const containerView = container.au.controller.view;
+    const line = i.element as unknown as HTMLElement & { au: { controller: Controller } };
+    this.itemsCollection.removeChild(line);
+    const containerView = line.au.controller.view;
     containerView.detached();
     containerView.unbind();
     containerView.removeNodes();

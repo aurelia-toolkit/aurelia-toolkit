@@ -25,16 +25,25 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
     if (shouldCreateFactory) {
       const compileInstruction = new ViewCompileInstruction(/* shadow DOM? */false, true);
       const template = `
-      <template class="filter__line">
-        <div css="max-width: \${maxWidth}px" mdc-menu-surface-anchor>
-          <mdc-text-field ref="input" class="mdc-text-field--dense"></mdc-text-field>
-          <mdc-lookup options.bind="options" display-field.bind="displayField" value-field.bind="valueField" value.bind="value"
-            input.bind="input" ${element.hasAttribute('two-line') ? 'two-line' : ''} hoist-to-body preload-options.bind="preloadOptions">
-            <template replace-part="option">
-              ${element.innerHTML}
-            </template>
-          </mdc-lookup>
+      <template class="filter-line">
+        <div class="filter-line__label">\${label}</div>
+        <mdc-select value.bind="operator" class="filter-line__operator mdc-select--dense" hoist-to-body>
+          <mdc-list>
+            <mdc-list-item repeat.for="o of operators" value.bind="o">\${o | filterOperator}</mdc-list-item>
+          </mdc-list>
+        </mdc-select>
+        <div class="filter-line__value">
+          <div css="max-width: \${maxWidth}px" mdc-menu-surface-anchor>
+            <mdc-text-field ref="input" class="mdc-text-field--dense"></mdc-text-field>
+            <mdc-lookup options.bind="options" display-field.bind="displayField" value-field.bind="valueField" value.bind="value"
+              input.bind="input" ${element.hasAttribute('two-line') ? 'two-line' : ''} hoist-to-body preload-options.bind="preloadOptions">
+              <template replace-part="option">
+                ${element.innerHTML}
+              </template>
+            </mdc-lookup>
+          </div>
         </div>
+        <mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></mdc-icon-button>
       </template>`;
       const viewFactory = viewCompiler.compile(template, viewResources, compileInstruction);
       // override default view factory

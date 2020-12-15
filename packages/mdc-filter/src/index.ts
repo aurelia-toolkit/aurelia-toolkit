@@ -6,11 +6,11 @@ import { I18NResource } from './i-18n-resource';
 export { Filter } from './filter';
 export { IFilterLine } from './i-filter-line';
 export { I18NResource } from './i-18n-resource';
+export {FilterLineBase} from './filter-line-base';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
     PLATFORM.moduleName('./filter'),
-    PLATFORM.moduleName('./filter-line-container/filter-line-container'),
     PLATFORM.moduleName('./filter-operator-converter'),
     PLATFORM.moduleName('./date-filter-line/date-filter-line'),
     PLATFORM.moduleName('./date-range-filter-line/date-range-filter-line'),

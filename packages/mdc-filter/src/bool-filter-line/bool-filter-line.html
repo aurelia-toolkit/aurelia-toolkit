@@ -1,3 +1,12 @@
-<template class="filter__line">
-  <mdc-checkbox checked.bind="value"></mdc-checkbox>
+<template class="filter-line">
+  <div class="filter-line__label">${label}</div>
+  <mdc-select value.bind="operator" class="filter-line__operator mdc-select--dense" hoist-to-body>
+    <mdc-list>
+      <mdc-list-item repeat.for="o of operators" value.bind="o">${o | filterOperator}</mdc-list-item>
+    </mdc-list>
+  </mdc-select>
+  <div class="filter-line__value">
+    <mdc-checkbox checked.bind="value"></mdc-checkbox>
+  </div>
+  <mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></mdc-icon-button>
 </template>
