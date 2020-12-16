@@ -28,8 +28,7 @@ export class Filter {
         const fl = this.availableFilterLines.find(l => l.name === x.name);
         if (fl) {
           const newFilter = this.add(fl);
-          newFilter.operator = x.operator;
-          newFilter.value = x.value;
+          newFilter.assignValue(x);
         }
       });
     } else {

@@ -60,4 +60,8 @@ export abstract class FilterLineBase<T> implements IFilterLine {
     this.element.dispatchEvent(new CustomEvent('remove', { detail: { filterLine: this } }));
   }
 
+  assignValue(fl: FilterLineBase<T>): void {
+    this.operator = fl.operator;
+    this.value = fl.value;
+  }
 }
