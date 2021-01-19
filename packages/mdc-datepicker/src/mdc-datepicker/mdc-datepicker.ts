@@ -10,7 +10,8 @@ import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { MdcDatepickerDialog } from '../mdc-datepicker-dialog/mdc-datepicker-dialog';
 import { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from '../mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 
-const ISO_FORMAT = 'yyyy-MM-dd';
+const DATE_ISO_FORMAT = 'yyyy-MM-dd';
+const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm';
 
 @inject(Element, TaskQueue, MdcDialogService)
 @customElement('mdc-datepicker')
@@ -61,10 +62,13 @@ export class MdcDatepicker {
   @bindable.booleanAttr
   readonly: boolean;
 
+  @bindable.booleanAttr
+  time: boolean;
+
   get value(): string {
     if (this.input) {
       return this.inputmaskValue !== '' && this.inputmaskValue !== undefined
-        ? format(parse(this.inputmaskValue, this.format, new Date()), ISO_FORMAT)
+        ? format(parse(this.inputmaskValue, this.format, new Date()), this.getIsoFormat())
         : '';
     } else {
       return this._value;
@@ -74,7 +78,7 @@ export class MdcDatepicker {
   set value(value: string) {
     this._value = value;
     if (this.input) {
-      this.inputmaskValue = value !== '' ? format(parse(value, ISO_FORMAT, new Date()), this.format) : '';
+      this.inputmaskValue = value !== '' ? format(parse(value, this.getIsoFormat(), new Date()), this.format) : '';
     }
   }
 
@@ -98,9 +102,13 @@ export class MdcDatepicker {
     this.taskQueue.queueTask(() => this.element.dispatchEvent(new CustomEvent('input')));
   }
 
+  getIsoFormat() {
+    return this.time ? DATETIME_ISO_FORMAT : DATE_ISO_FORMAT;
+  }
+
   getDateValue(): Date | undefined {
     const value = this.value;
-    return value !== '' ? parse(value, ISO_FORMAT, new Date()) : undefined;
+    return value !== '' ? parse(value, this.getIsoFormat(), new Date()) : undefined;
   }
 
   async open() {
@@ -127,7 +135,7 @@ export class MdcDatepicker {
     this.element.dispatchEvent(new CustomEvent('close'));
     if (result === 'ok') {
       if (data.date) {
-        this.value = format(data.date, ISO_FORMAT);
+        this.value = format(data.date, this.getIsoFormat());
       } else {
         this.value = '';
       }
