@@ -44,11 +44,11 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/dialog": "^2.0.0",
-    "@aurelia-mdc-web/icon-button": "^2.0.0",
-    "@aurelia-mdc-web/list": "^2.0.0",
-    "@aurelia-mdc-web/select": "^2.0.0",
-    "@aurelia-mdc-web/text-field": "^2.0.0",
+    "@aurelia-mdc-web/dialog": "^4.0.0",
+    "@aurelia-mdc-web/icon-button": "^4.0.0",
+    "@aurelia-mdc-web/list": "^4.0.0",
+    "@aurelia-mdc-web/select": "^4.0.0",
+    "@aurelia-mdc-web/text-field": "^4.0.0",
     "@aurelia-toolkit/mdc-inputmask": "^1.0.4",
     "aurelia-i18n": "^3.1.4",
     "aurelia-logging": "^1.5.2",
@@ -58,8 +58,8 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "copyfiles": "^2.4.0",
+    "copyfiles": "^2.4.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.3"
   }
 }
