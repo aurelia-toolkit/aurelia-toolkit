@@ -45,7 +45,7 @@
   },
   "peerDependencies": {
     "@aurelia-mdc-web/text-field": "^4.0.0",
-    "aurelia-inputmask": "^1.1.6",
+    "aurelia-inputmask": "^2.0.0",
     "tslib": "^1.13.0"
   },
   "devDependencies": {
