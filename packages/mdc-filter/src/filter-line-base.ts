@@ -29,7 +29,9 @@ export abstract class FilterLineBase<T> implements IFilterLine {
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   operators: FilterOperator[];
   operatorsChanged() {
-    this.operator = this.operators ? this.operators[0] : undefined;
+    this.operator = this.operators
+      ? this.operators.find(x => x === this.operator) ? this.operator : this.operators[0]
+      : undefined;
   }
 
   @bindable.number({ defaultBindingMode: bindingMode.twoWay })
