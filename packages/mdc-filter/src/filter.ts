@@ -71,4 +71,10 @@ export class Filter {
     containerView.removeNodes();
     this.element.dispatchEvent(new CustomEvent('removed'));
   }
+
+  detached() {
+    while (this.lines.length) {
+      this.remove(this.lines[0]);
+    }
+  }
 }
