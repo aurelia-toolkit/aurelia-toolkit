@@ -3,6 +3,9 @@ import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 import { MdcDatepickerDialogConfiguration } from './mdc-datepicker-dialog/mdc-datepicker-dialog-configuration';
 
 export { MdcDatepickerDialogConfiguration };
+export { MdcDatepickerDialog } from './mdc-datepicker-dialog/mdc-datepicker-dialog';
+export { MdcDatepicker } from './mdc-datepicker/mdc-datepicker';
+export { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from './mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration, callback?: (config: MdcDatepickerDialogConfiguration) => void) {
   frameworkConfiguration.container.get(MdcComponentAdapters).registerMdcElementConfig(datepickerConfig);

@@ -6,7 +6,7 @@ import { I18NResource } from './i-18n-resource';
 export { Filter } from './filter';
 export { IFilterLine } from './i-filter-line';
 export { I18NResource } from './i-18n-resource';
-export {FilterLineBase} from './filter-line-base';
+export { FilterLineBase } from './filter-line-base';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
