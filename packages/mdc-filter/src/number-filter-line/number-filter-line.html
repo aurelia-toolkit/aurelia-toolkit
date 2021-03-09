@@ -9,5 +9,5 @@
     <mdc-text-field inputmask="mask: decimal; options.bind: { greedy: false }; value.bind: valueText"
       css="display: block; max-width: ${maxWidth}px" class="mdc-text-field--dense"></mdc-text-field>
   </div>
-  <mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></mdc-icon-button>
+  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
 </template>

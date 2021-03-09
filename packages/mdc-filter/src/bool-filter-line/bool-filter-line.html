@@ -8,5 +8,5 @@
   <div class="filter-line__value">
     <mdc-checkbox checked.bind="value"></mdc-checkbox>
   </div>
-  <mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></mdc-icon-button>
+  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
 </template>

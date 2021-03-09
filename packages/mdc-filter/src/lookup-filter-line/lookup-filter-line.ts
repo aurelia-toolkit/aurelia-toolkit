@@ -15,6 +15,7 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
     this.operators = [FilterOperator.Is, FilterOperator.IsNot];
   }
 
+  // slots cannot be used inside <template replace-part> hence this custom processing
   static processContent(viewCompiler: ViewCompiler, _resources: ViewResources, element: Element, instruction: BehaviorInstruction) {
     const elementResource = instruction.type;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -43,7 +44,7 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
             </mdc-lookup>
           </div>
         </div>
-        <mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></mdc-icon-button>
+        <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
       </template>`;
       const viewFactory = viewCompiler.compile(template, viewResources, compileInstruction);
       // override default view factory

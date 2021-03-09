@@ -11,5 +11,5 @@
     <mdc-text-field type="date" value.bind="value | dateInput" ref="input" class="mdc-text-field--dense"
       css="max-width: ${maxWidth}px"></mdc-text-field>
   </div>
-  <mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></mdc-icon-button>
+  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
 </template>
