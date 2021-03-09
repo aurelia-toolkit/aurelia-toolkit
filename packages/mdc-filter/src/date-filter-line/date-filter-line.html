@@ -8,8 +8,8 @@
     </mdc-list>
   </mdc-select>
   <div class="filter-line__value">
-    <mdc-text-field type="date" value.bind="value | dateInput" ref="input" class="mdc-text-field--dense"
-      css="max-width: ${maxWidth}px"></mdc-text-field>
+    <mdc-datepicker value.bind="value | dateInput" ref="input" class="mdc-datepicker--dense"
+      css="max-width: ${maxWidth}px"></mdc-datepicker>
   </div>
   <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
 </template>

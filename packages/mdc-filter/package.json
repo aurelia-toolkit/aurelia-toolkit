@@ -52,6 +52,7 @@
     "@aurelia-mdc-web/menu": "^5.0.0",
     "@aurelia-mdc-web/select": "^5.0.0",
     "@aurelia-mdc-web/text-field": "^5.0.0",
+    "@aurelia-toolkit/mdc-datepicker": "^2.0.0",
     "aurelia-i18n": "^3.1.4",
     "aurelia-logging": "^1.5.2",
     "tslib": "^1.13.0"

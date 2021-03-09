@@ -7,10 +7,10 @@
     </mdc-list>
   </mdc-select>
   <div class="filter-line__value">
-    <mdc-text-field type="date" label="'aurelia-toolkit:filter.from' | t" value.bind="value.from | dateInput"
-      class="mdc-text-field--dense" css="max-width: ${maxWidth}px"></mdc-text-field>
-    <mdc-text-field type="date" label="'aurelia-toolkit:filter.to' | t" value.bind="value.to | dateInput"
-      class="mdc-text-field--dense" css="max-width: ${maxWidth}px"></mdc-text-field>
+    <mdc-datepicker label="'aurelia-toolkit:filter.from' | t" value.bind="value.from | dateInput"
+      class="mdc-datepicker--dense" css="max-width: ${maxWidth}px"></mdc-datepicker>
+    <mdc-datepicker type="date" label="'aurelia-toolkit:filter.to' | t" value.bind="value.to | dateInput"
+      class="mdc-datepicker--dense" css="max-width: ${maxWidth}px"></mdc-datepicker>
   </div>
   <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
 </template>
