@@ -11,6 +11,12 @@ export class NumberFilterLine extends FilterLineBase<number> {
     this.maxWidth = 150;
   }
 
+  valueChanged() {
+    this.valueText = (this.value === undefined || isNaN(this.value))
+      ? ''
+      : this.value.toString();
+  }
+
   @observable
   valueText: string;
   valueTextChanged() {
