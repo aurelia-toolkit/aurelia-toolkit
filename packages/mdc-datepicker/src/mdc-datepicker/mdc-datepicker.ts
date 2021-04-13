@@ -11,7 +11,7 @@ import { MdcDatepickerDialog } from '../mdc-datepicker-dialog/mdc-datepicker-dia
 import { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from '../mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 
 const DATE_ISO_FORMAT = 'yyyy-MM-dd';
-const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm';
+const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 
 @inject(Element, TaskQueue, MdcDialogService)
 @customElement('mdc-datepicker')
