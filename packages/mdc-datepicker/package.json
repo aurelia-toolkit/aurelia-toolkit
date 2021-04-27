@@ -44,11 +44,11 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/dialog": "^5.0.0",
-    "@aurelia-mdc-web/icon-button": "^5.0.0",
-    "@aurelia-mdc-web/list": "^5.0.0",
-    "@aurelia-mdc-web/select": "^5.0.0",
-    "@aurelia-mdc-web/text-field": "^5.0.0",
+    "@aurelia-mdc-web/dialog": "^6.0.0",
+    "@aurelia-mdc-web/icon-button": "^6.0.0",
+    "@aurelia-mdc-web/list": "^6.0.0",
+    "@aurelia-mdc-web/select": "^6.0.0",
+    "@aurelia-mdc-web/text-field": "^6.0.0",
     "@aurelia-toolkit/mdc-inputmask": "^2.0.0",
     "aurelia-i18n": "^3.1.4",
     "aurelia-logging": "^1.5.2",

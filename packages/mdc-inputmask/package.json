@@ -44,7 +44,7 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/text-field": "^5.0.0",
+    "@aurelia-mdc-web/text-field": "^6.0.0",
     "aurelia-inputmask": "^2.0.0",
     "tslib": "^1.13.0"
   },
