@@ -11,10 +11,6 @@ filter {
       padding-top: 5px;
       padding-bottom: 0;
 
-      >.filter-line__label {
-        margin-top: 5px;
-      }
-
       >.filter-line__operator {
         width: var(--aurelia-toolkit--filter-operator-width, 130px);
         margin-left: 10px;
