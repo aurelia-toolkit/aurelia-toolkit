@@ -9,6 +9,7 @@ import { timer } from 'rxjs/internal/observable/timer';
 import { empty } from 'rxjs/internal/observable/empty';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { Subject } from 'rxjs/internal/Subject';
+import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { map } from 'rxjs/internal/operators/map';
 import { take } from 'rxjs/internal/operators/take';
@@ -42,12 +43,12 @@ export class AuthService {
       if (!x) {
         return undefined;
       }
-      const decodedToken = jwtDecode(x.token) as IJwtToken;
+      const decodedToken = jwtDecode<IJwtToken>(x.token);
       return { token: x.token, refreshToken: x.refreshToken, decodedToken, expiryDate: fromUnixTime(decodedToken.exp) };
     }));
   tokensForRefresh$ = new BehaviorSubject<ITokens | undefined>(undefined);
   isAuthenticated$ = this.tokens$.pipe(map(x => !!x));
-  expired$ = new Subject();
+  expired$ = new Subject<void>();
 
   storageKey = this.authConfiguration.storageKey ?? `${location.origin}${location.origin.endsWith('/') ? '' : '/'}_tokenResponse_v1`;
 
@@ -137,11 +138,11 @@ export class AuthService {
   }
 
   async isAuthenticated(): Promise<boolean> {
-    return this.isAuthenticated$.pipe(take(1)).toPromise();
+    return firstValueFrom(this.isAuthenticated$);
   }
 
   async getTokens(): Promise<ITokens | undefined> {
-    return this.tokens$.pipe(take(1)).toPromise();
+    return firstValueFrom(this.tokens$);
   }
 
   async appendAuthHeaders(request: Request): Promise<Request> {
