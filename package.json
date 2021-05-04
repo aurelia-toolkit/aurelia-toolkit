@@ -24,7 +24,7 @@
     "aurelia-typed-observable-plugin": "^0.4.2",
     "aurelia-validation": "^2.0.0-rc2",
     "jwt-decode": "^3.1.2",
-    "rxjs": "^6.6.7"
+    "rxjs": "^7.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",

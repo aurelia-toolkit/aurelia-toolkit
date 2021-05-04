@@ -52,6 +52,6 @@
     "aurelia-router": "^1.7.1",
     "date-fns": "^2.16.1",
     "jwt-decode": "^3.1.1",
-    "rxjs": "^6.6.3"
+    "rxjs": "^7.0.0"
   }
 }
