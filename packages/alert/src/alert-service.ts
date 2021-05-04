@@ -14,8 +14,8 @@ import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
 export class AlertService {
   constructor(private dialogService: MdcDialogService, private appInsights: ApplicationInsights, private i18n: I18N) { }
 
-  increment$ = new Subject();
-  decrement$ = new Subject();
+  increment$ = new Subject<void>();
+  decrement$ = new Subject<void>();
   busy$ = merge(this.increment$.pipe(map(() => 1)), this.decrement$.pipe(map(() => -1)))
     .pipe(
       startWith(0),
