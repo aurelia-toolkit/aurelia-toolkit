@@ -89,17 +89,17 @@ export class MdcDatepicker {
   }
 
   handleBlur() {
-    this.element.dispatchEvent(new CustomEvent('change'));
+    this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
   }
 
   handleChange(e: Event) {
     e.cancelBubble = true;
-    this.taskQueue.queueTask(() => this.element.dispatchEvent(new CustomEvent('change')));
+    this.taskQueue.queueTask(() => this.element.dispatchEvent(new CustomEvent('change', { bubbles: true })));
   }
 
   handleInput(e: Event) {
     e.cancelBubble = true;
-    this.taskQueue.queueTask(() => this.element.dispatchEvent(new CustomEvent('input')));
+    this.taskQueue.queueTask(() => this.element.dispatchEvent(new CustomEvent('input', { bubbles: true })));
   }
 
   getIsoFormat() {
