@@ -4,9 +4,12 @@
     <button mdc-icon-button mdc-top-app-bar-action-item ref="trigger" click.trigger="menu.toggle()" icon="zoom_in"
       title.bind="'aurelia-toolkit:filter.addFilter' | t">
     </button>
-    <mdc-menu view-model.ref="menu" anchor.bind="trigger" mdcmenu:selected.trigger="filter.add($event.detail.data)" hoist-to-body>
+    <mdc-menu view-model.ref="menu" anchor.bind="trigger" mdcmenu:selected.trigger="filter.add($event.detail.data)"
+      hoist-to-body>
       <mdc-list role="menu">
-        <mdc-list-item repeat.for="l of filter.availableFilterLines" role="menuitem" value.bind="l">${l.label}
+        <mdc-list-item repeat.for="l of filter.availableFilterLines" role="menuitem" value.bind="l"
+        class="mdc-list-item--${l.element.tagName}">
+          ${l.label}
         </mdc-list-item>
       </mdc-list>
     </mdc-menu>
