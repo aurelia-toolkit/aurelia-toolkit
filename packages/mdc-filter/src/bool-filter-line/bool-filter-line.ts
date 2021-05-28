@@ -8,5 +8,6 @@ export class BoolFilterLine extends FilterLineBase<boolean> {
   constructor(element: Element) {
     super(element);
     this.operators = [FilterOperator.Is];
+    this.operator = FilterOperator.Is;
   }
 }
