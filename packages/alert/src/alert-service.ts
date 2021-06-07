@@ -6,13 +6,13 @@ import { scan } from 'rxjs/internal/operators/scan';
 import { AlertModal } from './alert-modal/alert-modal';
 import { autoinject } from 'aurelia-framework';
 import { ApplicationInsights, SeverityLevel } from '@microsoft/applicationinsights-web';
-import { MdcDialogService } from '@aurelia-mdc-web/dialog';
+import { MdcDialogServiceNew } from '@aurelia-mdc-web/dialog';
 import { I18N } from 'aurelia-i18n';
 import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
 
 @autoinject
 export class AlertService {
-  constructor(private dialogService: MdcDialogService, private appInsights: ApplicationInsights, private i18n: I18N) { }
+  constructor(private dialogService: MdcDialogServiceNew, private appInsights: ApplicationInsights, private i18n: I18N) { }
 
   increment$ = new Subject<void>();
   decrement$ = new Subject<void>();

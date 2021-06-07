@@ -15,13 +15,14 @@ export interface IPromptDialogData {
 @autoinject
 @useView(PLATFORM.moduleName('./prompt-dialog.html'))
 export class PromptDialog {
-  constructor(private validationControllerFactory: ValidationControllerFactory, private dialog: MdcDialog) {
+  constructor(private validationControllerFactory: ValidationControllerFactory) {
     this.validationController = this.validationControllerFactory.createForCurrentScope();
     this.rules = ValidationRules
       .ensure<IPromptDialogData, string>(x => x.text).required().when(x => x.required)
       .rules;
   }
 
+  dialog: MdcDialog;
   data: IPromptDialogData;
   validationController: ValidationController;
   rules: Rule<IPromptDialogData, unknown>[][];
