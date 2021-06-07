@@ -50,6 +50,6 @@
     "aurelia-logging": "^1.5.2",
     "aurelia-router": "^1.7.1",
     "aurelia-validation": "^2.0.0-rc2",
-    "rxjs": "^7.10"
+    "rxjs": "^7.1.0"
   }
 }
