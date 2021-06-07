@@ -23,8 +23,9 @@ interface IMonth {
 
 @useView(PLATFORM.moduleName('./mdc-datepicker-dialog.html'))
 export class MdcDatepickerDialog {
-  constructor(private dialog: MdcDialog, private configuration: MdcDatepickerDialogConfiguration) { }
+  constructor(private configuration: MdcDatepickerDialogConfiguration) { }
 
+  dialog: MdcDialog;
   months: IMonth[];
 
   month: number;

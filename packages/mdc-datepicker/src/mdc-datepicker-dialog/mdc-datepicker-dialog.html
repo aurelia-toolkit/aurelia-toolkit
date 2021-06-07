@@ -1,43 +1,48 @@
 <template>
   <require from="../converters/date"></require>
-  <div class="mdc-datepicker-dialog">
-    <div class="mdc-datepicker-dialog__header">
-      <span mdc-caption class="mdc-datepicker-dialog__label">${options.label}</span>
-      <span mdc-headline4 class="mdc-datepicker-dialog__date">
-        ${date | date:options.format:options.i18n.dateFnsLocale}
-      </span>
-    </div>
-    <div>
-      <div class="mdc-datepicker-dialog__nav">
-        <mdc-select value.bind="month" fixed class="mdc-datepicker-dialog__month"
-          mdcselect:change.trigger="buildDates()">
-          <mdc-list>
-            <mdc-list-item repeat.for="m of months" value.bind="$index" disabled.bind="m.disabled">${m.name}</mdc-list-item>
-          </mdc-list>
-        </mdc-select>
-        <span class="mdc-datepicker-dialog__nav__spacer"></span>
-        <mdc-select value.bind="year" fixed class="mdc-datepicker-dialog__year" mdcselect:change.trigger="buildDates()">
-          <mdc-list>
-            <mdc-list-item repeat.for="y of years" value.bind="y">${y}</mdc-list-item>
-          </mdc-list>
-        </mdc-select>
-        <button mdc-icon-button icon="keyboard_arrow_left" click.trigger="prev()" disabled.bind="canGoPrev"></button>
-        <button mdc-icon-button icon="keyboard_arrow_right" click.trigger="next()" disabled.bind="canGoNext"></button>
+  <mdc-dialog view-model.ref="dialog">
+    <div class="mdc-datepicker-dialog">
+      <div class="mdc-datepicker-dialog__header">
+        <span mdc-caption class="mdc-datepicker-dialog__label">${options.label}</span>
+        <span mdc-headline4 class="mdc-datepicker-dialog__date">
+          ${date | date:options.format:options.i18n.dateFnsLocale}
+        </span>
       </div>
-      <div class="mdc-datepicker-dialog__view">
-        <span repeat.for="wd of weekDays" class="mdc-datepicker-dialog__week-day">${wd[0]}</span>
-        <div repeat.for="d of days" class="mdc-datepicker-dialog__day
+      <div>
+        <div class="mdc-datepicker-dialog__nav">
+          <mdc-select value.bind="month" fixed class="mdc-datepicker-dialog__month"
+            mdcselect:change.trigger="buildDates()">
+            <mdc-list>
+              <mdc-list-item repeat.for="m of months" value.bind="$index" disabled.bind="m.disabled">${m.name}
+              </mdc-list-item>
+            </mdc-list>
+          </mdc-select>
+          <span class="mdc-datepicker-dialog__nav__spacer"></span>
+          <mdc-select value.bind="year" fixed class="mdc-datepicker-dialog__year"
+            mdcselect:change.trigger="buildDates()">
+            <mdc-list>
+              <mdc-list-item repeat.for="y of years" value.bind="y">${y}</mdc-list-item>
+            </mdc-list>
+          </mdc-select>
+          <button mdc-icon-button icon="keyboard_arrow_left" click.trigger="prev()" disabled.bind="canGoPrev"></button>
+          <button mdc-icon-button icon="keyboard_arrow_right" click.trigger="next()" disabled.bind="canGoNext"></button>
+        </div>
+        <div class="mdc-datepicker-dialog__view">
+          <span repeat.for="wd of weekDays" class="mdc-datepicker-dialog__week-day">${wd[0]}</span>
+          <div repeat.for="d of days" class="mdc-datepicker-dialog__day
           ${d.date===date ? 'mdc-datepicker-dialog__day--selected' : ''}
           ${d.disabled ? 'mdc-datepicker-dialog__day--disabled' : ''}">
-          <a href="#" mdc-ripple="unbounded.bind: true; disabled.bind: d.disabled" click.trigger="select(d)"
-            if.bind="d.date"><span>${d.date | date:'d'}</span>
-          </a>
+            <a href="#" mdc-ripple="unbounded.bind: true; disabled.bind: d.disabled" click.trigger="select(d)"
+              if.bind="d.date"><span>${d.date | date:'d'}</span>
+            </a>
+          </div>
         </div>
+        <mdc-dialog-actions>
+          <button mdc-button data-mdc-dialog-action="cancel"
+            data-mdc-dialog-initial-focus>${options.i18n.cancel}</button>
+          <button mdc-button click.trigger="ok()">${options.i18n.ok}</button>
+        </mdc-dialog-actions>
       </div>
-      <mdc-dialog-actions>
-        <button mdc-button data-mdc-dialog-action="cancel" data-mdc-dialog-initial-focus>${options.i18n.cancel}</button>
-        <button mdc-button click.trigger="ok()">${options.i18n.ok}</button>
-      </mdc-dialog-actions>
     </div>
-  </div>
+  </mdc-dialog>
 </template>

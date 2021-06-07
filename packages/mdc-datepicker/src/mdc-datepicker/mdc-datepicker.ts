@@ -6,18 +6,18 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
 import { InputmaskCustomAttribute } from 'aurelia-inputmask';
-import { MdcDialogService } from '@aurelia-mdc-web/dialog';
+import { MdcDialogServiceNew } from '@aurelia-mdc-web/dialog';
 import { MdcDatepickerDialog } from '../mdc-datepicker-dialog/mdc-datepicker-dialog';
 import { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from '../mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 
 const DATE_ISO_FORMAT = 'yyyy-MM-dd';
 const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 
-@inject(Element, TaskQueue, MdcDialogService)
+@inject(Element, TaskQueue, MdcDialogServiceNew)
 @customElement('mdc-datepicker')
 @useView(PLATFORM.moduleName('./mdc-datepicker.html'))
 export class MdcDatepicker {
-  constructor(private element: HTMLElement, private taskQueue: TaskQueue, private dialogService: MdcDialogService) {
+  constructor(private element: HTMLElement, private taskQueue: TaskQueue, private dialogService: MdcDialogServiceNew) {
     defineMdcDatepickerElementApis(this.element);
   }
 
