@@ -26,7 +26,7 @@ export class MdcDatepicker {
   inputmaskValue: string;
   _value: string;
 
-  @bindable
+  @bindable.booleanAttr
   outlined: boolean;
 
   @bindable
