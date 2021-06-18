@@ -27,6 +27,9 @@ export class MdcDatepicker {
   _value: string;
 
   @bindable
+  outlined: boolean;
+
+  @bindable
   label: string;
 
   @bindable
