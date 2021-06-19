@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/auth",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "publishConfig": {
     "access": "public"
   },
@@ -43,7 +43,7 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "dependencies": {
-    "@aurelia-toolkit/date": "^1.0.9"
+    "@aurelia-toolkit/date": "^1.0.10"
   },
   "peerDependencies": {
     "aurelia-fetch-client": "^1.8.2",
