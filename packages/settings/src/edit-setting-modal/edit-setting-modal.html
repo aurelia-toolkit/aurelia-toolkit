@@ -1,37 +1,38 @@
 <template>
   <require from='./edit-setting-modal.scss'></require>
-
-  <mdc-dialog-content class='alert-modal__dialog-content edit-settings-modal'>
-    <template if.bind="setting.clientEditor === ClientEditor.String">
-      <mdc-text-field label.bind="setting.name" value.bind="setting.value"></mdc-text-field>
-    </template>
-    <template if.bind="setting.clientEditor === ClientEditor.Textarea">
-      <mdc-text-field textarea label.bind="setting.name" value.bind="setting.value" auto-resize></mdc-text-field>
-    </template>
-    <template if.bind="setting.clientEditor === ClientEditor.Password">
-      <mdc-text-field label.bind="setting.name" value.bind="setting.value" type="password"></mdc-text-field>
-    </template>
-    <template if.bind="setting.clientEditor === ClientEditor.Integer">
-      <mdc-text-field type="number" value.bind="setting.value" label.bind="setting.name"></mdc-text-field>
-    </template>
-    <template if.bind="setting.clientEditor === ClientEditor.Colour">
-      <mdc-text-field type="color" value.bind="setting.value" label.bind="setting.name"></mdc-text-field>
-    </template>
-    <template if.bind="setting.clientEditor === ClientEditor.Select">
-      <mdc-select label.bind="setting.name" value.bind="setting.value" hoist-to-body>
-        <mdc-list>
-          <mdc-list-item repeat.for="o of setting.options" value.bind="o.key">${o.value}</mdc-list-item>
-        </mdc-list>
-      </mdc-select>
-    </template>
-    <template if.bind="setting.clientEditor === ClientEditor.Date">
-      <mdc-text-field type="date" value.bind="setting.value | dateInput" label.bind="setting.name"></mdc-text-field>
-    </template>
-  </mdc-dialog-content>
-  <mdc-dialog-actions>
-    <button mdc-button data-mdc-dialog-action="cancel">
-      ${'aurelia-toolkit:settings:edit-setting-modal.cancel' | t}</button>
-    <button mdc-button data-mdc-dialog-action="save" data-mdc-dialog-button-default
-      data-mdc-dialog-initial-focus>${'aurelia-toolkit:settings:edit-setting-modal.save' | t}</button>
-  </mdc-dialog-actions>
+  <mdc-dialog>
+    <mdc-dialog-content class='alert-modal__dialog-content edit-settings-modal'>
+      <template if.bind="setting.clientEditor === ClientEditor.String">
+        <mdc-text-field label.bind="setting.name" value.bind="setting.value"></mdc-text-field>
+      </template>
+      <template if.bind="setting.clientEditor === ClientEditor.Textarea">
+        <mdc-text-field textarea label.bind="setting.name" value.bind="setting.value" auto-resize></mdc-text-field>
+      </template>
+      <template if.bind="setting.clientEditor === ClientEditor.Password">
+        <mdc-text-field label.bind="setting.name" value.bind="setting.value" type="password"></mdc-text-field>
+      </template>
+      <template if.bind="setting.clientEditor === ClientEditor.Integer">
+        <mdc-text-field type="number" value.bind="setting.value" label.bind="setting.name"></mdc-text-field>
+      </template>
+      <template if.bind="setting.clientEditor === ClientEditor.Colour">
+        <mdc-text-field type="color" value.bind="setting.value" label.bind="setting.name"></mdc-text-field>
+      </template>
+      <template if.bind="setting.clientEditor === ClientEditor.Select">
+        <mdc-select label.bind="setting.name" value.bind="setting.value" hoist-to-body>
+          <mdc-list>
+            <mdc-list-item repeat.for="o of setting.options" value.bind="o.key">${o.value}</mdc-list-item>
+          </mdc-list>
+        </mdc-select>
+      </template>
+      <template if.bind="setting.clientEditor === ClientEditor.Date">
+        <mdc-text-field type="date" value.bind="setting.value | dateInput" label.bind="setting.name"></mdc-text-field>
+      </template>
+    </mdc-dialog-content>
+    <mdc-dialog-actions>
+      <button mdc-button data-mdc-dialog-action="cancel">
+        ${'aurelia-toolkit:settings:edit-setting-modal.cancel' | t}</button>
+      <button mdc-button data-mdc-dialog-action="save" data-mdc-dialog-button-default
+        data-mdc-dialog-initial-focus>${'aurelia-toolkit:settings:edit-setting-modal.save' | t}</button>
+    </mdc-dialog-actions>
+  </mdc-dialog>
 </template>
