@@ -1,4 +1,4 @@
-@use "@material/icon-button/mixins" as icon-button-mixins;
+@use "@material/icon-button/mixins"as icon-button-mixins;
 
 filter {
   >.filter__collection {
@@ -22,6 +22,10 @@ filter {
 
         .mdc-text-field {
           width: 100%;
+        }
+
+        .mdc-select__anchor {
+          width: auto;
         }
       }
 

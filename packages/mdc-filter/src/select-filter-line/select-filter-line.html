@@ -7,7 +7,7 @@
   </mdc-select>
   <div class="filter-line__value">
     <div css="max-width: ${maxWidth}px">
-      <mdc-select value.bind="value" class="mdc-select--dense" hoist-to-body>
+      <mdc-select value.bind="value" class="mdc-select--dense" hoist-to-body natural-width>
         <mdc-list>
           <mdc-list-item repeat.for="o of options" value.bind="getValue(o)">${getDisplay(o)}</mdc-list-item>
         </mdc-list>
