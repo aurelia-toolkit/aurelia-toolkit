@@ -1,12 +1,12 @@
 import { FilterLineBase } from '../filter-line-base';
-import { FilterOperator } from '../filter-operator';
 import { customElement, useView, PLATFORM } from 'aurelia-framework';
+import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 
 @customElement('text-filter-line')
 @useView(PLATFORM.moduleName('./text-filter-line.html'))
 export class TextFilterLine extends FilterLineBase<string> {
-  constructor(element: Element) {
+  constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = [FilterOperator.Like, FilterOperator.NotLike];
+    this.operators = config.textOperators;
   }
 }

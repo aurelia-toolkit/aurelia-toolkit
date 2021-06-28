@@ -1,13 +1,13 @@
 import { FilterLineBase } from '../filter-line-base';
-import { FilterOperator } from '../filter-operator';
 import { customElement, observable, useView, PLATFORM } from 'aurelia-framework';
+import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 
 @customElement('number-filter-line')
 @useView(PLATFORM.moduleName('./number-filter-line.html'))
 export class NumberFilterLine extends FilterLineBase<number> {
-  constructor(element: Element) {
+  constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = [FilterOperator.Is, FilterOperator.IsNot, FilterOperator.GreaterThan, FilterOperator.LessThan];
+    this.operators = config.numberOperators;
     this.maxWidth = 150;
   }
 

@@ -3,16 +3,16 @@ import {
   ViewCompileInstruction, useView, PLATFORM
 } from 'aurelia-framework';
 import { FilterLineBase } from '../filter-line-base';
-import { FilterOperator } from '../filter-operator';
 import { bindable } from 'aurelia-typed-observable-plugin';
+import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 
 @customElement('lookup-filter-line')
 @processContent(LookupFilterLine.processContent)
 @useView(PLATFORM.moduleName('./lookup-filter-line.html'))
 export class LookupFilterLine extends FilterLineBase<unknown> {
-  constructor(element: Element) {
+  constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = [FilterOperator.Is, FilterOperator.IsNot];
+    this.operators = config.lookupOperators;
   }
 
   // slots cannot be used inside <template replace-part> hence this custom processing

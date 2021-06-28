@@ -1,10 +1,8 @@
-import { FilterOperator } from './filter-operator';
-
 export interface IFilterLine {
 	name: string;
 	label: string;
-	operators: FilterOperator[];
-	operator?: FilterOperator;
+	operators: unknown[];
+	operator?: unknown;
 	value?: unknown;
 	maxWidth: number;
 	element: Element;

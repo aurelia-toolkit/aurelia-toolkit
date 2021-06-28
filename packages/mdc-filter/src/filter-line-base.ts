@@ -1,5 +1,4 @@
 import { IFilterLine } from './i-filter-line';
-import { FilterOperator } from './filter-operator';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { bindingMode } from 'aurelia-framework';
 
@@ -24,10 +23,10 @@ export abstract class FilterLineBase<T> implements IFilterLine {
   valueChanged() { }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  operator?: FilterOperator;
+  operator?: unknown;
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
-  operators: FilterOperator[];
+  operators: unknown[];
   operatorsChanged() {
     this.operator = this.operators
       ? this.operators.find(x => x === this.operator) ? this.operator : this.operators[0]

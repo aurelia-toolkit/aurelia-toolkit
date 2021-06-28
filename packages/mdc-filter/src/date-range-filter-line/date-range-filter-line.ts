@@ -1,6 +1,6 @@
 import { customElement, useView, PLATFORM } from 'aurelia-framework';
 import { FilterLineBase } from '../filter-line-base';
-import { FilterOperator } from '../filter-operator';
+import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 
 export interface IDateRange {
   from: Date;
@@ -10,9 +10,9 @@ export interface IDateRange {
 @customElement('date-range-filter-line')
 @useView(PLATFORM.moduleName('./date-range-filter-line.html'))
 export class DateRangeFilterLine extends FilterLineBase<IDateRange> {
-  constructor(element: Element) {
+  constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = [FilterOperator.Between];
+    this.operators = config.dateOperators;
     this.maxWidth = 200;
   }
 }

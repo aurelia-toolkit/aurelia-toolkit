@@ -1,14 +1,12 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
-import { I18N } from 'aurelia-i18n';
-import { Logger } from 'aurelia-logging';
-import { I18NResource } from './i-18n-resource';
+import { MdcFilterConfiguration } from './mdc-filter-configuration';
 
 export { Filter } from './filter';
 export { IFilterLine } from './i-filter-line';
-export { I18NResource } from './i-18n-resource';
 export { FilterLineBase } from './filter-line-base';
+export { MdcFilterConfiguration };
 
-export function configure(frameworkConfiguration: FrameworkConfiguration) {
+export function configure(frameworkConfiguration: FrameworkConfiguration, callback?: (config: MdcFilterConfiguration) => void) {
   frameworkConfiguration.globalResources([
     PLATFORM.moduleName('./filter'),
     PLATFORM.moduleName('./filter-operator-converter'),
@@ -22,28 +20,11 @@ export function configure(frameworkConfiguration: FrameworkConfiguration) {
     PLATFORM.moduleName('./filter-actions/filter-actions')
   ]);
 
-  const i18n = frameworkConfiguration.container.get(I18N);
-  // i18n might not be initialised yet
-  if (i18n.i18nextDeferred) {
-    i18n.i18nextDeferred.then(i18next => {
-      const filter: I18NResource = {
-        is: 'is',
-        isAfter: 'is after',
-        isBefore: 'is before',
-        isNot: 'is not',
-        like: 'like',
-        notLike: 'not like',
-        addFilter: 'Add filter',
-        search: 'Search',
-        between: 'between',
-        from: 'From',
-        to: 'To'
-      };
-      i18next.addResourceBundle('en', 'aurelia-toolkit', { filter }, true, false);
-    });
-  } else {
-    const logger = frameworkConfiguration.container.get(Logger);
-    logger.error('Did you forget to initialise I18N plugin?');
-    throw Error();
+  const config = frameworkConfiguration.container.get(MdcFilterConfiguration);
+  if (typeof callback === 'function') {
+    callback(config);
+  }
+  if (!config.getOperatorLabel) {
+    config.getOperatorLabel = operator => `${operator}`;
   }
 }

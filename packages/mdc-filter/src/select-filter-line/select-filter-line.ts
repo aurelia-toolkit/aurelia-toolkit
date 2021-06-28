@@ -1,13 +1,13 @@
 import { FilterLineBase } from '../filter-line-base';
-import { FilterOperator } from '../filter-operator';
 import { customElement, bindable, useView, PLATFORM } from 'aurelia-framework';
+import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 
 @customElement('select-filter-line')
 @useView(PLATFORM.moduleName('./select-filter-line.html'))
 export class SelectFilterLine extends FilterLineBase<unknown> {
-  constructor(element: Element) {
+  constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = [FilterOperator.Is, FilterOperator.IsNot];
+    this.operators = config.selectOperators;
   }
 
   @bindable
