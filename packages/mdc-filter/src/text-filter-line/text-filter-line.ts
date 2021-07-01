@@ -7,6 +7,6 @@ import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 export class TextFilterLine extends FilterLineBase<string> {
   constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = config.textOperators;
+    this.operators = [...config.textOperators];
   }
 }

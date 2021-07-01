@@ -12,7 +12,7 @@ import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 export class LookupFilterLine extends FilterLineBase<unknown> {
   constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = config.lookupOperators;
+    this.operators = [...config.lookupOperators];
   }
 
   // slots cannot be used inside <template replace-part> hence this custom processing

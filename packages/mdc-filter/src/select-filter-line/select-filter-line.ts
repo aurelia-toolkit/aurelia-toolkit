@@ -7,7 +7,7 @@ import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 export class SelectFilterLine extends FilterLineBase<unknown> {
   constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = config.selectOperators;
+    this.operators = [...config.selectOperators];
   }
 
   @bindable

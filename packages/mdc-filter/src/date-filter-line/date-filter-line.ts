@@ -7,8 +7,7 @@ import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 export class DateFilterLine extends FilterLineBase<Date> {
   constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);
-    this.operators = config.dateOperators;
-    this.operator = this.operators[0];
+    this.operators = [...config.dateOperators];
     this.maxWidth = 200;
   }
 }
