@@ -18,8 +18,8 @@
   <template
     if.bind="setting.clientEditor !== ClientEditor.Boolean && setting.clientEditor !== ClientEditor.Password && setting.clientEditor !== ClientEditor.Select && setting.clientEditor !== ClientEditor.Date">
     <a href="#" click.delegate="edit()">
-      <span if.bind="setting.value !== undefined">${setting.value}</span>
-      <span else>(empty)</span>
+      <span if.bind="setting.value === undefined || setting.value === ''">(empty)</span>
+      <span else>${setting.value}</span>
     </a>
   </template>
 </template>
