@@ -1,4 +1,4 @@
-import { AlertService } from '@aurelia-toolkit/alert';
+import { AlertService } from '../alert-service';
 
 export interface IWithAlertService {
   alertService: AlertService;
