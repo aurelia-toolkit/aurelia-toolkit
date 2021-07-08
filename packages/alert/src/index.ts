@@ -6,6 +6,8 @@ import { Logger } from 'aurelia-logging';
 export { AlertService } from './alert-service';
 export { I18NResource } from './i-18n-resource';
 export { IPromptDialogData } from './prompt-dialog/prompt-dialog';
+export { confirmAction } from './decorators/confirm-action';
+export { usingProgress } from './decorators/using-progress';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration) {
   frameworkConfiguration.globalResources([
