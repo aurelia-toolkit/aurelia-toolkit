@@ -6,13 +6,12 @@ import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { timer } from 'rxjs/internal/observable/timer';
-import { empty } from 'rxjs/internal/observable/empty';
+import { EMPTY } from 'rxjs/internal/observable/empty';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { Subject } from 'rxjs/internal/Subject';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { map } from 'rxjs/internal/operators/map';
-import { take } from 'rxjs/internal/operators/take';
 import { debounce } from 'rxjs/internal/operators/debounce';
 import { filter } from 'rxjs/internal/operators/filter';
 import { catchError } from 'rxjs/internal/operators/catchError';
@@ -100,7 +99,7 @@ export class AuthService {
         const expiryDate = x?.expiryDate;
         return expiryDate && isAfter(expiryDate, this.dateService.now())
           ? timer(this.dateService.serverToLocal(expiryDate))
-          : empty();
+          : EMPTY;
       }),
       filter(x => !!x)
     ).subscribe(() => {
@@ -115,7 +114,7 @@ export class AuthService {
         const expiryDate = x?.expiryDate;
         return expiryDate && isAfter(expiryDate, this.dateService.now())
           ? timer(subMilliseconds(this.dateService.serverToLocal(expiryDate), this.authConfiguration.tokenRefreshThreshold))
-          : empty();
+          : EMPTY;
       }),
       // no need to refresh an empty token. Has to come after debounce so that a previous refresh is still cancelled
       filter(x => !!x?.refreshToken),
@@ -151,12 +150,9 @@ export class AuthService {
     }
     // RefreshToken request can lock itself because it is added to the tokens$ stream
     // to avoid locking previous auth token is saved to a separate stream prior to the call
-    const tokens = request.url.includes('RefreshToken') ? await this.tokensForRefresh$.pipe(take(1)).toPromise() : await this.getTokens();
+    const tokens = request.url.includes('RefreshToken') ? await firstValueFrom(this.tokensForRefresh$) : await this.getTokens();
     if (tokens) {
       request.headers.set('Authorization', `Bearer ${tokens.token}`);
-      if (tokens.refreshToken) {
-        request.headers.set('remember-me', 'true');
-      }
     }
     return request;
   }
