@@ -32,9 +32,9 @@ export class PromptDialog {
     this.validationController.addObject(this.data, this.rules);
   }
 
-  async save() {
+  async ok() {
     if ((await this.validationController.validate()).valid) {
-      this.dialog.close('save');
+      this.dialog.close('ok');
     }
   }
 }
