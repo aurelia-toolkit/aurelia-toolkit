@@ -138,7 +138,11 @@ export class MdcDatepicker {
     this.element.dispatchEvent(new CustomEvent('close'));
     if (result === 'ok') {
       if (data.date) {
-        this.value = format(data.date, this.getIsoFormat());
+        const value = format(data.date, this.getIsoFormat());
+        if (this.value !== value) {
+          this.value = value;
+          this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+        }
       } else {
         this.value = '';
       }
