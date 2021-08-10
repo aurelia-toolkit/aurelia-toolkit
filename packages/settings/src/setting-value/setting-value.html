@@ -4,7 +4,7 @@
 
   <span>${setting.name}</span>
   <template if.bind="setting.clientEditor === ClientEditor.Boolean">
-    <button mdc-switch checked.bind="setting.value"></button>
+    <button mdc-switch selected.bind="setting.value"></button>
   </template>
   <template if.bind="setting.clientEditor === ClientEditor.Password">
     <a href="#" click.delegate="edit()">${setting.value ? setting.value : '(empty)' | password}</a>
