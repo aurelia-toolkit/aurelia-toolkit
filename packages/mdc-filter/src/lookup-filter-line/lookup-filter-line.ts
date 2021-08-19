@@ -1,10 +1,11 @@
 import {
   customElement, processContent, ViewCompiler, ViewResources, BehaviorInstruction,
-  ViewCompileInstruction, useView, PLATFORM
+  ViewCompileInstruction, PLATFORM, useView
 } from 'aurelia-framework';
 import { FilterLineBase } from '../filter-line-base';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
+import templateHtml from './lookup-filter-line.html';
 
 @customElement('lookup-filter-line')
 @processContent(LookupFilterLine.processContent)
@@ -25,28 +26,7 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
     // to the creation of the custom element
     if (shouldCreateFactory) {
       const compileInstruction = new ViewCompileInstruction(/* shadow DOM? */false, true);
-      const template = `
-      <template class="filter-line">
-        <div class="filter-line__label">\${label}</div>
-        <mdc-select value.bind="operator" class="filter-line__operator mdc-select--dense" hoist-to-body>
-          <mdc-list>
-            <mdc-list-item repeat.for="o of operators" value.bind="o">\${o | filterOperator}</mdc-list-item>
-          </mdc-list>
-        </mdc-select>
-        <div class="filter-line__value">
-          <div css="max-width: \${maxWidth}px" mdc-menu-surface-anchor>
-            <mdc-text-field ref="input" class="mdc-text-field--dense"></mdc-text-field>
-            <mdc-lookup options.bind="options" display-field.bind="displayField" value-field.bind="valueField" value.bind="value"
-              input.bind="input" ${element.hasAttribute('two-line') ? 'two-line' : ''} hoist-to-body preload-options.bind="preloadOptions"
-              virtual.bind="virtual">
-              <template replace-part="option">
-                ${element.innerHTML}
-              </template>
-            </mdc-lookup>
-          </div>
-        </div>
-        <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
-      </template>`;
+      const template = templateHtml.replace('<slot></slot>', element.innerHTML);
       const viewFactory = viewCompiler.compile(template, viewResources, compileInstruction);
       // override default view factory
       // Aurelia fallbacks to instruction view factory if there's any

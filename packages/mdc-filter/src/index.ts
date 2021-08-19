@@ -1,5 +1,8 @@
 import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 import { MdcFilterConfiguration } from './mdc-filter-configuration';
+import { I18N } from 'aurelia-i18n';
+import { Logger } from 'aurelia-logging';
+import { I18NResource } from './i-18n-resource';
 
 export { Filter } from './filter';
 export { IFilterLine } from './i-filter-line';
@@ -19,6 +22,25 @@ export function configure(frameworkConfiguration: FrameworkConfiguration, callba
     PLATFORM.moduleName('./text-filter-line/text-filter-line'),
     PLATFORM.moduleName('./filter-actions/filter-actions')
   ]);
+
+  const i18n = frameworkConfiguration.container.get(I18N);
+  // i18n might not be initialised yet
+  if (i18n.i18nextDeferred) {
+    i18n.i18nextDeferred.then(i18next => {
+      const filter: I18NResource = {
+        addFilter: 'Add filter',
+        search: 'Search',
+        from: 'From',
+        to: 'To',
+        emptyLookupWarning: 'The lookup filter is empty'
+      };
+      i18next.addResourceBundle('en', 'aurelia-toolkit', { filter }, true, false);
+    });
+  } else {
+    const logger = frameworkConfiguration.container.get(Logger);
+    logger.error('Did you forget to initialise I18N plugin?');
+    throw Error();
+  }
 
   const config = frameworkConfiguration.container.get(MdcFilterConfiguration);
   if (typeof callback === 'function') {
