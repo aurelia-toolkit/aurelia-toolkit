@@ -4,7 +4,7 @@ import { MdcDatepickerDialogConfiguration } from './mdc-datepicker-dialog/mdc-da
 
 export { MdcDatepickerDialogConfiguration };
 export { MdcDatepickerDialog } from './mdc-datepicker-dialog/mdc-datepicker-dialog';
-export { MdcDatepicker } from './mdc-datepicker/mdc-datepicker';
+export { MdcDatepicker, IMdcDatepickerElement } from './mdc-datepicker/mdc-datepicker';
 export { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from './mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 
 export function configure(frameworkConfiguration: FrameworkConfiguration, callback?: (config: MdcDatepickerDialogConfiguration) => void) {

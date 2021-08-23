@@ -170,6 +170,15 @@ function defineMdcDatepickerElementApis(element: HTMLElement) {
       },
       configurable: true
     },
+    valid: {
+      get(this: IMdcDatepickerElement) {
+        return this.au.controller.viewModel.input.valid;
+      },
+      set(this: IMdcDatepickerElement, value: boolean) {
+        this.au.controller.viewModel.input.valid = value;
+      },
+      configurable: true
+    },
     addError: {
       value(this: IMdcDatepickerElement, error: IError) {
         this.au.controller.viewModel.input?.addError(error);
