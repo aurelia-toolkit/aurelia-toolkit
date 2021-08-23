@@ -1,6 +1,7 @@
 import { FilterLineBase } from '../filter-line-base';
 import { customElement, bindable, useView, PLATFORM } from 'aurelia-framework';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
+import { IMdcSelectElement } from '@aurelia-mdc-web/select';
 
 @customElement('select-filter-line')
 @useView(PLATFORM.moduleName('./select-filter-line.html'))
@@ -9,6 +10,8 @@ export class SelectFilterLine extends FilterLineBase<unknown> {
     super(element);
     this.operators = [...config.selectOperators];
   }
+
+  select: IMdcSelectElement;
 
   @bindable
   options: unknown[];
@@ -43,5 +46,9 @@ export class SelectFilterLine extends FilterLineBase<unknown> {
     } else {
       return option[this.valueField];
     }
+  }
+
+  override errorChanged() {
+    this.select.valid = !this.error;
   }
 }

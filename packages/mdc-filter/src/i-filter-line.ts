@@ -7,6 +7,7 @@ export interface IFilterLine {
 	maxWidth: number;
 	element: Element;
   lock: boolean;
+  error?: string;
 	hydrate(fl: IFilterLine): void;
   toJson(): Partial<IFilterLine>;
   assignValue(fl: IFilterLine): void;

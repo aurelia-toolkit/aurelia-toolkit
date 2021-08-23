@@ -6,6 +6,7 @@ import { FilterLineBase } from '../filter-line-base';
 import { bindable } from 'aurelia-typed-observable-plugin';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 import templateHtml from './lookup-filter-line.html';
+import { IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
 
 @customElement('lookup-filter-line')
 @processContent(LookupFilterLine.processContent)
@@ -40,6 +41,8 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
     return false;
   }
 
+  input: IMdcTextFieldElement;
+
   @bindable
   options: ((filter: string, value: unknown) => Promise<unknown[]>) | unknown[] | undefined;
 
@@ -57,6 +60,10 @@ export class LookupFilterLine extends FilterLineBase<unknown> {
 
   @bindable.booleanAttr
   virtual: boolean;
+
+  override errorChanged() {
+    this.input.valid = !this.error;
+  }
 
   hydrateInternal(fl: LookupFilterLine) {
     this.options = fl.options;

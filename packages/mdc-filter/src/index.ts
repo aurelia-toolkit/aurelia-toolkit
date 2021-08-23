@@ -31,8 +31,7 @@ export function configure(frameworkConfiguration: FrameworkConfiguration, callba
         addFilter: 'Add filter',
         search: 'Search',
         from: 'From',
-        to: 'To',
-        emptyLookupWarning: 'The lookup filter is empty'
+        to: 'To'
       };
       i18next.addResourceBundle('en', 'aurelia-toolkit', { filter }, true, false);
     });

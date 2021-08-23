@@ -19,8 +19,9 @@ export abstract class FilterLineBase<T> implements IFilterLine {
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   value?: T;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  valueChanged() { }
+  valueChanged() {
+    this.error = undefined;
+  }
 
   @bindable({ defaultBindingMode: bindingMode.twoWay })
   operator?: unknown;
@@ -38,6 +39,11 @@ export abstract class FilterLineBase<T> implements IFilterLine {
 
   @bindable.booleanAttr
   lock: boolean;
+
+  @bindable
+  error?: string;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  errorChanged() { }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   hydrateInternal(_fl: IFilterLine) { }

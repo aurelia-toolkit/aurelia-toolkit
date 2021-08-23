@@ -3,5 +3,4 @@ export interface I18NResource {
   search?: string;
   from?: string;
   to?: string;
-  emptyLookupWarning?: string;
 }
