@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { timer } from 'rxjs/internal/observable/timer';
-import { EMPTY } from 'rxjs/internal/observable/empty';
 import { fromEvent } from 'rxjs/internal/observable/fromEvent';
 import { Subject } from 'rxjs/internal/Subject';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
@@ -97,9 +96,9 @@ export class AuthService {
     this.tokens$.pipe(
       debounce(x => {
         const expiryDate = x?.expiryDate;
-        return expiryDate && isAfter(expiryDate, this.dateService.now())
-          ? timer(this.dateService.serverToLocal(expiryDate))
-          : EMPTY;
+        return timer(expiryDate && isAfter(expiryDate, this.dateService.now())
+          ? this.dateService.serverToLocal(expiryDate)
+          : 0);
       }),
       filter(x => !!x)
     ).subscribe(() => {
@@ -112,9 +111,9 @@ export class AuthService {
       // delay refresh until a token is expired discarding a previous value
       debounce(x => {
         const expiryDate = x?.expiryDate;
-        return expiryDate && isAfter(expiryDate, this.dateService.now())
-          ? timer(subMilliseconds(this.dateService.serverToLocal(expiryDate), this.authConfiguration.tokenRefreshThreshold))
-          : EMPTY;
+        return timer(expiryDate && isAfter(expiryDate, this.dateService.now())
+          ? subMilliseconds(this.dateService.serverToLocal(expiryDate), this.authConfiguration.tokenRefreshThreshold)
+          : 0);
       }),
       // no need to refresh an empty token. Has to come after debounce so that a previous refresh is still cancelled
       filter(x => !!x?.refreshToken),
