@@ -4,7 +4,7 @@ export interface IWithAlertService {
   alertService: AlertService;
 }
 
-export function usingProgress(errorMessage?: string) {
+export function usingProgress(errorMessage?: string | ((e: unknown) => string), allowHtml: boolean = false) {
   // eslint-disable-next-line @typescript-eslint/ban-types
   return function usingProgressDecorator<T>(_target: Object, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T>>) {
     const originalMethod = descriptor.value;
@@ -16,10 +16,11 @@ export function usingProgress(errorMessage?: string) {
         return this.alertService.usingProgress(async () => {
           return originalMethod.apply(this, args) as Promise<T>;
         }, async e => {
+          const message = errorMessage instanceof Function ?  errorMessage(e) : errorMessage;
           if (e.nonCritical) {
-            await this.alertService.error(errorMessage ?? e.message);
+            await this.alertService.error(message ?? e.message, allowHtml);
           } else {
-            await this.alertService.criticalError(errorMessage ?? e.message, e);
+            await this.alertService.criticalError(message ?? e.message, e, allowHtml);
           }
           throw e;
         });
