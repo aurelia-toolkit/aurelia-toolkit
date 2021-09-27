@@ -49,7 +49,7 @@
     "@aurelia-mdc-web/list": ">=8.0.0",
     "@aurelia-mdc-web/select": ">=8.0.0",
     "@aurelia-mdc-web/text-field": ">=8.0.0",
-    "@aurelia-toolkit/mdc-inputmask": "^2.0.0",
+    "@aurelia-toolkit/mdc-inputmask": "^3.0.0",
     "aurelia-i18n": "^3.1.4",
     "aurelia-logging": "^1.5.2",
     "date-fns": "^2.16.1",
