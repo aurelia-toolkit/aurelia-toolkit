@@ -24,7 +24,7 @@ export class MdcDatepicker {
   input: IMdcTextFieldElement;
   inputmask: InputmaskCustomAttribute;
   inputmaskValue: string;
-  _value: string;
+  private _value: string;
 
   @bindable.booleanAttr
   outlined: boolean;
@@ -91,8 +91,9 @@ export class MdcDatepicker {
     }
   }
 
-  handleBlur() {
-    this.element.dispatchEvent(new CustomEvent('change', { bubbles: true }));
+  handleBlur(e: Event) {
+    e.cancelBubble = true;
+    this.element.dispatchEvent(new CustomEvent('blur', { bubbles: true }));
   }
 
   handleChange(e: Event) {
