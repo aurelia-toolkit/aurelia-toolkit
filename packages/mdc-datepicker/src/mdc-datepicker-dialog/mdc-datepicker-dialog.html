@@ -32,12 +32,11 @@
           <div repeat.for="d of days" class="mdc-datepicker-dialog__day
           ${d.date===date ? 'mdc-datepicker-dialog__day--selected' : ''}
           ${d.disabled ? 'mdc-datepicker-dialog__day--disabled' : ''}">
-            <a href="#" mdc-ripple="unbounded.bind: true; disabled.bind: d.disabled" click.trigger="select(d)"
+            <a href="#" mdc-ripple="unbounded.bind: true" click.trigger="select(d)"
                if.bind="d.date && !d.disabled">
               <span>${d.date | date:'d'}</span>
             </a>
-            <a href="#" click.trigger="select(d)"
-               if.bind="d.date && d.disabled">
+            <a if.bind="d.date && d.disabled">
               <span>${d.date | date:'d'}</span>
             </a>
           </div>
