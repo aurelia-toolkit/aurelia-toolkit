@@ -150,6 +150,7 @@
       &--disabled {
         a {
           @include theme.property(color, text-hint-on-background);
+          cursor: not-allowed;
         }
       }
 
