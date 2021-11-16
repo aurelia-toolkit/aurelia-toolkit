@@ -25,9 +25,9 @@ export function isRouteAllowed(config: RouteConfig, token?: IJwtToken): boolean 
       case AuthStatus.Authenticated: {
         if (config.permission !== undefined) {
           return token.permission !== undefined
-            && (token.permission instanceof String ? token.permission === config.permission : token.permission.includes(config.permission));
+            && (typeof (token.permission) === 'string' ? token.permission === config.permission : token.permission.includes(config.permission));
         } else if (config.role !== undefined) {
-          return token.role instanceof String ? token.role === config.role : token.role?.includes(config.role);
+          return typeof (token.role) === 'string' ? token.role === config.role : token.role?.includes(config.role);
         } else {
           return true;
         }
