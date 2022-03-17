@@ -47,11 +47,35 @@ export class AlertService {
     }
   }
 
+  async open<TModel>(options: { viewModel: unknown; model: TModel }): Promise<string> {
+    const globalProgress = document.querySelector<HTMLElement>('global-progress');
+    try {
+      if (globalProgress) {
+        globalProgress.style.opacity = '0';
+      }
+      return await this.dialogService.open(options);
+    } finally {
+      if (globalProgress) {
+        globalProgress.style.opacity = '1';
+      }
+    }
+  }
+
   async showModal(message: string | undefined, allowHtml: boolean, icon: string, iconColour: string, okText: string, cancelText?: string): Promise<string> {
-    return this.dialogService.open({
-      viewModel: AlertModal,
-      model: { icon, iconColour, message: allowHtml ? undefined : message, html: allowHtml ? message : undefined, okText, cancelText }
-    });
+    const globalProgress = document.querySelector<HTMLElement>('global-progress');
+    try {
+      if (globalProgress) {
+        globalProgress.style.opacity = '0';
+      }
+      return await this.dialogService.open({
+        viewModel: AlertModal,
+        model: { icon, iconColour, message: allowHtml ? undefined : message, html: allowHtml ? message : undefined, okText, cancelText }
+      });
+    } finally {
+      if (globalProgress) {
+        globalProgress.style.opacity = '1';
+      }
+    }
   }
 
   async alert(message: string, icon: string = 'info', iconColour: string = 'mdc-theme--primary', allowHtml: boolean = false): Promise<boolean> {
