@@ -9,4 +9,10 @@ export class GlobalProgress {
 
   @bindable.number
   strokeWidth: number = 10;
+
+  @bindable.number
+  progress?: number;
+
+  @bindable
+  text?: string;
 }

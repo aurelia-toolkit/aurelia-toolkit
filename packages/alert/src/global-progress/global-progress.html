@@ -1,5 +1,9 @@
 <template>
   <require from="./global-progress.scss"></require>
   <div class="progress-background"></div>
-  <mdc-circular-progress size.bind="size" stroke-width.bind="strokeWidth"></mdc-circular-progress>
+  <div>
+    <mdc-circular-progress size.bind="size" stroke-width.bind="strokeWidth" progress.bind="progress">
+    </mdc-circular-progress>
+    <div>${text}</div>
+  </div>
 </template>

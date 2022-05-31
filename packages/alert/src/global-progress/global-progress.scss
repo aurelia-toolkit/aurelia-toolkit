@@ -18,8 +18,19 @@ global-progress {
     opacity: 0.7;
   }
 
-  .mdc-circular-progress {
+  >div {
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-direction: column;
+
+    .mdc-circular-progress {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    >div {
+      text-align: center;
+    }
   }
 }
