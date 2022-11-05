@@ -42,11 +42,11 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/button": ">=8.0.0",
-    "@aurelia-mdc-web/dialog": ">=8.0.0",
-    "@aurelia-mdc-web/switch": ">=8.0.0",
-    "@aurelia-mdc-web/text-field": ">=8.0.0",
-    "aurelia-i18n": "^3.1.4",
+    "@aurelia-mdc-web/button": ">=9.0.3",
+    "@aurelia-mdc-web/dialog": ">=9.0.3",
+    "@aurelia-mdc-web/switch": ">=9.0.3",
+    "@aurelia-mdc-web/text-field": ">=9.0.3",
+    "aurelia-i18n": "^4.0.3",
     "aurelia-logging": "^1.5.2"
   }
 }

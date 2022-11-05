@@ -47,14 +47,14 @@
     "@aurelia-toolkit/mdc-datepicker": "^3.0.4"
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/checkbox": ">=8.0.0",
-    "@aurelia-mdc-web/icon": ">=8.0.0",
-    "@aurelia-mdc-web/icon-button": ">=8.0.0",
-    "@aurelia-mdc-web/list": ">=8.0.0",
-    "@aurelia-mdc-web/lookup": ">=8.0.0",
-    "@aurelia-mdc-web/menu": ">=8.0.0",
-    "@aurelia-mdc-web/select": ">=8.0.0",
-    "@aurelia-mdc-web/text-field": ">=8.0.0",
+    "@aurelia-mdc-web/checkbox": ">=9.0.3",
+    "@aurelia-mdc-web/icon": ">=9.0.3",
+    "@aurelia-mdc-web/icon-button": ">=9.0.3",
+    "@aurelia-mdc-web/list": ">=9.0.3",
+    "@aurelia-mdc-web/lookup": ">=9.0.3",
+    "@aurelia-mdc-web/menu": ">=9.0.3",
+    "@aurelia-mdc-web/select": ">=9.0.3",
+    "@aurelia-mdc-web/text-field": ">=9.0.3",
     "aurelia-logging": "^1.5.2",
     "tslib": ">=2.1.0"
   }

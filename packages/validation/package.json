@@ -42,7 +42,7 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "peerDependencies": {
-    "aurelia-i18n": "^3.1.4",
+    "aurelia-i18n": "^4.0.3",
     "aurelia-logging": "^1.5.2",
     "aurelia-validation": "^2.0.0-rc2"
   }
