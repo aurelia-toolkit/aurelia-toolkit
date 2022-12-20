@@ -6,7 +6,7 @@ export interface IWithAlertService {
 
 export function usingProgress(errorMessage?: string | ((e: unknown) => string), allowHtml: boolean = false) {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  return function usingProgressDecorator<T>(_target: Object, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T>>) {
+  return function usingProgressDecorator<T>(_target: IWithAlertService, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T>>) {
     const originalMethod = descriptor.value;
     if (originalMethod !== undefined) {
       descriptor.value = async function withProgress(this: IWithAlertService, ...args) {

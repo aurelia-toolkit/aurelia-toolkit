@@ -2,7 +2,7 @@ import { IWithAlertService } from './using-progress';
 
 export function confirmAction(message: string) {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  return function <T>(_target: Object, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T | undefined>>) {
+  return function <T>(_target: IWithAlertService, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T | undefined>>) {
     const originalMethod = descriptor.value;
     if (originalMethod !== undefined) {
       descriptor.value = async function confirm(this: IWithAlertService, ...args) {
