@@ -167,3 +167,11 @@
     }
   }
 }
+
+.mdc-datepicker {
+  .mdc-text-field {
+    .mdc-text-field__icon {
+      pointer-events: all;
+    }
+  }
+}
