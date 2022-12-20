@@ -11,7 +11,7 @@
       <div>
         <div class="mdc-datepicker-dialog__nav">
           <mdc-select value.bind="month" fixed class="mdc-datepicker-dialog__month"
-            mdcselect:change.trigger="buildDates()" outlined.bind="false">
+            mdcselect:change.trigger="buildDates()" outlined.bind="false" natural-width>
             <mdc-list>
               <mdc-list-item repeat.for="m of months" value.bind="$index" disabled.bind="m.disabled">${m.name}
               </mdc-list-item>
