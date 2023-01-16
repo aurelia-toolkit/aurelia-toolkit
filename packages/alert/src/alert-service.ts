@@ -47,16 +47,15 @@ export class AlertService {
     }
   }
 
-  async open<TModel>(options: { viewModel: unknown; model: TModel }): Promise<string> {
-    const globalProgress = document.querySelector<HTMLElement>('global-progress');
+  async open<TModel>(options: { viewModel: unknown; model: TModel; hideProgress?: boolean }): Promise<string> {
     try {
-      if (globalProgress) {
-        globalProgress.style.opacity = '0';
+      if (options.hideProgress) {
+        this.hideProgress();
       }
       return await this.dialogService.open(options);
     } finally {
-      if (globalProgress) {
-        globalProgress.style.opacity = '1';
+      if (options.hideProgress) {
+        this.showProgress();
       }
     }
   }
