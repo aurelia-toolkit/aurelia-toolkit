@@ -44,7 +44,6 @@
   "peerDependencies": {
     "@aurelia-mdc-web/circular-progress": ">=9.0.3",
     "@aurelia-mdc-web/dialog": ">=9.0.3",
-    "@microsoft/applicationinsights-web": "^2.7.0",
     "aurelia-framework": "^1.4.1",
     "aurelia-i18n": "^4.0.3",
     "aurelia-logging": "^1.5.2",

@@ -5,14 +5,14 @@ import { startWith } from 'rxjs/internal/operators/startWith';
 import { scan } from 'rxjs/internal/operators/scan';
 import { AlertModal } from './alert-modal/alert-modal';
 import { autoinject } from 'aurelia-framework';
-import { ApplicationInsights, SeverityLevel } from '@microsoft/applicationinsights-web';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { I18N } from 'aurelia-i18n';
 import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
+import { ExceptionsTracker } from './exceptions-tracker';
 
 @autoinject
 export class AlertService {
-  constructor(private dialogService: MdcDialogService, private appInsights: ApplicationInsights, private i18n: I18N) { }
+  constructor(private dialogService: MdcDialogService, private exceptionsTracker: ExceptionsTracker, private i18n: I18N) { }
 
   increment$ = new Subject<void>();
   decrement$ = new Subject<void>();
@@ -47,34 +47,20 @@ export class AlertService {
     }
   }
 
-  async open<TModel>(options: { viewModel: unknown; model: TModel; hideProgress?: boolean }): Promise<string> {
+  async open<TModel>(options: { viewModel: unknown; model: TModel }): Promise<string> {
     try {
-      if (options.hideProgress) {
-        this.hideProgress();
-      }
+      this.hideProgress();
       return await this.dialogService.open(options);
     } finally {
-      if (options.hideProgress) {
-        this.showProgress();
-      }
+      this.showProgress();
     }
   }
 
   async showModal(message: string | undefined, allowHtml: boolean, icon: string, iconColour: string, okText: string, cancelText?: string): Promise<string> {
-    const globalProgress = document.querySelector<HTMLElement>('global-progress');
-    try {
-      if (globalProgress) {
-        globalProgress.style.opacity = '0';
-      }
-      return await this.dialogService.open({
-        viewModel: AlertModal,
-        model: { icon, iconColour, message: allowHtml ? undefined : message, html: allowHtml ? message : undefined, okText, cancelText }
-      });
-    } finally {
-      if (globalProgress) {
-        globalProgress.style.opacity = '1';
-      }
-    }
+    return await this.open({
+      viewModel: AlertModal,
+      model: { icon, iconColour, message: allowHtml ? undefined : message, html: allowHtml ? message : undefined, okText, cancelText }
+    });
   }
 
   async alert(message: string, icon: string = 'info', iconColour: string = 'mdc-theme--primary', allowHtml: boolean = false): Promise<boolean> {
@@ -86,7 +72,7 @@ export class AlertService {
   }
 
   async prompt(data: Partial<IPromptDialogData>): Promise<boolean> {
-    return await this.dialogService.open({ viewModel: PromptDialog, model: data }) === 'ok';
+    return await this.open({ viewModel: PromptDialog, model: data }) === 'ok';
   }
 
   async error(message: string, allowHtml: boolean = false): Promise<boolean> {
@@ -94,9 +80,7 @@ export class AlertService {
   }
 
   async criticalError(message: string, error: Error, allowHtml: boolean = false): Promise<boolean> {
-    if (this.appInsights.config.instrumentationKey) {
-      this.appInsights.trackException({ error, severityLevel: SeverityLevel.Critical });
-    }
+    this.exceptionsTracker.track(error);
     return this.alert(message, 'error', 'mdc-theme--error', allowHtml);
   }
 }
