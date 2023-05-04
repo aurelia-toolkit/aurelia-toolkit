@@ -19,8 +19,8 @@ export class AlertService {
   busy$ = merge(this.increment$.pipe(map(() => 1)), this.decrement$.pipe(map(() => -1)))
     .pipe(
       startWith(0),
-      scan((acc, v) => acc + v > 0 ? acc += v : 0),
-      map(v => v !== 0)
+      scan((acc, v) => acc += v),
+      map(v => v > 0)
     );
 
   showProgress() {
