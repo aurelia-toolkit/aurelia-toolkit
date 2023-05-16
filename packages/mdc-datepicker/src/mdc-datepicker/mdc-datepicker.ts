@@ -9,6 +9,7 @@ import { InputmaskCustomAttribute } from 'aurelia-inputmask';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { MdcDatepickerDialog } from '../mdc-datepicker-dialog/mdc-datepicker-dialog';
 import { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from '../mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
+import { MdcDefaultTextFieldConfiguration } from '@aurelia-mdc-web/text-field';
 
 const DATE_ISO_FORMAT = 'yyyy-MM-dd';
 const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
@@ -17,7 +18,7 @@ const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 @customElement('mdc-datepicker')
 @useView(PLATFORM.moduleName('./mdc-datepicker.html'))
 export class MdcDatepicker {
-  constructor(private element: HTMLElement, private taskQueue: TaskQueue, private dialogService: MdcDialogService) {
+  constructor(private element: HTMLElement, private taskQueue: TaskQueue, private dialogService: MdcDialogService, private defaultTextFieldConfiguration: MdcDefaultTextFieldConfiguration) {
     defineMdcDatepickerElementApis(this.element);
   }
 
@@ -25,6 +26,9 @@ export class MdcDatepicker {
   inputmask: InputmaskCustomAttribute;
   inputmaskValue: string;
   private _value: string;
+
+  @bindable.booleanAttr
+  outlined?: boolean = this.defaultTextFieldConfiguration.outlined;
 
   @bindable
   label: string;
