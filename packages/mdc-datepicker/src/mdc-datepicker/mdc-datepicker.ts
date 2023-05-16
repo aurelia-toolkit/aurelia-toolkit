@@ -14,7 +14,7 @@ import { MdcDefaultTextFieldConfiguration } from '@aurelia-mdc-web/text-field';
 const DATE_ISO_FORMAT = 'yyyy-MM-dd';
 const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 
-@inject(Element, TaskQueue, MdcDialogService)
+@inject(Element, TaskQueue, MdcDialogService, MdcDefaultTextFieldConfiguration)
 @customElement('mdc-datepicker')
 @useView(PLATFORM.moduleName('./mdc-datepicker.html'))
 export class MdcDatepicker {
