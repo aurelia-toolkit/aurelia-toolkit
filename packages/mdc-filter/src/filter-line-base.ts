@@ -30,7 +30,7 @@ export abstract class FilterLineBase<T> implements IFilterLine {
   operators: unknown[];
   operatorsChanged() {
     this.operator = this.operators
-      ? this.operators.find(x => x === this.operator) ? this.operator : this.operators[0]
+      ? this.operators.some(x => x === this.operator) ? this.operator : this.operators[0]
       : undefined;
   }
 
