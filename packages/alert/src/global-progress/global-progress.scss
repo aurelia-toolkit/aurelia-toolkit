@@ -29,8 +29,10 @@ global-progress {
       margin-right: auto;
     }
 
-    >div {
+    >div,
+    >a {
       text-align: center;
+      z-index: 1;
     }
   }
 }

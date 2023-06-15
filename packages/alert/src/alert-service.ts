@@ -22,6 +22,7 @@ export class AlertService {
       scan((acc, v) => acc += v),
       map(v => v > 0)
     );
+  allowCancel$ = new Subject<boolean>();
 
   showProgress() {
     this.increment$.next();
@@ -32,8 +33,9 @@ export class AlertService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async usingProgress<T, E = never>(action: () => Promise<T>, catchHandler?: (e: any) => Promise<E> | E): Promise<T | E> {
+  async usingProgress<T, E = never>(action: () => Promise<T>, catchHandler?: (e: any) => Promise<E> | E, allowCancel?: boolean): Promise<T | E> {
     try {
+      this.allowCancel$.next(allowCancel ?? false);
       this.showProgress();
       return await action();
     } catch (e) {

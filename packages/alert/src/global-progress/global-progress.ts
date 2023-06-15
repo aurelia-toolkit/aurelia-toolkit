@@ -4,6 +4,8 @@ import { bindable } from 'aurelia-typed-observable-plugin';
 @customElement('global-progress')
 @useView(PLATFORM.moduleName('./global-progress.html'))
 export class GlobalProgress {
+  constructor(private element: Element) { }
+
   @bindable.number
   size: number = 100;
 
@@ -15,4 +17,11 @@ export class GlobalProgress {
 
   @bindable
   text?: string;
+
+  @bindable
+  allowCancel: boolean | string;
+
+  cancel() {
+    this.element.dispatchEvent(new CustomEvent('global-progress:cancel', { bubbles: true }));
+  }
 }
