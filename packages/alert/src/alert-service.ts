@@ -1,7 +1,8 @@
 import { Subject } from 'rxjs/internal/Subject';
+import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { merge } from 'rxjs/internal/observable/merge';
 import { map } from 'rxjs/internal/operators/map';
-import { startWith } from 'rxjs/internal/operators/startWith';
+// import { startWith } from 'rxjs/internal/operators/startWith';
 import { scan } from 'rxjs/internal/operators/scan';
 import { AlertModal } from './alert-modal/alert-modal';
 import { autoinject } from 'aurelia-framework';
@@ -16,12 +17,13 @@ export class AlertService {
 
   increment$ = new Subject<void>();
   decrement$ = new Subject<void>();
-  busy$ = merge(this.increment$.pipe(map(() => 1)), this.decrement$.pipe(map(() => -1)))
+  busy$ = new BehaviorSubject<boolean>(false);
+  busyAccumulator$ = merge(this.increment$.pipe(map(() => 1)), this.decrement$.pipe(map(() => -1)))
     .pipe(
-      startWith(0),
-      scan((acc, v) => acc += v),
+      // startWith(0),
+      scan((acc, v) => acc += v, 0),
       map(v => v > 0)
-    );
+    ).subscribe(this.busy$);
   allowCancel$ = new Subject<boolean>();
 
   showProgress() {
