@@ -1,6 +1,7 @@
+import { IAlertModalPayload } from '../alert-modal/i-alert-modal-payload';
 import { IWithAlertService } from './using-progress';
 
-export function confirmAction(message: string) {
+export function confirmAction(message: string | Partial<IAlertModalPayload>) {
   // eslint-disable-next-line @typescript-eslint/ban-types
   return function <T>(_target: IWithAlertService, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T | undefined>>) {
     const originalMethod = descriptor.value;

@@ -9,6 +9,7 @@ import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { I18N } from 'aurelia-i18n';
 import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
 import { ExceptionsTracker } from './exceptions-tracker';
+import { IAlertModalPayload } from './alert-modal/i-alert-modal-payload';
 
 @autoinject
 export class AlertService {
@@ -58,31 +59,53 @@ export class AlertService {
     }
   }
 
-  async showModal(message: string | undefined, allowHtml: boolean, icon: string, iconColour: string, okText: string, cancelText?: string): Promise<string> {
-    return await this.open({
-      viewModel: AlertModal,
-      model: { icon, iconColour, message: allowHtml ? undefined : message, html: allowHtml ? message : undefined, okText, cancelText }
-    });
+  async showModal(model: IAlertModalPayload): Promise<string> {
+    return await this.open({ viewModel: AlertModal, model });
   }
 
-  async alert(message: string, icon: string = 'info', iconColour: string = 'mdc-theme--primary', allowHtml: boolean = false): Promise<boolean> {
-    return await this.showModal(message, allowHtml, icon, iconColour, this.i18n.tr('aurelia-toolkit:alert.ok'), undefined) === 'ok';
+  async alert(message: string | Partial<IAlertModalPayload>): Promise<boolean> {
+    if (typeof message === 'string') {
+      message = { message };
+    }
+    const model: IAlertModalPayload = {
+      icon: 'info',
+      iconColour: 'mdc-theme--primary',
+      okText: this.i18n.tr('aurelia-toolkit:alert.ok'),
+      cancelText: this.i18n.tr('aurelia-toolkit:alert.cancel'),
+      ...message
+    };
+    return await this.showModal(model) === 'ok';
   }
 
-  async confirm(message: string, icon: string = 'help', iconColour: string = 'mdc-theme--primary', allowHtml: boolean = false): Promise<boolean> {
-    return await this.showModal(message, allowHtml, icon, iconColour, this.i18n.tr('aurelia-toolkit:alert.yes'), this.i18n.tr('aurelia-toolkit:alert.no')) === 'ok';
+  async confirm(message: string | Partial<IAlertModalPayload>): Promise<boolean> {
+    if (typeof message === 'string') {
+      message = { message };
+    }
+    const model: IAlertModalPayload = {
+      icon: 'help',
+      iconColour: 'mdc-theme--primary',
+      okText: this.i18n.tr('aurelia-toolkit:alert.yes'),
+      cancelText: this.i18n.tr('aurelia-toolkit:alert.no'),
+      ...message
+    };
+    return await this.showModal(model) === 'ok';
   }
 
   async prompt(data: Partial<IPromptDialogData>): Promise<boolean> {
     return await this.open({ viewModel: PromptDialog, model: data }) === 'ok';
   }
 
-  async error(message: string, allowHtml: boolean = false): Promise<boolean> {
-    return this.alert(message, 'error', 'mdc-theme--error', allowHtml);
+  async error(message: string | Partial<IAlertModalPayload>): Promise<boolean> {
+    if (typeof message === 'string') {
+      message = { message };
+    }
+    message.icon = 'error';
+    message.iconColour = 'mdc-theme--error';
+    return this.alert(message);
   }
 
-  async criticalError(message: string, error: Error, allowHtml: boolean = false): Promise<boolean> {
+  async criticalError(message: string | Partial<IAlertModalPayload>, error: Error): Promise<boolean> {
     this.exceptionsTracker.track(error);
-    return this.alert(message, 'error', 'mdc-theme--error', allowHtml);
+    return this.error(message);
   }
 }
