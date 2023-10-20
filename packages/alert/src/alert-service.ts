@@ -59,7 +59,7 @@ export class AlertService {
     }
   }
 
-  async showModal(model: IAlertModalPayload): Promise<string> {
+  async showModal(model: Partial<IAlertModalPayload>): Promise<string> {
     return await this.open({ viewModel: AlertModal, model });
   }
 
@@ -67,11 +67,10 @@ export class AlertService {
     if (typeof message === 'string') {
       message = { message };
     }
-    const model: IAlertModalPayload = {
+    const model: Partial<IAlertModalPayload> = {
       icon: 'info',
       iconColour: 'mdc-theme--primary',
       okText: this.i18n.tr('aurelia-toolkit:alert.ok'),
-      cancelText: this.i18n.tr('aurelia-toolkit:alert.cancel'),
       ...message
     };
     return await this.showModal(model) === 'ok';
