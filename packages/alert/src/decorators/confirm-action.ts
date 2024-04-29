@@ -2,21 +2,17 @@ import { IAlertModalPayload } from '../alert-modal/i-alert-modal-payload';
 import { IWithAlertService } from './using-progress';
 
 export function confirmAction(message: string | Partial<IAlertModalPayload>) {
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  return function <T>(_target: IWithAlertService, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T | undefined>>) {
-    const originalMethod = descriptor.value;
-    if (originalMethod !== undefined) {
-      descriptor.value = async function confirm(this: IWithAlertService, ...args) {
-        if (!this.alertService) {
-          throw new Error('Did you forget to inject AlertService?');
-        }
+  return function actualDecorator<This extends IWithAlertService, Args extends any[], Return>(originalMethod: (this: This, ...args: Args) => Return,
+    _: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Return>) {
+    return async function replacementMethod(this: This, ...args: Args) {
+      if (!this.alertService) {
+        throw new Error('Did you forget to inject AlertService?');
+      }
 
-        if (!await this.alertService.confirm(message)) {
-          return;
-        }
-        return originalMethod.apply(this, args) as Promise<T>;
-      };
-    }
-    return descriptor;
+      if (!await this.alertService.confirm(message)) {
+        return;
+      }
+      return originalMethod.call(this, args);
+    };
   };
 }

@@ -11,6 +11,7 @@ export { confirmAction } from './decorators/confirm-action';
 export { usingProgress } from './decorators/using-progress';
 export { ExceptionsTracker } from './exceptions-tracker';
 export { IAlertModalPayload } from './alert-modal/i-alert-modal-payload';
+export { IWithAlertService } from './decorators/using-progress';
 
 let registered = false;
 

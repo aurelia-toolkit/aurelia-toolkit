@@ -33,8 +33,11 @@ export class MdcInputmaskCustomAttribute {
 
 @templateCompilerHooks
 export class EnhanceMask {
-  compiling(template: HTMLElement | HTMLTemplateElement) {
-    const inputs = template.querySelectorAll('[inputmask]');
+  compiling(template: HTMLTemplateElement) {
+    if (!template.content) {
+      return;
+    }
+    const inputs = template.content.querySelectorAll('[inputmask]');
     for (const i of Array.from(inputs)) {
       i.setAttribute('mdc-inputmask', '');
     }
