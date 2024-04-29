@@ -1,18 +1,17 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { bindable, customElement } from 'aurelia';
+import template from './global-progress.html';
 
-@customElement('global-progress')
-@useView(PLATFORM.moduleName('./global-progress.html'))
+@customElement({ name: 'global-progress', template })
 export class GlobalProgress {
   constructor(private element: Element) { }
 
-  @bindable.number
+  @bindable({ type: Number })
   size: number = 100;
 
-  @bindable.number
+  @bindable({ type: Number })
   strokeWidth: number = 10;
 
-  @bindable.number
+  @bindable({ type: Number })
   progress?: number;
 
   @bindable

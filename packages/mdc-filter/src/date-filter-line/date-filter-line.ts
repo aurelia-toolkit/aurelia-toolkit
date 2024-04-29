@@ -1,10 +1,10 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
 import { FilterLineBase } from '../filter-line-base';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 import { IMdcDatepickerElement } from '@aurelia-toolkit/mdc-datepicker';
+import template from './date-filter-line.html';
+import { customElement } from 'aurelia';
 
-@customElement('date-filter-line')
-@useView(PLATFORM.moduleName('./date-filter-line.html'))
+@customElement({ name: 'date-filter-line', template })
 export class DateFilterLine extends FilterLineBase<Date> {
   constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);

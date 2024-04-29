@@ -1,4 +1,4 @@
-<template class="filter-line">
+<template class="filter-line date-range-filter-line">
   <require from="../date-filter-line/date-input"></require>
   <div class="filter-line__label">${label}</div>
   <mdc-select value.bind="operator" class="filter-line__operator mdc-select--dense" hoist-to-body>
@@ -12,5 +12,5 @@
     <mdc-datepicker ref="toInput" type="date" label="'aurelia-toolkit:filter.to' | t" value.bind="value.to | dateInput"
       class="mdc-datepicker--dense" css="max-width: ${maxWidth}px" title.bind="error"></mdc-datepicker>
   </div>
-  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
+  <button mdc-icon-button if.bind="!lock" click.trigger="remove()" icon="clear"></button>
 </template>

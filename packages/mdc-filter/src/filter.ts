@@ -1,11 +1,11 @@
-import { customElement, TemplatingEngine, children, DOM, useView, PLATFORM, Controller } from 'aurelia-framework';
 import { IFilterLine } from './i-filter-line';
-import { bindable } from 'aurelia-typed-observable-plugin';
 import { FilterLineElement } from './filter-line-base';
+import template from './filter.html';
+import { bindable, children, customElement } from 'aurelia';
+import { booleanAttr } from '@aurelia-mdc-web/base';
 
-@customElement('filter')
-@useView(PLATFORM.moduleName('./filter.html'))
-export class Filter {
+@customElement({ name: 'mdc-filter', template })
+export class MdcFilter {
   constructor(private element: Element, private templatingEngine: TemplatingEngine) { }
 
   itemsCollection: HTMLDivElement;
@@ -16,7 +16,7 @@ export class Filter {
   @bindable
   lines: IFilterLine[] = [];
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   lock: boolean;
 
   attached() {
@@ -37,7 +37,7 @@ export class Filter {
   }
 
   add(i: IFilterLine): IFilterLine {
-    const line = DOM.createElement(i.element.tagName.toLowerCase()) as FilterLineElement;
+    const line = document.createElement(i.element.tagName.toLowerCase()) as FilterLineElement;
     line.setAttribute('remove.trigger', 'remove($event.detail.filterLine)');
     if (this.lock) {
       line.setAttribute('lock', '');

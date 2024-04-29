@@ -1,7 +1,6 @@
 {
-	"reject": [
+  "reject": [
     "@aurelia-mdc-web/*",
-    "typescript",
-    "tslib"
+    "eslint"
   ]
 }

@@ -4,16 +4,21 @@ import { merge } from 'rxjs/internal/observable/merge';
 import { map } from 'rxjs/internal/operators/map';
 import { scan } from 'rxjs/internal/operators/scan';
 import { AlertModal } from './alert-modal/alert-modal';
-import { autoinject } from 'aurelia-framework';
-import { MdcDialogService } from '@aurelia-mdc-web/dialog';
-import { I18N } from 'aurelia-i18n';
+import { IMdcDialogOptions, MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
 import { ExceptionsTracker } from './exceptions-tracker';
 import { IAlertModalPayload } from './alert-modal/i-alert-modal-payload';
+import { resolve } from 'aurelia';
+import { I18N } from '@aurelia/i18n';
+// import { I18N } from '@aurelia/i18n';
 
-@autoinject
+// @inject(MdcDialogService, ExceptionsTracker, I18N)
 export class AlertService {
-  constructor(private dialogService: MdcDialogService, private exceptionsTracker: ExceptionsTracker, private i18n: I18N) { }
+  constructor() { }
+
+  private dialogService: MdcDialogService = resolve(MdcDialogService);
+  private exceptionsTracker: ExceptionsTracker = resolve(ExceptionsTracker);
+  private i18n: I18N = resolve(I18N);
 
   increment$ = new Subject<void>();
   decrement$ = new Subject<void>();
@@ -50,7 +55,7 @@ export class AlertService {
     }
   }
 
-  async open<TModel>(options: { viewModel: unknown; model: TModel }): Promise<string> {
+  async open<T extends { loading: (params: any) => any; }>(options: IMdcDialogOptions<T>): Promise<string> {
     try {
       this.hideProgress();
       return await this.dialogService.open(options);

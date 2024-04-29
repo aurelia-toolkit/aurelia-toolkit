@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/alert",
-  "version": "4.0.1",
+  "version": "4.0.1-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -17,8 +17,8 @@
   "license": "MIT",
   "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
   "contributors": [],
-  "main": "dist/commonjs/index.js",
-  "module": "dist/native-modules/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "typings": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -29,26 +29,18 @@
     "*.scss"
   ],
   "scripts": {
-    "build-ts:amd": "tsc -p tsconfig.build.json -t es5 -m amd      --outDir dist/amd",
-    "build-ts:cjs": "tsc -p tsconfig.build.json -t es5 -m commonjs --outDir dist/commonjs",
-    "build-ts:ntv": "tsc -p tsconfig.build.json -t es5 -m es6      --outDir dist/native-modules",
-    "build-ts:es6": "tsc -p tsconfig.build.json -t es6 -m es6      --outDir dist/es2015",
-    "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
-    "build-assets:amd": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/amd",
-    "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/commonjs",
-    "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/native-modules",
-    "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/es2015",
     "prebuild": "rimraf dist",
-    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:other": "copyfiles -u 1 src/**/*.html src/**/*.css dist",
+    "build": "npm run build:ts && npm run build:other",
+    "publish:au2": "npm publish --tag au2"
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/circular-progress": ">=9.0.3",
-    "@aurelia-mdc-web/dialog": ">=9.0.3",
-    "aurelia-framework": "^1.4.1",
-    "aurelia-i18n": "^4.0.3",
-    "aurelia-logging": "^1.5.2",
-    "aurelia-router": "^1.7.1",
-    "aurelia-validation": "^2.0.0-rc2",
-    "rxjs": "^7.5.7"
+    "@aurelia/validation-html": "^2.0.0-beta.15",
+    "@aurelia-mdc-web/circular-progress": ">=9.2.1-au2",
+    "@aurelia-mdc-web/dialog": ">=9.2.1-au2",
+    "aurelia": "^2.0.0-beta.15",
+    "@aurelia/i18n": "^2.0.0-beta.15",
+    "rxjs": "^7.8.1"
   }
 }

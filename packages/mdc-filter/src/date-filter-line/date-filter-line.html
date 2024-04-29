@@ -1,4 +1,4 @@
-<template class="filter-line">
+<template class="filter-line date-filter-line">
   <require from="./date-input"></require>
 
   <div class="filter-line__label">${label}</div>
@@ -11,5 +11,5 @@
     <mdc-datepicker ref="input" value.bind="value | dateInput" ref="input" class="mdc-datepicker--dense"
       css="max-width: ${maxWidth}px" title.bind="error"></mdc-datepicker>
   </div>
-  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
+  <button mdc-icon-button if.bind="!lock" click.trigger="remove()" icon="clear"></button>
 </template>

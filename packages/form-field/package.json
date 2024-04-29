@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/form-field",
-  "version": "1.0.9",
+  "version": "1.0.9-au2",
   "publishConfig": {
     "access": "public"
   },
@@ -18,8 +18,8 @@
   "license": "MIT",
   "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
   "contributors": [],
-  "main": "dist/commonjs/index.js",
-  "module": "dist/native-modules/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "typings": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -30,16 +30,10 @@
     "*.scss"
   ],
   "scripts": {
-    "build-ts:amd": "tsc -p tsconfig.build.json -t es5 -m amd      --outDir dist/amd",
-    "build-ts:cjs": "tsc -p tsconfig.build.json -t es5 -m commonjs --outDir dist/commonjs",
-    "build-ts:ntv": "tsc -p tsconfig.build.json -t es5 -m es6      --outDir dist/native-modules",
-    "build-ts:es6": "tsc -p tsconfig.build.json -t es6 -m es6      --outDir dist/es2015",
-    "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
-    "build-assets:amd": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/amd",
-    "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/commonjs",
-    "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/native-modules",
-    "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/es2015",
     "prebuild": "rimraf dist",
-    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:other": "copyfiles -u 1 src/**/*.html src/**/*.css dist",
+    "build": "npm run build:ts && npm run build:other",
+    "publish:au2": "npm publish --tag au2"
   }
 }

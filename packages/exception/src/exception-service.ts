@@ -1,13 +1,13 @@
-import { HttpClient } from 'aurelia-fetch-client';
-import { inject } from 'aurelia-framework';
 import { Exception } from './exception';
 import { IApiException } from './i-api-exception';
 import { UnauthorizedException } from './unauthorized';
 import { ForbiddenException } from './forbidden';
+import { IHttpClient } from '@aurelia/fetch-client';
+import { inject } from 'aurelia';
 
-@inject(HttpClient)
+@inject(IHttpClient)
 export class ExceptionService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: IHttpClient) { }
 
   registry = new Map<string, typeof Exception>();
 

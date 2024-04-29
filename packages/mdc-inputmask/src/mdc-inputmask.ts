@@ -1,19 +1,10 @@
-import { inject, viewEngineHooks, customAttribute } from 'aurelia-framework';
-import { InputmaskCustomAttribute } from 'aurelia-inputmask';
-import { MdcTextField } from '@aurelia-mdc-web/text-field';
-
-interface InputmaskMdcTextFieldElement extends HTMLElement {
-  au: {
-    'inputmask': { viewModel: InputmaskCustomAttribute };
-    'mdc-text-field': { viewModel: MdcTextField };
-  };
-}
+import { CustomAttribute, CustomElement, customAttribute, inject, templateCompilerHooks } from 'aurelia';
 
 // mdc-text-field needs to know when inputmask updates internal input element
 @inject(Element)
 @customAttribute('mdc-inputmask')
 export class MdcInputmaskCustomAttribute {
-  constructor(private element: InputmaskMdcTextFieldElement) { }
+  constructor(private element: Element) { }
 
   attached() {
     this.element.addEventListener('inputmask-change', this);
@@ -31,8 +22,8 @@ export class MdcInputmaskCustomAttribute {
   }
 
   inputmaskChangeHandler() {
-    const inputmask = this.element.au['inputmask']?.viewModel;
-    const input = this.element.au['mdc-text-field']?.viewModel;
+    const inputmask = CustomAttribute.for<{ input: HTMLInputElement }>(this.element, 'inputmask')?.viewModel;
+    const input = CustomElement.for<{ value: string; foundation?: { setValue(value: string): void } }>(this.element)?.viewModel;
     if (inputmask && input) {
       input.value = inputmask.input.value;
       input.foundation?.setValue(inputmask.input.value);
@@ -40,9 +31,9 @@ export class MdcInputmaskCustomAttribute {
   }
 }
 
-@viewEngineHooks
+@templateCompilerHooks
 export class EnhanceMask {
-  beforeCompile(template: DocumentFragment) {
+  compiling(template: HTMLElement | HTMLTemplateElement) {
     const inputs = template.querySelectorAll('[inputmask]');
     for (const i of Array.from(inputs)) {
       i.setAttribute('mdc-inputmask', '');

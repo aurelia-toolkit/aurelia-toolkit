@@ -1,4 +1,4 @@
-﻿<template class="filter-line filter-line--lookup">
+﻿<template class="filter-line filter-line--lookup lookup-filter-line">
   <require from="./lookup-filter-line.scss"></require>
 
   <div class="filter-line__label">${label}</div>
@@ -13,11 +13,11 @@
       <mdc-lookup options.bind="options" display-field.bind="displayField" value-field.bind="valueField"
         value.bind="value" input.bind="input" two-line.bind="twoLine" hoist-to-body
         preload-options.bind="preloadOptions" virtual.bind="virtual">
-        <template replace-part="option">
-          <slot></slot>
+        <template au-slot="option">
+          <au-slot></au-slot>
         </template>
       </mdc-lookup>
     </div>
   </div>
-  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
+  <button mdc-icon-button if.bind="!lock" click.trigger="remove()" icon="clear"></button>
 </template>

@@ -1,4 +1,3 @@
-import { useView, PLATFORM, computedFrom } from 'aurelia-framework';
 import format from 'date-fns/format';
 import isWeekend from 'date-fns/isWeekend';
 import addDays from 'date-fns/addDays';
@@ -10,6 +9,8 @@ import { IMdcDatepickerDialogOptions, IMdcDatepickerDialogData } from './i-mdc-d
 import { MdcDatepickerDialogConfiguration } from './mdc-datepicker-dialog-configuration';
 import addMonths from 'date-fns/addMonths';
 import isSameDay from 'date-fns/isSameDay';
+import { customElement, inject } from 'aurelia';
+import template from './mdc-datepicker-dialog.html';
 
 interface IDay {
   date?: Date | null;
@@ -21,7 +22,8 @@ interface IMonth {
   disabled: boolean;
 }
 
-@useView(PLATFORM.moduleName('./mdc-datepicker-dialog.html'))
+@inject(MdcDatepickerDialogConfiguration)
+@customElement({ name: 'mdc-datepicker-dialog', template })
 export class MdcDatepickerDialog {
   constructor(private configuration: MdcDatepickerDialogConfiguration) { }
 
@@ -37,7 +39,7 @@ export class MdcDatepickerDialog {
   options: Partial<IMdcDatepickerDialogOptions>;
   days: IDay[];
 
-  activate(data: Partial<IMdcDatepickerDialogData>) {
+  loading(data: Partial<IMdcDatepickerDialogData>) {
     this.originalData = data ?? {};
     this.options = { ...this.configuration.defaultOptions, ...data?.options };
     this.options.i18n = { ...this.configuration.defaultOptions.i18n, ...data?.options?.i18n };
@@ -107,7 +109,6 @@ export class MdcDatepickerDialog {
     this.dialog.close('ok');
   }
 
-  @computedFrom('year', 'month')
   get canGoNext() {
     const nextMonth = addMonths(new Date(this.year, this.month), 1);
     return this.isMonthDisabled(nextMonth.getFullYear(), nextMonth.getMonth());
@@ -118,7 +119,6 @@ export class MdcDatepickerDialog {
     [this.year, this.month] = [nextMonth.getFullYear(), nextMonth.getMonth()];
   }
 
-  @computedFrom('year', 'month')
   get canGoPrev() {
     const prevMonth = addMonths(new Date(this.year, this.month), -1);
     return this.isMonthDisabled(prevMonth.getFullYear(), prevMonth.getMonth());

@@ -1,33 +1,29 @@
-/* eslint-disable @typescript-eslint/no-dynamic-delete */
-import { useView, PLATFORM, customElement, inject, TaskQueue } from 'aurelia-framework';
 import { IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
-import { IValidatedElement, IError } from '@aurelia-mdc-web/base';
-import { bindable } from 'aurelia-typed-observable-plugin';
+import { IValidatedElement, IError, booleanAttr, date, number } from '@aurelia-mdc-web/base';
 import parse from 'date-fns/parse';
 import format from 'date-fns/format';
-import { InputmaskCustomAttribute } from 'aurelia-inputmask';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { MdcDatepickerDialog } from '../mdc-datepicker-dialog/mdc-datepicker-dialog';
 import { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from '../mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 import { MdcDefaultTextFieldConfiguration } from '@aurelia-mdc-web/text-field';
+import { TaskQueue, bindable, customElement, inject } from 'aurelia';
+import template from './mdc-datepicker.html';
 
 const DATE_ISO_FORMAT = 'yyyy-MM-dd';
 const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 
 @inject(Element, TaskQueue, MdcDialogService, MdcDefaultTextFieldConfiguration)
-@customElement('mdc-datepicker')
-@useView(PLATFORM.moduleName('./mdc-datepicker.html'))
+@customElement({ name: 'mdc-datepicker', template })
 export class MdcDatepicker {
   constructor(private element: HTMLElement, private taskQueue: TaskQueue, private dialogService: MdcDialogService, private defaultTextFieldConfiguration: MdcDefaultTextFieldConfiguration) {
     defineMdcDatepickerElementApis(this.element);
   }
 
   input: IMdcTextFieldElement;
-  inputmask: InputmaskCustomAttribute;
   inputmaskValue: string;
   private _value: string;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   outlined?: boolean = this.defaultTextFieldConfiguration.outlined;
 
   @bindable
@@ -42,31 +38,31 @@ export class MdcDatepicker {
   @bindable
   dialogFormat: string = 'E, MMM d';
 
-  @bindable.date
+  @bindable({ set: date })
   min: Date;
 
-  @bindable.date
+  @bindable({ set: date })
   max: Date;
 
   @bindable
   disableFunction: (d: Date) => boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   disableWeekends: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   showAll: boolean;
 
-  @bindable.number
+  @bindable({ set: number })
   firstDay: number;
 
   @bindable
   mdcI18n: IMdcDatepickerDialogOptions['i18n'];
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   readonly: boolean;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   time: boolean;
 
   get value(): string {

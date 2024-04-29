@@ -1,14 +1,14 @@
-import { bindable, customElement, useView, PLATFORM } from 'aurelia-framework';
-import { Filter } from '../filter';
+import { MdcFilter } from '../filter';
 import { MdcMenu } from '@aurelia-mdc-web/menu';
+import template from './filter-actions.html';
+import { bindable, customElement } from 'aurelia';
 
-@useView(PLATFORM.moduleName('./filter-actions.html'))
-@customElement('filter-actions')
+@customElement({ name: 'filter-actions', template })
 export class FilterActions {
   constructor(private element: Element) { }
 
   @bindable
-  filter: Filter;
+  filter: MdcFilter;
 
   @bindable
   anchorCorner: MdcMenu['anchorCorner'];

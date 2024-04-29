@@ -7,17 +7,17 @@
     <button mdc-switch selected.bind="setting.value"></button>
   </template>
   <template if.bind="setting.clientEditor === ClientEditor.Password">
-    <a href="#" click.delegate="edit()">${setting.value ? setting.value : '(empty)' | password}</a>
+    <a href="#" click.trigger="edit()">${setting.value ? setting.value : '(empty)' | password}</a>
   </template>
   <template if.bind="setting.clientEditor === ClientEditor.Select">
-    <a href="#" click.delegate="edit()">${selectValue}</a>
+    <a href="#" click.trigger="edit()">${selectValue}</a>
   </template>
   <template if.bind="setting.clientEditor === ClientEditor.Date">
-    <a href="#" click.delegate="edit()">${setting.value | date}</a>
+    <a href="#" click.trigger="edit()">${setting.value | date}</a>
   </template>
   <template
     if.bind="setting.clientEditor !== ClientEditor.Boolean && setting.clientEditor !== ClientEditor.Password && setting.clientEditor !== ClientEditor.Select && setting.clientEditor !== ClientEditor.Date">
-    <a href="#" click.delegate="edit()">
+    <a href="#" click.trigger="edit()">
       <span if.bind="setting.value === undefined || setting.value === ''">(empty)</span>
       <span else>${setting.value}</span>
     </a>

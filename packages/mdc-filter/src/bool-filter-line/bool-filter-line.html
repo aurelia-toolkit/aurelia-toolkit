@@ -1,7 +1,7 @@
-<template class="filter-line">
+<template class="filter-line bool-filter-line">
   <div class="filter-line__label">${label}</div>
   <div class="filter-line__value">
     <mdc-checkbox checked.bind="value"></mdc-checkbox>
   </div>
-  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
+  <button mdc-icon-button if.bind="!lock" click.trigger="remove()" icon="clear"></button>
 </template>

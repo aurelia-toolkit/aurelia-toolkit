@@ -1,10 +1,9 @@
+import { customElement } from 'aurelia';
 import { FilterLineBase } from '../filter-line-base';
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
+import template from './bool-filter-line.html';
 
-@customElement('bool-filter-line')
-@useView(PLATFORM.moduleName('./bool-filter-line.html'))
+@customElement({ name: 'bool-filter-line', template })
 export class BoolFilterLine extends FilterLineBase<boolean> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(element: Element) {
     super(element);
   }

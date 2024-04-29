@@ -1,42 +1,37 @@
-import { FrameworkConfiguration, PLATFORM, bindingMode, ValueAttributeObserver, EventSubscriber } from 'aurelia-framework';
-import { MdcComponentAdapters } from '@aurelia-mdc-web/base';
 import { MdcDatepickerDialogConfiguration } from './mdc-datepicker-dialog/mdc-datepicker-dialog-configuration';
+import { AppTask, IAttrMapper, IContainer, NodeObserverLocator } from 'aurelia';
+import { MdcDatepicker } from './mdc-datepicker/mdc-datepicker';
+import { MdcDatepickerDialog } from './mdc-datepicker-dialog/mdc-datepicker-dialog';
 
 export { MdcDatepickerDialogConfiguration };
 export { MdcDatepickerDialog } from './mdc-datepicker-dialog/mdc-datepicker-dialog';
 export { MdcDatepicker, IMdcDatepickerElement } from './mdc-datepicker/mdc-datepicker';
 export { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from './mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 
-export function configure(frameworkConfiguration: FrameworkConfiguration, callback?: (config: MdcDatepickerDialogConfiguration) => void) {
-  frameworkConfiguration.container.get(MdcComponentAdapters).registerMdcElementConfig(datepickerConfig);
+let registered = false;
 
-  frameworkConfiguration.globalResources([
-    PLATFORM.moduleName('./mdc-datepicker/mdc-datepicker'),
-    PLATFORM.moduleName('./mdc-datepicker-dialog/mdc-datepicker-dialog')
-  ]);
-
-  frameworkConfiguration.aurelia
-    .use
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/dialog'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/list'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/select'))
-    .plugin(PLATFORM.moduleName('@aurelia-mdc-web/text-field'));
-
-  if (typeof callback === 'function') {
-    const config = frameworkConfiguration.container.get(MdcDatepickerDialogConfiguration);
-    callback(config);
-  }
-
-}
-
-const datepickerConfig = {
-  tagName: 'mdc-datepicker',
-  properties: {
-    value: {
-      defaultBindingMode: bindingMode.twoWay,
-      getObserver(element: Element) {
-        return new ValueAttributeObserver(element, 'value', new EventSubscriber(['change', 'input']));
-      }
+export const DatePickerConfiguration = {
+  register(container: IContainer): IContainer {
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      AppTask.creating(IContainer, c => {
+        const attrMapper = c.get(IAttrMapper);
+        const nodeObserverLocator = c.get(NodeObserverLocator);
+        attrMapper.useTwoWay((el, property) => el.tagName === 'MDC-DATEPICKER' ? property === 'value' : false);
+        nodeObserverLocator.useConfig('MDC-DATEPICKER', 'value', { events: ['input', 'change'] });
+      }).register(container);
+      return container.register(MdcDatepicker, MdcDatepickerDialog);
     }
+  },
+  customize(optionsProvider: (config: MdcDatepickerDialogConfiguration) => void) {
+    return {
+      register(container: IContainer): IContainer {
+        const options = container.get(MdcDatepickerDialogConfiguration);
+        optionsProvider(options);
+        return DatePickerConfiguration.register(container);
+      },
+    };
   }
 };

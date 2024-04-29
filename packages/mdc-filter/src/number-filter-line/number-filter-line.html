@@ -1,4 +1,4 @@
-<template class="filter-line">
+<template class="filter-line number-filter-line">
   <div class="filter-line__label">${label}</div>
   <mdc-select value.bind="operator" class="filter-line__operator mdc-select--dense" hoist-to-body>
     <mdc-list>
@@ -9,5 +9,5 @@
     <mdc-text-field ref="input" inputmask="mask: decimal; options.bind: { greedy: false }; value.bind: valueText"
       css="display: block; max-width: ${maxWidth}px" class="mdc-text-field--dense" title.bind="error"></mdc-text-field>
   </div>
-  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
+  <button mdc-icon-button if.bind="!lock" click.trigger="remove()" icon="clear"></button>
 </template>

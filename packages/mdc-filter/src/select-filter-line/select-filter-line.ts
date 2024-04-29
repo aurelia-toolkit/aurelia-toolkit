@@ -1,10 +1,11 @@
 import { FilterLineBase } from '../filter-line-base';
-import { customElement, bindable, useView, PLATFORM } from 'aurelia-framework';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 import { IMdcSelectElement } from '@aurelia-mdc-web/select';
+import template from './select-filter-line.html';
+import { bindable, customElement, inject } from 'aurelia';
 
-@customElement('select-filter-line')
-@useView(PLATFORM.moduleName('./select-filter-line.html'))
+@inject(Element, MdcFilterConfiguration)
+@customElement({ name: 'select-filter-line', template })
 export class SelectFilterLine extends FilterLineBase<unknown> {
   constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);

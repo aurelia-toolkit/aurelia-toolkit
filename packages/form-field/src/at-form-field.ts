@@ -1,8 +1,8 @@
-import { customElement, useView, PLATFORM, bindable, inject } from 'aurelia-framework';
+import { bindable, customElement, inject } from 'aurelia';
+import template from './at-form-field.html';
 
 @inject(Element)
-@customElement('at-form-field')
-@useView(PLATFORM.moduleName('./at-form-field.html'))
+@customElement({ name: 'at-form-field', template })
 export class AtFormField {
   constructor(private element: HTMLElement) { }
 

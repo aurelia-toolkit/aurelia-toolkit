@@ -1,7 +1,15 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { EnhanceMask, MdcInputmaskCustomAttribute } from './mdc-inputmask';
+import { IContainer } from 'aurelia';
 
-export function configure(config: FrameworkConfiguration) {
-  config.globalResources([
-    PLATFORM.moduleName('./mdc-inputmask')
-  ]);
-}
+let registered = false;
+
+export const MdcInputMaskConfiguration = {
+  register(container: IContainer): IContainer {
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(MdcInputmaskCustomAttribute, EnhanceMask);
+    }
+  }
+};

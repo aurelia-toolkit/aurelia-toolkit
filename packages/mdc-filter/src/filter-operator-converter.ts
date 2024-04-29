@@ -1,7 +1,7 @@
-﻿import { autoinject } from 'aurelia-framework';
+﻿import { inject } from 'aurelia';
 import { MdcFilterConfiguration } from './mdc-filter-configuration';
 
-@autoinject
+@inject(MdcFilterConfiguration)
 export class FilterOperatorValueConverter {
   constructor(private config: MdcFilterConfiguration) { }
 

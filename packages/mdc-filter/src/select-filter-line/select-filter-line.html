@@ -1,4 +1,4 @@
-﻿<template class="filter-line">
+﻿<template class="filter-line select-filter-line">
   <div class="filter-line__label">${label}</div>
   <mdc-select value.bind="operator" class="filter-line__operator mdc-select--dense" hoist-to-body>
     <mdc-list>
@@ -15,5 +15,5 @@
       </mdc-select>
     </div>
   </div>
-  <button mdc-icon-button if.bind="!lock" click.delegate="remove()" icon="clear"></button>
+  <button mdc-icon-button if.bind="!lock" click.trigger="remove()" icon="clear"></button>
 </template>

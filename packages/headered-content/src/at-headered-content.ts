@@ -1,5 +1,5 @@
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
+import { customElement } from 'aurelia';
+import template from './at-headered-content.html';
 
-@customElement('at-headered-content')
-@useView(PLATFORM.moduleName('./at-headered-content.html'))
+@customElement({ name: 'at-headered-content', template })
 export class AtHeaderedContent { }

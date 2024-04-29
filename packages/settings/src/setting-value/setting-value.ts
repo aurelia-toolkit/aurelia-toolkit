@@ -1,10 +1,10 @@
-import { customElement, useView, PLATFORM, bindable, inject, computedFrom } from 'aurelia-framework';
 import { ISettingInfo } from '../i-setting-info';
 import { ClientEditor } from '../client-editor';
+import template from './setting-value.html';
+import { bindable, customElement, inject } from 'aurelia';
 
 @inject(Element)
-@customElement('setting-value')
-@useView(PLATFORM.moduleName('./setting-value.html'))
+@customElement({ name: 'setting-value', template })
 export class SettingValue {
   constructor(private element: Element) { }
 
@@ -13,7 +13,6 @@ export class SettingValue {
 
   ClientEditor = ClientEditor;
 
-  @computedFrom('setting.value')
   get selectValue() {
     return this.setting.options?.find(x => x.key === this.setting.value)?.value;
   }

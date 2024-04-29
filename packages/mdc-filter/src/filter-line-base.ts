@@ -1,6 +1,6 @@
+import { BindingMode, bindable } from 'aurelia';
 import { IFilterLine } from './i-filter-line';
-import { bindable } from 'aurelia-typed-observable-plugin';
-import { bindingMode } from 'aurelia-framework';
+import { booleanAttr, number } from '@aurelia-mdc-web/base';
 
 export interface FilterLineElement extends HTMLElement {
   au: {
@@ -14,19 +14,19 @@ export abstract class FilterLineBase<T> implements IFilterLine {
   @bindable
   name: string;
 
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ mode: BindingMode.twoWay })
   label: string;
 
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ mode: BindingMode.twoWay })
   value?: T;
   valueChanged() {
     this.error = undefined;
   }
 
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ mode: BindingMode.twoWay })
   operator?: unknown;
 
-  @bindable({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ mode: BindingMode.twoWay })
   operators: unknown[];
   operatorsChanged() {
     this.operator = this.operators
@@ -34,18 +34,16 @@ export abstract class FilterLineBase<T> implements IFilterLine {
       : undefined;
   }
 
-  @bindable.number({ defaultBindingMode: bindingMode.twoWay })
+  @bindable({ set: number, mode: BindingMode.twoWay })
   maxWidth: number;
 
-  @bindable.booleanAttr
+  @bindable({ set: booleanAttr })
   lock: boolean;
 
   @bindable
   error?: string;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   errorChanged() { }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   hydrateInternal(_fl: IFilterLine) { }
 
   hydrate(fl: FilterLineBase<T>) {

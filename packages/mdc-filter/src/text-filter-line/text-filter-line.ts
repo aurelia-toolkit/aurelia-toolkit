@@ -1,10 +1,11 @@
 import { FilterLineBase } from '../filter-line-base';
-import { customElement, useView, PLATFORM } from 'aurelia-framework';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 import { IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
+import template from './text-filter-line.html';
+import { customElement, inject } from 'aurelia';
 
-@customElement('text-filter-line')
-@useView(PLATFORM.moduleName('./text-filter-line.html'))
+@inject(Element, MdcFilterConfiguration)
+@customElement({ name: 'text-filter-line', template })
 export class TextFilterLine extends FilterLineBase<string> {
   constructor(element: Element, config: MdcFilterConfiguration) {
     super(element);

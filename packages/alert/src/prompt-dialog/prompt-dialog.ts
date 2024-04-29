@@ -1,6 +1,8 @@
-import { useView, PLATFORM, autoinject } from 'aurelia-framework';
-import { ValidationControllerFactory, ValidationRules, ValidationController, Rule } from 'aurelia-validation';
 import { MdcDialog } from '@aurelia-mdc-web/dialog';
+import template from './prompt-dialog.html'
+import { customElement, inject, newInstanceForScope } from 'aurelia';
+import { IValidationController } from '@aurelia/validation-html';
+import { IValidationRules } from '@aurelia/validation';
 
 export interface IPromptDialogData {
   title: string;
@@ -12,24 +14,17 @@ export interface IPromptDialogData {
   cancelText: string;
 }
 
-@autoinject
-@useView(PLATFORM.moduleName('./prompt-dialog.html'))
+@inject(newInstanceForScope(IValidationController))
+@customElement({ name: 'prompt-dialog', template })
 export class PromptDialog {
-  constructor(private validationControllerFactory: ValidationControllerFactory) {
-    this.validationController = this.validationControllerFactory.createForCurrentScope();
-    this.rules = ValidationRules
-      .ensure<IPromptDialogData, string>(x => x.text).required().when(x => x.required)
-      .rules;
-  }
+  constructor(private validationController: IValidationController, private rules: IValidationRules) { }
 
   dialog: MdcDialog;
   data: IPromptDialogData;
-  validationController: ValidationController;
-  rules: Rule<IPromptDialogData, unknown>[][];
 
-  activate(data: IPromptDialogData) {
+  loading(data: IPromptDialogData) {
     this.data = data;
-    this.validationController.addObject(this.data, this.rules);
+    this.rules.on(data).ensure(x => x.text).required().when(x => !!x?.required);
   }
 
   async ok() {

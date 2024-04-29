@@ -1,7 +1,15 @@
-import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
+import { AtHeaderedContent } from './at-headered-content';
+import { IContainer } from 'aurelia';
 
-export function configure(frameworkConfiguration: FrameworkConfiguration) {
-  frameworkConfiguration.globalResources([
-    PLATFORM.moduleName('./at-headered-content')
-  ]);
-}
+let registered = false;
+
+export const HeaderedContentConfiguration = {
+  register(container: IContainer): IContainer {
+    if (registered) {
+      return container;
+    } else {
+      registered = true;
+      return container.register(AtHeaderedContent);
+    }
+  }
+};
