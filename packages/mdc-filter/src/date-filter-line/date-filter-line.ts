@@ -1,7 +1,7 @@
 import { FilterLineBase } from '../filter-line-base';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 import { IMdcDatepickerElement } from '@aurelia-toolkit/mdc-datepicker';
-import template from './date-filter-line.html';
+import template from './date-filter-line.html?raw';
 import { customElement } from 'aurelia';
 
 @customElement({ name: 'date-filter-line', template })

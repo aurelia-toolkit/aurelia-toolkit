@@ -15,7 +15,7 @@ export function usingProgress(errorMessage?: string | Partial<IAlertModalPayload
       const abortController = new AbortController();
       document.addEventListener('global-progress:cancel', () => abortController.abort(), { once: true });
       return this.alertService.usingProgress(async () => {
-        return originalMethod.call(this, ...[...args, abortController.signal]);
+        return originalMethod.call(this, ...args, abortController.signal);
       }, async e => {
         const message = errorMessage instanceof Function ? errorMessage(e) : errorMessage;
         if (e.nonCritical) {

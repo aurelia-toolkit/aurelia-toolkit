@@ -7,7 +7,7 @@ import { MdcDatepickerDialog } from '../mdc-datepicker-dialog/mdc-datepicker-dia
 import { IMdcDatepickerDialogData, IMdcDatepickerDialogOptions } from '../mdc-datepicker-dialog/i-mdc-datepicker-dialog-options';
 import { MdcDefaultTextFieldConfiguration } from '@aurelia-mdc-web/text-field';
 import { TaskQueue, bindable, customElement, inject } from 'aurelia';
-import template from './mdc-datepicker.html';
+import template from './mdc-datepicker.html?raw';
 
 const DATE_ISO_FORMAT = 'yyyy-MM-dd';
 const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';

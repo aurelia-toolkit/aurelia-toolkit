@@ -1,12 +1,12 @@
 import { IFilterLine } from './i-filter-line';
-import { FilterLineElement } from './filter-line-base';
-import template from './filter.html';
-import { bindable, children, customElement } from 'aurelia';
+import template from './filter.html?raw';
+import { CustomElement, IAurelia, bindable, children, customElement, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 
+@inject(Element, IAurelia)
 @customElement({ name: 'mdc-filter', template })
 export class MdcFilter {
-  constructor(private element: Element, private templatingEngine: TemplatingEngine) { }
+  constructor(private element: Element, private au: IAurelia) { }
 
   itemsCollection: HTMLDivElement;
 
@@ -37,7 +37,7 @@ export class MdcFilter {
   }
 
   add(i: IFilterLine): IFilterLine {
-    const line = document.createElement(i.element.tagName.toLowerCase()) as FilterLineElement;
+    const line = document.createElement(i.element.tagName.toLowerCase());
     line.setAttribute('remove.trigger', 'remove($event.detail.filterLine)');
     if (this.lock) {
       line.setAttribute('lock', '');
@@ -49,12 +49,10 @@ export class MdcFilter {
     if (i.element.hasAttribute('two-line')) {
       line.setAttribute('two-line', 'two-line');
     }
-    const view = this.templatingEngine.enhance(line);
-    const filterVm = line.au.controller.viewModel;
+    this.au.enhance({ component: {}, host: line });
+    const filterVm = CustomElement.for<IFilterLine>(line).viewModel;
 
     filterVm.hydrate(i);
-    view.bind(this);
-    view.attached();
     this.itemsCollection.appendChild(line);
     this.lines.push(filterVm);
     this.element.dispatchEvent(new CustomEvent('added'));
@@ -63,12 +61,13 @@ export class MdcFilter {
 
   remove(i: IFilterLine) {
     this.lines.splice(this.lines.indexOf(i), 1);
-    const line = i.element as unknown as HTMLElement & { au: { controller: Controller } };
+    const line = i.element as unknown as HTMLElement;
     this.itemsCollection.removeChild(line);
-    const containerView = line.au.controller.view;
-    containerView.detached();
-    containerView.unbind();
-    containerView.removeNodes();
+    CustomElement.for<IFilterLine>(line).dispose();
+    // const containerView = line.au.controller.view;
+    // containerView.detached();
+    // containerView.unbind();
+    // containerView.removeNodes();
     this.element.dispatchEvent(new CustomEvent('removed'));
   }
 

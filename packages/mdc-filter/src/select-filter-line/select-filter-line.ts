@@ -1,7 +1,7 @@
 import { FilterLineBase } from '../filter-line-base';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 import { IMdcSelectElement } from '@aurelia-mdc-web/select';
-import template from './select-filter-line.html';
+import template from './select-filter-line.html?raw';
 import { bindable, customElement, inject } from 'aurelia';
 
 @inject(Element, MdcFilterConfiguration)

@@ -1,6 +1,6 @@
 import { ISettingInfo } from '../i-setting-info';
 import { ClientEditor } from '../client-editor';
-import template from './setting-value.html';
+import template from './setting-value.html?raw';
 import { bindable, customElement, inject } from 'aurelia';
 
 @inject(Element)

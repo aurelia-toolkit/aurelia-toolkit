@@ -1,6 +1,6 @@
 import { MdcFilter } from '../filter';
 import { MdcMenu } from '@aurelia-mdc-web/menu';
-import template from './filter-actions.html';
+import template from './filter-actions.html?raw';
 import { bindable, customElement } from 'aurelia';
 
 @customElement({ name: 'filter-actions', template })

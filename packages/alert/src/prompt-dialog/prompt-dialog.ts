@@ -1,5 +1,5 @@
 import { MdcDialog } from '@aurelia-mdc-web/dialog';
-import template from './prompt-dialog.html'
+import template from './prompt-dialog.html?raw'
 import { customElement, inject, newInstanceForScope } from 'aurelia';
 import { IValidationController } from '@aurelia/validation-html';
 import { IValidationRules } from '@aurelia/validation';

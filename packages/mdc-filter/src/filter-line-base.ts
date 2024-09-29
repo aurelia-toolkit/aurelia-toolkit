@@ -2,12 +2,6 @@ import { BindingMode, bindable } from 'aurelia';
 import { IFilterLine } from './i-filter-line';
 import { booleanAttr, number } from '@aurelia-mdc-web/base';
 
-export interface FilterLineElement extends HTMLElement {
-  au: {
-    controller: { viewModel: IFilterLine };
-  };
-}
-
 export abstract class FilterLineBase<T> implements IFilterLine {
   constructor(public element: Element) { }
 

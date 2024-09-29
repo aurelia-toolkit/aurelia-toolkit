@@ -1,5 +1,5 @@
 import { bindable, customElement, inject } from 'aurelia';
-import template from './at-form-field.html';
+import template from './at-form-field.html?raw';
 
 @inject(Element)
 @customElement({ name: 'at-form-field', template })

@@ -10,7 +10,7 @@ import { MdcDatepickerDialogConfiguration } from './mdc-datepicker-dialog-config
 import addMonths from 'date-fns/addMonths';
 import isSameDay from 'date-fns/isSameDay';
 import { customElement, inject } from 'aurelia';
-import template from './mdc-datepicker-dialog.html';
+import template from './mdc-datepicker-dialog.html?raw';
 
 interface IDay {
   date?: Date | null;

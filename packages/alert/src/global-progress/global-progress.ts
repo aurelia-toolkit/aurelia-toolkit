@@ -1,5 +1,5 @@
 import { bindable, customElement } from 'aurelia';
-import template from './global-progress.html';
+import template from './global-progress.html?raw';
 
 @customElement({ name: 'global-progress', template })
 export class GlobalProgress {

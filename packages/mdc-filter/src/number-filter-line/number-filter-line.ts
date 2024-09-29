@@ -1,7 +1,7 @@
 import { FilterLineBase } from '../filter-line-base';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
 import { IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
-import template from './number-filter-line.html';
+import template from './number-filter-line.html?raw';
 import { customElement, inject, observable } from 'aurelia';
 
 @inject(Element, MdcFilterConfiguration)

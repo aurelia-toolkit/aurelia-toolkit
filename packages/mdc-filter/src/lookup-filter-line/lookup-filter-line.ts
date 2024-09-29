@@ -1,8 +1,8 @@
 import { FilterLineBase } from '../filter-line-base';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
-// import templateHtml from './lookup-filter-line.html';
+// import templateHtml from './lookup-filter-line.html?raw';
 import { IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
-import template from './lookup-filter-line.html';
+import template from './lookup-filter-line.html?raw';
 import { bindable, customElement, inject } from 'aurelia';
 import { booleanAttr } from '@aurelia-mdc-web/base';
 

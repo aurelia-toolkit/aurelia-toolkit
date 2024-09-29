@@ -1,7 +1,7 @@
 import { IMdcDatepickerElement } from '@aurelia-toolkit/mdc-datepicker';
 import { FilterLineBase } from '../filter-line-base';
 import { MdcFilterConfiguration } from '../mdc-filter-configuration';
-import template from './date-range-filter-line.html';
+import template from './date-range-filter-line.html?raw';
 import { customElement } from 'aurelia';
 
 export interface IDateRange {

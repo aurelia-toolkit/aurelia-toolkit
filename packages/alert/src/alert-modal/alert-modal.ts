@@ -1,5 +1,5 @@
 import { IAlertModalPayload } from './i-alert-modal-payload';
-import template from './alert-modal.html'
+import template from './alert-modal.html?raw';
 import { customElement } from 'aurelia';
 
 @customElement({ name: 'alert-modal', template })
