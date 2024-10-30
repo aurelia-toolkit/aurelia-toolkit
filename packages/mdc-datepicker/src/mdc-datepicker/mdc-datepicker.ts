@@ -3,8 +3,8 @@ import { useView, PLATFORM, customElement, inject, TaskQueue } from 'aurelia-fra
 import { IMdcTextFieldElement } from '@aurelia-mdc-web/text-field';
 import { IValidatedElement, IError } from '@aurelia-mdc-web/base';
 import { bindable } from 'aurelia-typed-observable-plugin';
-import parse from 'date-fns/parse';
-import format from 'date-fns/format';
+import { parse } from 'date-fns/parse';
+import { format } from 'date-fns/format';
 import { InputmaskCustomAttribute } from 'aurelia-inputmask';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { MdcDatepickerDialog } from '../mdc-datepicker-dialog/mdc-datepicker-dialog';

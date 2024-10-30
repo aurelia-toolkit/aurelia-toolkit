@@ -44,6 +44,6 @@
   "peerDependencies": {
     "aurelia-i18n": "^4.0.3",
     "aurelia-logging": "^1.5.2",
-    "aurelia-validation": "^2.0.0-rc2"
+    "aurelia-validation": "^2.0.0"
   }
 }

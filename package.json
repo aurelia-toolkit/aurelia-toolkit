@@ -1,20 +1,23 @@
 {
   "name": "aurelia-toolkit",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "build": "lerna run build"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": ">=9.0.3",
-    "@aurelia-mdc-web/checkbox": ">=9.0.3",
-    "@aurelia-mdc-web/circular-progress": ">=9.0.3",
-    "@aurelia-mdc-web/dialog": ">=9.0.3",
-    "@aurelia-mdc-web/icon-button": ">=9.0.3",
-    "@aurelia-mdc-web/lookup": ">=9.0.3",
-    "@aurelia-mdc-web/select": ">=9.0.3",
-    "@aurelia-mdc-web/text-field": ">=9.0.3",
-    "@microsoft/applicationinsights-web": "^3.0.0",
+    "@aurelia-mdc-web/base": ">=9.0.8",
+    "@aurelia-mdc-web/checkbox": ">=9.0.8",
+    "@aurelia-mdc-web/circular-progress": ">=9.0.8",
+    "@aurelia-mdc-web/dialog": ">=9.0.8",
+    "@aurelia-mdc-web/icon-button": ">=9.0.8",
+    "@aurelia-mdc-web/lookup": ">=9.0.8",
+    "@aurelia-mdc-web/select": ">=9.0.8",
+    "@aurelia-mdc-web/text-field": ">=9.0.8",
+    "@microsoft/applicationinsights-web": "^3.3.4",
     "aurelia-fetch-client": "^1.8.2",
     "aurelia-framework": "^1.4.1",
     "aurelia-i18n": "^4.0.4",
@@ -23,20 +26,21 @@
     "aurelia-router": "^1.7.1",
     "aurelia-typed-observable-plugin": "^0.5.1",
     "aurelia-validation": "^2.0.0",
-    "jwt-decode": "^3.1.2",
+    "jwt-decode": "^4.0.0",
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.59.1",
-    "@typescript-eslint/parser": "^5.59.1",
-    "concurrently": "^8.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.12.2",
+    "@typescript-eslint/parser": "^8.12.2",
+    "concurrently": "^9.0.1",
     "copyfiles": "^2.4.1",
-    "eslint": "^8.39.0",
-    "eslint-plugin-compat": "^4.1.4",
-    "eslint-plugin-import": "^2.27.5",
-    "lerna": "^6.6.1",
-    "rimraf": "^5.0.0",
-    "tslib": ">=2.1.0",
-    "typescript": "^4.8.4"
+    "date-fns": "^4.1.0",
+    "eslint": "^9.13.0",
+    "eslint-plugin-compat": "^6.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "lerna": "^8.1.8",
+    "rimraf": "^6.0.1",
+    "tslib": ">=2.8.0",
+    "typescript": "^5.6.3"
   }
 }

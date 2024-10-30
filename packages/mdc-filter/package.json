@@ -44,17 +44,17 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "dependencies": {
-    "@aurelia-toolkit/mdc-datepicker": "^3.0.8"
+    "@aurelia-toolkit/mdc-datepicker": ">=3.0.8"
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/checkbox": ">=9.0.3",
-    "@aurelia-mdc-web/icon": ">=9.0.3",
-    "@aurelia-mdc-web/icon-button": ">=9.0.3",
-    "@aurelia-mdc-web/list": ">=9.0.3",
-    "@aurelia-mdc-web/lookup": ">=9.0.3",
-    "@aurelia-mdc-web/menu": ">=9.0.3",
-    "@aurelia-mdc-web/select": ">=9.0.3",
-    "@aurelia-mdc-web/text-field": ">=9.0.3",
+    "@aurelia-mdc-web/checkbox": ">=9.0.8",
+    "@aurelia-mdc-web/icon": ">=9.0.8",
+    "@aurelia-mdc-web/icon-button": ">=9.0.8",
+    "@aurelia-mdc-web/list": ">=9.0.8",
+    "@aurelia-mdc-web/lookup": ">=9.0.8",
+    "@aurelia-mdc-web/menu": ">=9.0.8",
+    "@aurelia-mdc-web/select": ">=9.0.8",
+    "@aurelia-mdc-web/text-field": ">=9.0.8",
     "aurelia-logging": "^1.5.2",
     "tslib": ">=2.1.0"
   }

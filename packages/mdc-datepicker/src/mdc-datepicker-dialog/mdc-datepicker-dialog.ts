@@ -1,15 +1,15 @@
 import { useView, PLATFORM, computedFrom } from 'aurelia-framework';
-import format from 'date-fns/format';
-import isWeekend from 'date-fns/isWeekend';
-import addDays from 'date-fns/addDays';
-import isSameMonth from 'date-fns/isSameMonth';
-import lastDayOfMonth from 'date-fns/lastDayOfMonth';
-import startOfDay from 'date-fns/startOfDay';
+import { format } from 'date-fns/format';
+import { isWeekend } from 'date-fns/isWeekend';
+import { addDays } from 'date-fns/addDays';
+import { isSameMonth } from 'date-fns/isSameMonth';
+import { lastDayOfMonth } from 'date-fns/lastDayOfMonth';
+import { startOfDay } from 'date-fns/startOfDay';
 import { MdcDialog } from '@aurelia-mdc-web/dialog';
 import { IMdcDatepickerDialogOptions, IMdcDatepickerDialogData } from './i-mdc-datepicker-dialog-options';
 import { MdcDatepickerDialogConfiguration } from './mdc-datepicker-dialog-configuration';
-import addMonths from 'date-fns/addMonths';
-import isSameDay from 'date-fns/isSameDay';
+import { addMonths } from 'date-fns/addMonths';
+import { isSameDay } from 'date-fns/isSameDay';
 
 interface IDay {
   date?: Date | null;

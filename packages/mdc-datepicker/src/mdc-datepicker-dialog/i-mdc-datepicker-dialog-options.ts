@@ -1,3 +1,5 @@
+import { Locale } from 'date-fns/types';
+
 export interface IMdcDatepickerDialogOptions extends Record<string, unknown> {
   label: string;
   yearRange: {

@@ -43,15 +43,15 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
   },
   "dependencies": {
-    "@aurelia-toolkit/date": "^1.0.12"
+    "@aurelia-toolkit/date": ">=1.0.12"
   },
   "peerDependencies": {
     "aurelia-fetch-client": "^1.8.2",
     "aurelia-framework": "^1.4.1",
     "aurelia-logging": "^1.5.2",
     "aurelia-router": "^1.7.1",
-    "date-fns": "^2.16.1",
-    "jwt-decode": "^3.1.1",
+    "date-fns": ">=2.16.1",
+    "jwt-decode": ">=3.1.1",
     "rxjs": "^7.5.7"
   }
 }

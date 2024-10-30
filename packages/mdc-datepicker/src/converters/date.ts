@@ -1,4 +1,5 @@
-﻿import format from 'date-fns/format';
+﻿import { format } from 'date-fns/format';
+import { Locale } from 'date-fns/types';
 
 export class DateValueConverter {
   // eslint-disable-next-line no-undef

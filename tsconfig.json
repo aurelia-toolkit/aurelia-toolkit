@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": "./packages",
     "paths": {
-      "@aurelia-toolkit/*": ["*/src"]
+      "@aurelia-toolkit/*": [
+        "*/src"
+      ]
     }
   }
 }
