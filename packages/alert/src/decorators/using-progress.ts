@@ -21,9 +21,9 @@ export function usingProgress(errorMessage?: string | Partial<IAlertModalPayload
         }, async e => {
           const message = errorMessage instanceof Function ? errorMessage(e) : errorMessage;
           if (e.nonCritical) {
-            await this.alertService.error(message ?? e.message);
+            await this.alertService.error(message ?? e.message ?? 'Error');
           } else {
-            await this.alertService.criticalError(message ?? e.message, e);
+            await this.alertService.criticalError(message ?? e.message ?? 'Critical error', e);
           }
           throw e;
         }, allowCancel);

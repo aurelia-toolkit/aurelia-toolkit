@@ -95,6 +95,7 @@ export class AlertService {
   }
 
   async error(message: string | Partial<IAlertModalPayload>): Promise<boolean> {
+    message ??= 'Error';
     if (typeof message === 'string') {
       message = { message };
     }

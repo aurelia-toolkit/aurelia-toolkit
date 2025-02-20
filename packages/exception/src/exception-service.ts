@@ -16,7 +16,7 @@ export class ExceptionService {
   }
 
   throw(apiException: IApiException): never {
-    let exceptionType = this.registry.get(apiException.ClassName);
+    let exceptionType = this.registry.get(apiException.type);
     if (!exceptionType) {
       exceptionType = Exception;
     }

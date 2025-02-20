@@ -4,15 +4,13 @@ export class Exception implements Error {
   name = 'Exception';
   message: string;
   stack?: string;
-  class: string;
-  data: unknown;
+  type: string;
 
   constructor(apiException?: IApiException) {
     if (apiException) {
-      this.message = apiException.Message;
-      this.class = apiException.ClassName;
-      this.data = apiException.Data;
-      this.stack = apiException.StackTraceString;
+      this.message = apiException.title;
+      this.type = apiException.type;
+      this.stack = apiException.stack;
     }
   }
 }

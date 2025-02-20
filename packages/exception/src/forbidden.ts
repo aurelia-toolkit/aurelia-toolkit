@@ -1,3 +1,5 @@
 ﻿import { Exception } from './exception';
 
-export class ForbiddenException extends Exception { }
+export class ForbiddenException extends Exception {
+  message: string = 'Forbidden';
+}
