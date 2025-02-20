@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/alert",
-  "version": "4.0.6-au2",
+  "version": "4.0.7-au2",
   "publishConfig": {
     "access": "public"
   },

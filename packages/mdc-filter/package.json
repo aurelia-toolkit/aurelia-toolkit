@@ -41,14 +41,14 @@
     "@aurelia-toolkit/mdc-datepicker": "^3.0.8-au2"
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/checkbox": ">=9.2.1-au2",
-    "@aurelia-mdc-web/icon": ">=9.2.1-au2",
-    "@aurelia-mdc-web/icon-button": ">=9.2.1-au2",
-    "@aurelia-mdc-web/list": ">=9.2.1-au2",
-    "@aurelia-mdc-web/lookup": ">=9.2.1-au2",
-    "@aurelia-mdc-web/menu": ">=9.2.1-au2",
-    "@aurelia-mdc-web/select": ">=9.2.1-au2",
-    "@aurelia-mdc-web/text-field": ">=9.2.1-au2",
+    "@aurelia-mdc-web/checkbox": ">=9.2.3-au2",
+    "@aurelia-mdc-web/icon": ">=9.2.3-au2",
+    "@aurelia-mdc-web/icon-button": ">=9.2.3-au2",
+    "@aurelia-mdc-web/list": ">=9.2.3-au2",
+    "@aurelia-mdc-web/lookup": ">=9.2.3-au2",
+    "@aurelia-mdc-web/menu": ">=9.2.3-au2",
+    "@aurelia-mdc-web/select": ">=9.2.3-au2",
+    "@aurelia-mdc-web/text-field": ">=9.2.3-au2",
     "tslib": ">=2.6.2"
   }
 }

@@ -14,7 +14,7 @@ export interface IPromptDialogData {
   cancelText: string;
 }
 
-@inject(newInstanceForScope(IValidationController))
+@inject(newInstanceForScope(IValidationController), IValidationRules)
 @customElement({ name: 'prompt-dialog', template })
 export class PromptDialog {
   constructor(private validationController: IValidationController, private rules: IValidationRules) { }

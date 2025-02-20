@@ -38,11 +38,11 @@
     "publish:au2": "npm publish --tag au2"
   },
   "peerDependencies": {
-    "@aurelia-mdc-web/dialog": ">=9.2.1-au2",
-    "@aurelia-mdc-web/icon-button": ">=9.2.1-au2",
-    "@aurelia-mdc-web/list": ">=9.2.1-au2",
-    "@aurelia-mdc-web/select": ">=9.2.1-au2",
-    "@aurelia-mdc-web/text-field": ">=9.2.1-au2",
+    "@aurelia-mdc-web/dialog": ">=9.2.3-au2",
+    "@aurelia-mdc-web/icon-button": ">=9.2.3-au2",
+    "@aurelia-mdc-web/list": ">=9.2.3-au2",
+    "@aurelia-mdc-web/select": ">=9.2.3-au2",
+    "@aurelia-mdc-web/text-field": ">=9.2.3-au2",
     "aurelia": "^2.0.0-beta.21",
     "date-fns": "^2.16.1",
     "tslib": ">=2.6.2"
