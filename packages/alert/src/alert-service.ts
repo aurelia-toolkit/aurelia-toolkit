@@ -3,17 +3,17 @@ import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { merge } from 'rxjs/internal/observable/merge';
 import { map } from 'rxjs/internal/operators/map';
 import { scan } from 'rxjs/internal/operators/scan';
-import { AlertModal } from './alert-modal/alert-modal';
 import { autoinject } from 'aurelia-framework';
 import { MdcDialogService } from '@aurelia-mdc-web/dialog';
 import { I18N } from 'aurelia-i18n';
-import { IPromptDialogData, PromptDialog } from './prompt-dialog/prompt-dialog';
+import { IPromptDialogData } from './prompt-dialog/prompt-dialog';
 import { ExceptionsTracker } from './exceptions-tracker';
 import { IAlertModalPayload } from './alert-modal/i-alert-modal-payload';
+import { AlertConfiguration } from './alert-configuration';
 
 @autoinject
 export class AlertService {
-  constructor(private dialogService: MdcDialogService, private exceptionsTracker: ExceptionsTracker, private i18n: I18N) { }
+  constructor(private dialogService: MdcDialogService, private exceptionsTracker: ExceptionsTracker, private i18n: I18N, private alertConfiguration: AlertConfiguration) { }
 
   increment$ = new Subject<void>();
   decrement$ = new Subject<void>();
@@ -60,7 +60,7 @@ export class AlertService {
   }
 
   async showModal(model: Partial<IAlertModalPayload>): Promise<string> {
-    return await this.open({ viewModel: AlertModal, model });
+    return await this.open({ viewModel: this.alertConfiguration.defaultAlertModal, model });
   }
 
   async alert(message: string | Partial<IAlertModalPayload>): Promise<boolean> {
@@ -70,28 +70,47 @@ export class AlertService {
     const model: Partial<IAlertModalPayload> = {
       icon: 'info',
       iconColour: 'mdc-theme--primary',
-      okText: this.i18n.tr('aurelia-toolkit:alert.ok'),
+      button1Text: this.i18n.tr('aurelia-toolkit:alert.ok'),
+      button1Action: 'ok',
+      defaultAction: 'ok',
+      successAction: 'ok',
       ...message
     };
-    return await this.showModal(model) === 'ok';
+    return await this.showModal(model) === model.successAction;
   }
 
   async confirm(message: string | Partial<IAlertModalPayload>): Promise<boolean> {
     if (typeof message === 'string') {
       message = { message };
     }
-    const model: IAlertModalPayload = {
-      icon: 'help',
-      iconColour: 'mdc-theme--primary',
-      okText: this.i18n.tr('aurelia-toolkit:alert.yes'),
-      cancelText: this.i18n.tr('aurelia-toolkit:alert.no'),
-      ...message
-    };
-    return await this.showModal(model) === 'ok';
+    const model: IAlertModalPayload = message.defensive
+      ? {
+        icon: 'help',
+        iconColour: 'mdc-theme--primary',
+        button1Text: this.i18n.tr('aurelia-toolkit:alert.yes'),
+        button1Action: 'yes',
+        button2Text: this.i18n.tr('aurelia-toolkit:alert.no'),
+        button2Action: 'no',
+        defaultAction: 'no',
+        successAction: 'yes',
+        ...message
+      }
+      : {
+        icon: 'help',
+        iconColour: 'mdc-theme--primary',
+        button1Text: this.i18n.tr('aurelia-toolkit:alert.no'),
+        button1Action: 'no',
+        button2Text: this.i18n.tr('aurelia-toolkit:alert.yes'),
+        button2Action: 'yes',
+        defaultAction: 'yes',
+        successAction: 'yes',
+        ...message
+      };
+    return await this.showModal(model) === model.successAction;
   }
 
   async prompt(data: Partial<IPromptDialogData>): Promise<boolean> {
-    return await this.open({ viewModel: PromptDialog, model: data }) === 'ok';
+    return await this.open({ viewModel: this.alertConfiguration.defaultPromptDialog, model: data }) === 'ok';
   }
 
   async error(message: string | Partial<IAlertModalPayload>): Promise<boolean> {

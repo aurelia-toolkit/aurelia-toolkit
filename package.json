@@ -9,15 +9,15 @@
     "build": "lerna run build"
   },
   "dependencies": {
-    "@aurelia-mdc-web/base": ">=9.0.8",
-    "@aurelia-mdc-web/checkbox": ">=9.0.8",
-    "@aurelia-mdc-web/circular-progress": ">=9.0.8",
-    "@aurelia-mdc-web/dialog": ">=9.0.8",
-    "@aurelia-mdc-web/icon-button": ">=9.0.8",
-    "@aurelia-mdc-web/lookup": ">=9.0.8",
-    "@aurelia-mdc-web/select": ">=9.0.8",
-    "@aurelia-mdc-web/text-field": ">=9.0.8",
-    "@microsoft/applicationinsights-web": "^3.3.5",
+    "@aurelia-mdc-web/base": ">=9.1.2",
+    "@aurelia-mdc-web/checkbox": ">=9.1.2",
+    "@aurelia-mdc-web/circular-progress": ">=9.1.2",
+    "@aurelia-mdc-web/dialog": ">=9.1.2",
+    "@aurelia-mdc-web/icon-button": ">=9.1.2",
+    "@aurelia-mdc-web/lookup": ">=9.1.2",
+    "@aurelia-mdc-web/select": ">=9.1.2",
+    "@aurelia-mdc-web/text-field": ">=9.1.2",
+    "@microsoft/applicationinsights-web": "^3.3.6",
     "aurelia-fetch-client": "^1.8.2",
     "aurelia-framework": "^1.4.1",
     "aurelia-i18n": "^4.0.4",
@@ -27,20 +27,20 @@
     "aurelia-typed-observable-plugin": "^0.5.1",
     "aurelia-validation": "^2.0.0",
     "jwt-decode": "^4.0.0",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.24.1",
-    "@typescript-eslint/parser": "^8.24.1",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
     "concurrently": "^9.1.2",
     "copyfiles": "^2.4.1",
     "date-fns": "^4.1.0",
-    "eslint": "^9.20.1",
+    "eslint": "^9.25.1",
     "eslint-plugin-compat": "^6.0.2",
     "eslint-plugin-import": "^2.31.0",
-    "lerna": "^8.2.0",
+    "lerna": "^8.2.2",
     "rimraf": "^6.0.1",
     "tslib": ">=2.8.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.3"
   }
 }

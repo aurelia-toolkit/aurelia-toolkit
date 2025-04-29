@@ -2,6 +2,7 @@ import { FrameworkConfiguration, PLATFORM } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { I18NResource } from './i-18n-resource';
 import { Logger } from 'aurelia-logging';
+import { AlertConfiguration } from './alert-configuration';
 
 export { AlertService } from './alert-service';
 export { I18NResource } from './i-18n-resource';
@@ -10,13 +11,19 @@ export { confirmAction } from './decorators/confirm-action';
 export { usingProgress } from './decorators/using-progress';
 export { ExceptionsTracker } from './exceptions-tracker';
 export { IAlertModalPayload } from './alert-modal/i-alert-modal-payload';
+export { AlertConfiguration } from './alert-configuration';
 
-export function configure(frameworkConfiguration: FrameworkConfiguration) {
+export function configure(frameworkConfiguration: FrameworkConfiguration, callback?: (config: AlertConfiguration) => void) {
   frameworkConfiguration.globalResources([
     PLATFORM.moduleName('./global-progress/global-progress'),
     PLATFORM.moduleName('./alert-modal/alert-modal'),
     PLATFORM.moduleName('./prompt-dialog/prompt-dialog')
   ]);
+
+  if (typeof callback === 'function') {
+    const config = frameworkConfiguration.container.get(AlertConfiguration);
+    callback(config);
+  }
 
   const i18n = frameworkConfiguration.container.get(I18N);
   // i18n might not be initialised yet
