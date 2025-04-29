@@ -120,6 +120,7 @@ export class AlertService {
     }
     message.icon = 'error';
     message.iconColour = 'mdc-theme--error';
+    message.caption ??= this.i18n.tr('aurelia-toolkit:alert.error');
     return this.alert(message);
   }
 
