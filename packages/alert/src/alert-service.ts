@@ -70,8 +70,8 @@ export class AlertService {
     const model: Partial<IAlertModalPayload> = {
       icon: 'info',
       iconColour: 'mdc-theme--primary',
-      button1Text: this.i18n.tr('aurelia-toolkit:alert.ok'),
-      button1Action: 'ok',
+      button2Text: this.i18n.tr('aurelia-toolkit:alert.ok'),
+      button2Action: 'ok',
       defaultAction: 'ok',
       successAction: 'ok',
       ...message
