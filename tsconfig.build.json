@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "module": "amd",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "esnext",
     "lib": [
-      "es2017",
+      "ESNext",
       "dom"
     ],
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "declaration": false,
     "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
@@ -23,7 +23,6 @@
     "sourceMap": true,
     "inlineSources": true,
     "newLine": "lf",
-    "downlevelIteration": true
   },
   "exclude": [
     ".vscode",

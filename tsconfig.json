@@ -1,11 +1,7 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
-    "baseUrl": "./packages",
     "paths": {
-      "@aurelia-toolkit/*": [
-        "*/src"
-      ]
     }
   }
 }
