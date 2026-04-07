@@ -1,6 +1,6 @@
 {
   "name": "@aurelia-toolkit/mdc-filter",
-  "version": "4.0.10",
+  "version": "4.0.11",
   "publishConfig": {
     "access": "public"
   },
@@ -38,7 +38,7 @@
     "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets\""
   },
   "dependencies": {
-    "@aurelia-toolkit/mdc-datepicker": "^3.0.9"
+    "@aurelia-toolkit/mdc-datepicker": "^3.0.10"
   },
   "peerDependencies": {
     "@aurelia-mdc-web/checkbox": ">=9.0.8",
