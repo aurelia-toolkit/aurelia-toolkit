@@ -1,4 +1,4 @@
-import { Locale } from 'date-fns/types';
+import { Locale } from 'date-fns/locale';
 
 export interface IMdcDatepickerDialogOptions extends Record<string, unknown> {
   label: string;

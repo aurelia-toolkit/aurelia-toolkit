@@ -30,6 +30,7 @@ export class AuthService {
   constructor(private dateService: DateService, private usersClient: IUsersClient, private httpClient: HttpClient,
     private authConfiguration: AuthConfiguration) {
     this.logger = getLogger('AuthService');
+    this.storageKey = this.authConfiguration.storageKey ?? `${location.origin}${location.origin.endsWith('/') ? '' : '/'}_tokenResponse_v1`;
   }
 
   logger: Logger;
@@ -47,8 +48,7 @@ export class AuthService {
   tokensForRefresh$ = new BehaviorSubject<ITokens | undefined>(undefined);
   isAuthenticated$ = this.tokens$.pipe(map(x => !!x));
   expired$ = new Subject<void>();
-
-  storageKey = this.authConfiguration.storageKey ?? `${location.origin}${location.origin.endsWith('/') ? '' : '/'}_tokenResponse_v1`;
+  storageKey: string;
 
   async login(request: unknown) {
     const p = this.usersClient.login(request);

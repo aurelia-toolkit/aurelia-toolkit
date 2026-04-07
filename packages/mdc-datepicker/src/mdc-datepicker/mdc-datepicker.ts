@@ -20,6 +20,7 @@ const DATETIME_ISO_FORMAT = 'yyyy-MM-dd\'T\'HH:mm:ss';
 export class MdcDatepicker {
   constructor(private element: HTMLElement, private taskQueue: TaskQueue, private dialogService: MdcDialogService, private defaultTextFieldConfiguration: MdcDefaultTextFieldConfiguration) {
     defineMdcDatepickerElementApis(this.element);
+    this.outlined = this.defaultTextFieldConfiguration.outlined;
   }
 
   input: IMdcTextFieldElement;
@@ -28,7 +29,7 @@ export class MdcDatepicker {
   private _value: string;
 
   @bindable.booleanAttr
-  outlined?: boolean = this.defaultTextFieldConfiguration.outlined;
+  outlined?: boolean;
 
   @bindable
   label: string;

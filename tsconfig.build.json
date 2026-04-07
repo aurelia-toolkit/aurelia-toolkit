@@ -3,7 +3,7 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "target": "esnext",
+    "target": "es2021",
     "lib": [
       "ESNext",
       "dom"

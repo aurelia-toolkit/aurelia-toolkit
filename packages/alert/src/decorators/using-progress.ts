@@ -5,9 +5,9 @@ export interface IWithAlertService {
   alertService: AlertService;
 }
 
-export function usingProgress(errorMessage?: string | Partial<IAlertModalPayload> | ((e: any) => string), allowCancel: boolean = false) {
+export function usingProgress(errorMessage?: string | Partial<IAlertModalPayload> | ((e: any) => string | Partial<IAlertModalPayload>), allowCancel: boolean = false) {
   // eslint-disable-next-line @typescript-eslint/ban-types
-  return function usingProgressDecorator<T>(_target: IWithAlertService, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: unknown[]) => Promise<T>>) {
+  return function usingProgressDecorator<T>(_target: IWithAlertService, _propertyKey: string, descriptor: TypedPropertyDescriptor<(this: IWithAlertService, ...args: any[]) => Promise<T>>) {
     const originalMethod = descriptor.value;
     if (originalMethod !== undefined) {
       descriptor.value = async function withProgress(this: IWithAlertService, ...args) {

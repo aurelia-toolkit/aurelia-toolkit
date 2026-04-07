@@ -29,7 +29,7 @@
     "*.scss"
   ],
   "scripts": {
-    "build-ts": "tsc -p tsconfig.build.json --outDir dist",
+    "build-ts:code": "tsc -p tsconfig.build.json --outDir dist",
     "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
     "build-assets": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist",
     "prebuild": "rimraf dist",

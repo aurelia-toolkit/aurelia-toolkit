@@ -19,8 +19,8 @@
   "license": "MIT",
   "author": "Maxim Balaganskiy <m.balaganskiy@gmail.com>",
   "contributors": [],
-  "main": "dist/commonjs/index.js",
-  "module": "dist/native-modules/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "typings": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
@@ -31,17 +31,11 @@
     "*.scss"
   ],
   "scripts": {
-    "build-ts:amd": "tsc -p tsconfig.build.json -t es5 -m amd      --outDir dist/amd",
-    "build-ts:cjs": "tsc -p tsconfig.build.json -t es5 -m commonjs --outDir dist/commonjs",
-    "build-ts:ntv": "tsc -p tsconfig.build.json -t es5 -m es6      --outDir dist/native-modules",
-    "build-ts:es6": "tsc -p tsconfig.build.json -t es6 -m es6      --outDir dist/es2015",
+    "build-ts:code": "tsc -p tsconfig.build.json --outDir dist",
     "build-ts:types": "tsc -p tsconfig.build.json --skipLibCheck -d --emitDeclarationOnly --declarationDir dist/types",
-    "build-assets:amd": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/amd",
-    "build-assets:cjs": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/commonjs",
-    "build-assets:ntv": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/native-modules",
-    "build-assets:es6": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist/es2015",
+    "build-assets": "copyfiles -u 1 src/**/*.html src/**/*.css src/**/*.scss dist",
     "prebuild": "rimraf dist",
-    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets:*\""
+    "build": "concurrently \"npm:build-ts:*\" && concurrently \"npm:build-assets\""
   },
   "peerDependencies": {
     "@aurelia-mdc-web/dialog": ">=9.0.8",
